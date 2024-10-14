@@ -4,13 +4,13 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #121825;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #121825;
+    --foreground: #ffffff;
   }
 }
 
@@ -18,4 +18,14 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-synthesis: none;
+}
+
+.h-title {
+  font-family: Yantramanav;
+  font-size: 68px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 110px; /* 161.765% */
+  letter-spacing: 1.36px;
+  text-transform: uppercase;
 }

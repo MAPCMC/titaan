@@ -1,17 +1,19 @@
 # Titaan
 
+## Prerequisites
+
+- Node.js (v18.16.0)
+- pnpm (v8.6.12)
+- Running postgreSQL database (v15.3)
+
+Set environment variables from `.env.example` in `.env`.
+
 ## Getting Started
 
-First, run the development server:
+To run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

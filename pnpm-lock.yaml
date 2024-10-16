@@ -20,6 +20,9 @@ importers:
       '@payloadcms/richtext-lexical':
         specifier: 3.0.0-beta.113
         version: 3.0.0-beta.113(r3slsgblwqlwlbemfelcchc5li)
+      '@payloadcms/translations':
+        specifier: 3.0.0-beta.113
+        version: 3.0.0-beta.113
       graphql:
         specifier: ^16.9.0
         version: 16.9.0

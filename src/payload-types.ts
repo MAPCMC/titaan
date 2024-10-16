@@ -20,7 +20,9 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
+  globals: {
+    home: Home;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -136,6 +138,55 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: number;
+  logo?: (number | null) | Media;
+  layout?: (HeaderSection | Section)[] | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeaderSection".
+ */
+export interface HeaderSection {
+  title: string;
+  introduction?: string | null;
+  image?: (number | null) | Media;
+  callToAction?: CallToAction[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'header';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToAction".
+ */
+export interface CallToAction {
+  label: string;
+  link: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'callToAction';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Section".
+ */
+export interface Section {
+  title: string;
+  anchor?: string | null;
+  introduction?: string | null;
+  type?: ('section-text' | 'section-partners' | 'section-services' | 'section-cases') | null;
+  content?: CallToAction[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'section';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

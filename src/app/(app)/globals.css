@@ -20,7 +20,7 @@ body {
   font-synthesis: none;
 }
 
-.h-title {
+.h-large {
   font-family: Yantramanav;
   font-size: 68px;
   font-style: normal;
@@ -28,4 +28,40 @@ body {
   line-height: 110px; /* 161.765% */
   letter-spacing: 1.36px;
   text-transform: uppercase;
+}
+
+.h-medium {
+  font-family: Yantramanav;
+  font-size: 42px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 63px */
+}
+
+.h-small {
+  font-family: Yantramanav;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 42px; /* 161.538% */
+  letter-spacing: 2.08px;
+}
+
+.h-small-light {
+  font-family: Yantramanav;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%; /* 39px */
+  letter-spacing: 2.08px;
+}
+
+.triangle-wrapper {
+  min-width: 3rem;
+}
+
+.triangle {
+  width: 100%;
+  aspect-ratio: 1 / 0.866;
+  clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
 }

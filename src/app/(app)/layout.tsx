@@ -11,7 +11,7 @@ const font = Yantramanav({
 export const metadata: Metadata = {
   title: "Titaan Producties",
   description:
-    "Fondsenwerving en advies binnen de culturele sector",
+    "Fondsenwerving en advies binnen de culturele sector door Suzanne Kortbeek. Gevestigd in Utrecht.",
 };
 
 export default function RootLayout({

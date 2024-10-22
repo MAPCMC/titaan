@@ -33,12 +33,12 @@ export default async function Home() {
   return (
     <>
       <div className="w-full overflow-hidden pb-[50%]">
-        <Triangle
-          wrapperClassName="absolute top-0 left-0 z-[-1] -translate-x-1/2 w-[60%]"
-          className="bg-yellow-300 scale-y-[-1]"
-        />
         <div className="navbar max-w-5xl mx-auto px-4 pt-12 flex items-center justify-between">
           <div className="relative">
+            <Triangle
+              wrapperClassName="absolute -top-[66px] left-[-1307px] z-[-1] -translate-x-1/2 w-[3000px]"
+              className="bg-yellow-300 scale-y-[-1]"
+            />
             <Link href="/">
               <MainLogo
                 position="header"
@@ -71,11 +71,11 @@ export default async function Home() {
             switch (block.blockType) {
               case "header":
                 return (
-                  <div className="relative overflow-hidden">
-                    <header
-                      key={block.id}
-                      className="max-w-5xl mx-auto p-4"
-                    >
+                  <div
+                    key={block.id}
+                    className="relative overflow-hidden"
+                  >
+                    <header className="max-w-5xl mx-auto p-4">
                       {block.title && (
                         <h1 className="h-medium max-w-4xl">
                           {block.title}

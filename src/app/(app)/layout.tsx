@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="nl">
-      <body className={`${font.className}`}>
+      <body className={`${font.className}`} id="body">
         {children}
       </body>
     </html>

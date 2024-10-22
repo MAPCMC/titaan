@@ -35,6 +35,32 @@ const CallToActionBlock: Block = {
   ],
 };
 
+const TextBlock: Block = {
+  slug: "text",
+  interfaceName: "Text",
+  labels: {
+    singular: {
+      nl: "Tekstblok",
+      en: "Rich text",
+    },
+    plural: {
+      nl: "Tekstblokken",
+      en: "Rich text blocks",
+    },
+  },
+  fields: [
+    {
+      name: "text",
+      label: {
+        nl: "Tekst",
+        en: "Text",
+      },
+      type: "richText",
+      required: true,
+    },
+  ],
+};
+
 const SectionBlock: Block = {
   slug: "section",
   interfaceName: "Section",
@@ -119,7 +145,7 @@ const SectionBlock: Block = {
         en: "Content",
       },
       type: "blocks",
-      blocks: [CallToActionBlock],
+      blocks: [CallToActionBlock, TextBlock],
     },
   ],
 };
@@ -180,16 +206,19 @@ export const Home: GlobalConfig = {
   slug: "home",
   fields: [
     {
-      name: "logo",
-      type: "upload",
-      relationTo: "media",
-    },
-    {
       name: "layout",
       type: "blocks",
       minRows: 1,
-      maxRows: 6,
+      maxRows: 10,
       blocks: [HeaderSectionBlock, SectionBlock],
+    },
+    {
+      name: "footerCopyright",
+      label: {
+        nl: "Copyright footer",
+        en: "Copyright footer",
+      },
+      type: "richText",
     },
   ],
 };

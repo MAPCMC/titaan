@@ -23,6 +23,9 @@ importers:
       '@payloadcms/translations':
         specifier: 3.0.0-beta.113
         version: 3.0.0-beta.113
+      '@zapal/payload-lexical-react':
+        specifier: ^1.5.0
+        version: 1.5.0(lexical@0.18.0)(react-dom@19.0.0-rc-3edc000d-20240926(react@19.0.0-rc-3edc000d-20240926))(react@19.0.0-rc-3edc000d-20240926)
       graphql:
         specifier: ^16.9.0
         version: 16.9.0
@@ -1590,6 +1593,13 @@ packages:
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
+
+  '@zapal/payload-lexical-react@1.5.0':
+    resolution: {integrity: sha512-incJtuD2+f6GUi7mKqK6GfgzUWj2+PKWaWoMSAVjSGD44JJw4crLWI+BVeL+AcV7u/7vywzqQwyP3P5oVni0Zg==}
+    peerDependencies:
+      lexical: ^0.18
+      react: ^19 || >19.0.0-rc
+      react-dom: ^19 || >19.0.0-rc
 
   abbrev@2.0.0:
     resolution: {integrity: sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ==}
@@ -6052,6 +6062,12 @@ snapshots:
       eslint-visitor-keys: 3.4.3
 
   '@ungap/structured-clone@1.2.0': {}
+
+  '@zapal/payload-lexical-react@1.5.0(lexical@0.18.0)(react-dom@19.0.0-rc-3edc000d-20240926(react@19.0.0-rc-3edc000d-20240926))(react@19.0.0-rc-3edc000d-20240926)':
+    dependencies:
+      lexical: 0.18.0
+      react: 19.0.0-rc-3edc000d-20240926
+      react-dom: 19.0.0-rc-3edc000d-20240926(react@19.0.0-rc-3edc000d-20240926)
 
   abbrev@2.0.0: {}
 

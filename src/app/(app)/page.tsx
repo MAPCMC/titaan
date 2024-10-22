@@ -5,6 +5,8 @@ import Image from "next/image";
 import { MainLogo } from "./_components/MainLogo";
 import { Media } from "@/payload-types";
 import Link from "next/link";
+import { Lexical } from "@/app/(app)/_components/Lexical";
+// import { Button } from '@/app/(app)/_components/Button';
 
 const payload = await getPayloadHMR({ config });
 

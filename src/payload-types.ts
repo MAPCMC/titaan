@@ -13,6 +13,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    pages: Page;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -22,6 +23,7 @@ export interface Config {
   };
   globals: {
     home: Home;
+    footer: Footer;
   };
   locale: null;
   user: User & {
@@ -84,6 +86,75 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  layout?: Section[] | null;
+  meta?: {
+    title?: string | null;
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Section".
+ */
+export interface Section {
+  title: string;
+  anchor?: string | null;
+  introduction?: string | null;
+  type?: ('section-text' | 'section-partners' | 'section-services' | 'section-cases') | null;
+  content?: (CallToAction | Text)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'section';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToAction".
+ */
+export interface CallToAction {
+  label: string;
+  link: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'callToAction';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Text".
+ */
+export interface Text {
+  text: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'text';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -96,6 +167,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -145,8 +220,31 @@ export interface PayloadMigration {
  */
 export interface Home {
   id: number;
-  layout?: (HeaderSection | Section)[] | null;
-  footerCopyright?: {
+  header?: Header[] | null;
+  layout?: Section[] | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Header".
+ */
+export interface Header {
+  title: string;
+  introduction?: string | null;
+  image?: (number | null) | Media;
+  callToAction?: CallToAction[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'header';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: number;
+  copyright?: {
     root: {
       type: string;
       children: {
@@ -163,68 +261,6 @@ export interface Home {
   } | null;
   updatedAt?: string | null;
   createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "HeaderSection".
- */
-export interface HeaderSection {
-  title: string;
-  introduction?: string | null;
-  image?: (number | null) | Media;
-  callToAction?: CallToAction[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'header';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallToAction".
- */
-export interface CallToAction {
-  label: string;
-  link: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'callToAction';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Section".
- */
-export interface Section {
-  title: string;
-  anchor?: string | null;
-  introduction?: string | null;
-  type?: ('section-text' | 'section-partners' | 'section-services' | 'section-cases') | null;
-  content?: (CallToAction | Text)[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'section';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Text".
- */
-export interface Text {
-  text: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'text';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

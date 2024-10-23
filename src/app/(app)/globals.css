@@ -5,6 +5,8 @@
 :root {
   --background: #ffffff;
   --foreground: #121825;
+  --blue: #2400ff;
+  --blue-light: #e5e0ff;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -21,7 +23,6 @@ body {
 }
 
 .h-large {
-  font-family: Yantramanav;
   font-size: 68px;
   font-style: normal;
   font-weight: 400;
@@ -31,7 +32,6 @@ body {
 }
 
 .h-medium {
-  font-family: Yantramanav;
   font-size: 42px;
   font-style: normal;
   font-weight: 400;
@@ -39,7 +39,6 @@ body {
 }
 
 .h-small {
-  font-family: Yantramanav;
   font-size: 26px;
   font-style: normal;
   font-weight: 400;
@@ -48,30 +47,9 @@ body {
 }
 
 .h-small-light {
-  font-family: Yantramanav;
   font-size: 26px;
   font-style: normal;
   font-weight: 300;
   line-height: 150%; /* 39px */
   letter-spacing: 2.08px;
-}
-
-.triangle-wrapper {
-  min-width: 3rem;
-}
-
-.triangle {
-  width: 100%;
-  aspect-ratio: 1 / 0.866;
-  clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-}
-
-.lexical h3 {
-  font-family: Yantramanav;
-  font-size: 26px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 42px; /* 161.538% */
-  letter-spacing: 2.08px;
-  margin-top: 1.5rem;
 }

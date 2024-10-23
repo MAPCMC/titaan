@@ -3,6 +3,8 @@ import {
   PayloadLexicalReactContent,
 } from "@zapal/payload-lexical-react";
 
+import "./index.css";
+
 export function Lexical({
   content,
 }: {

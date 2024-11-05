@@ -1,0 +1,16 @@
+.lexical h3 {
+  font-size: 1.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.625rem; /* 161.538% */
+  letter-spacing: 0.13rem;
+}
+
+.lexical p {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.625rem;
+  letter-spacing: 0.085rem;
+  margin-bottom: 1.5rem;
+}

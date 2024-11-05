@@ -11,7 +11,7 @@ const font = Yantramanav({
 export const metadata: Metadata = {
   title: "Titaan Producties",
   description:
-    "Fondsenwerving en advies binnen de culturele sector",
+    "Fondsenwerving en advies binnen de culturele sector door Suzanne Kortbeek. Gevestigd in Utrecht.",
 };
 
 export default function RootLayout({
@@ -20,8 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl">
-      <body className={`${font.className}`}>
+    <html
+      lang="nl"
+      className="text-xs sm:text-sm md:text-base"
+    >
+      <body
+        className={`${font.className} flex flex-col min-h-screen`}
+        id="body"
+      >
         {children}
       </body>
     </html>

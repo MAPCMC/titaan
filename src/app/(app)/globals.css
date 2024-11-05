@@ -5,14 +5,18 @@
 :root {
   --background: #ffffff;
   --foreground: #121825;
+  --blue: #2400ff;
+  --blue-light: #e5e0ff;
+  --yellow: 255 205 26;
+  --yellow-light: 255 246 214;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #121825;
     --foreground: #ffffff;
   }
-}
+} */
 
 body {
   color: var(--foreground);
@@ -20,12 +24,46 @@ body {
   font-synthesis: none;
 }
 
-.h-title {
-  font-family: Yantramanav;
-  font-size: 68px;
+.h-large {
+  font-size: 4.25rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 110px; /* 161.765% */
-  letter-spacing: 1.36px;
+  line-height: 6.875rem; /* 161.765% */
+  letter-spacing: 0.085rem;
   text-transform: uppercase;
+}
+
+.h-medium {
+  font-size: 2.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 63px */
+}
+
+.h-small {
+  font-size: 1.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.625rem; /* 161.538% */
+  letter-spacing: 0.13rem;
+}
+
+.h-small-light {
+  font-size: 1.625rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%; /* 39px */
+  letter-spacing: 0.13rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .h-small,
+  .h-small-light {
+    font-size: 1.125rem;
+    line-height: 150%;
+  }
+
+  .h-medium {
+    font-size: 2.2rem;
+  }
 }

@@ -1,0 +1,9 @@
+.triangle-wrapper {
+  min-width: 3rem;
+}
+
+.triangle {
+  width: 100%;
+  aspect-ratio: 1 / 0.866;
+  clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+}

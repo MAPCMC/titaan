@@ -27,6 +27,7 @@ import { MetaImageComponent as MetaImageComponent_25 } from '@payloadcms/plugin-
 import { MetaDescriptionComponent as MetaDescriptionComponent_26 } from '@payloadcms/plugin-seo/client'
 import { PreviewComponent as PreviewComponent_27 } from '@payloadcms/plugin-seo/client'
 import { SlugComponent as SlugComponent_28 } from '@/db/fields/slug/SlugComponent'
+import { SocialRowLabel as SocialRowLabel_29 } from '@/db/globals/Footer/SocialRowLabel'
 
 export const importMap = {
   "@payloadcms/richtext-lexical/client#RichTextCell": RichTextCell_0,
@@ -57,5 +58,6 @@ export const importMap = {
   "@payloadcms/plugin-seo/client#MetaImageComponent": MetaImageComponent_25,
   "@payloadcms/plugin-seo/client#MetaDescriptionComponent": MetaDescriptionComponent_26,
   "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_27,
-  "@/db/fields/slug/SlugComponent#SlugComponent": SlugComponent_28
+  "@/db/fields/slug/SlugComponent#SlugComponent": SlugComponent_28,
+  "@/db/globals/Footer/SocialRowLabel#SocialRowLabel": SocialRowLabel_29
 }

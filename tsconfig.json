@@ -23,12 +23,9 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@payload-config": [
-        "./src/payload.config.ts"
-      ]
+      "@/*": ["./src/*"],
+      "react": ["./node_modules/@types/react"],
+      "@payload-config": ["./src/payload.config.ts"]
     }
   },
   "include": [
@@ -37,7 +34,5 @@
     "**/*.tsx",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

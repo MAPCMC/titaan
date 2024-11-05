@@ -4,7 +4,6 @@ import { Triangle } from "@/app/(app)/_components/Triangle";
 import { MainLogo } from "@/app/(app)/_components/MainLogo";
 import { Lexical } from "@/app/(app)/_components/Lexical";
 import { Button } from "@/app/(app)/_components/Button";
-import { PayloadLexicalReactContent } from "@zapal/payload-lexical-react";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import config from "@payload-config";
 
@@ -12,12 +11,8 @@ const payload = await getPayloadHMR({ config });
 
 export default async function PageFooter({
   anchors,
-  socials,
-  content,
 }: {
   anchors?: { label: string; link: string }[];
-  socials?: { label: string; link: string }[];
-  content?: PayloadLexicalReactContent | null;
 }) {
   const { docs: pages } = await payload.find({
     collection: "pages",
@@ -38,6 +33,10 @@ export default async function PageFooter({
     ...(anchors ?? []),
   ];
 
+  const footerData = await payload.findGlobal({
+    slug: "footer",
+  });
+
   return (
     <footer className="w-full overflow-hidden pt-[80%] mt-[-80%] pb-36">
       <div className="max-w-5xl mx-auto p-4 flex justify-between items-end pt-36">
@@ -46,8 +45,8 @@ export default async function PageFooter({
             position="footer"
             className="w-120 mb-16"
           />
-          {isLexicalText(content) && (
-            <Lexical content={content} />
+          {isLexicalText(footerData?.copyright) && (
+            <Lexical content={footerData?.copyright} />
           )}
         </div>
         <div className="relative">
@@ -76,7 +75,7 @@ export default async function PageFooter({
             </ul>
             {/* dynamic pages */}
             {(pages ?? []).length > 0 && (
-              <ul className="border border-foreground bg-background">
+              <ul className="border border-foreground bg-background border-t-0">
                 {pages?.map((item, i) => {
                   if (!item.slug || !item.title) {
                     console.error(
@@ -102,18 +101,24 @@ export default async function PageFooter({
               </ul>
             )}
             {/* social links */}
-            {(socials || [])?.length > 0 && (
-              <ul className="border border-foreground bg-background">
-                {socials?.map((item, i) => {
+            {(footerData?.socials || [])?.length > 0 && (
+              <ul className="border border-foreground bg-background border-t-0">
+                {footerData?.socials?.map((item, i) => {
                   return (
                     <li key={i} className="">
-                      <a
-                        target="_blank"
-                        href={item.link}
-                        className="p-3 hover:bg-foreground hover:text-background"
+                      <Button
+                        asChild
+                        variant="link"
+                        className="w-full justify-start"
                       >
-                        {item.label}
-                      </a>
+                        <a
+                          target="_blank"
+                          href={item.link}
+                          className="p-3 hover:bg-foreground hover:text-background"
+                        >
+                          {item.label}
+                        </a>
+                      </Button>
                     </li>
                   );
                 })}

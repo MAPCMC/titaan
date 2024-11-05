@@ -18,9 +18,6 @@ export default async function Home() {
   });
 
   const headerData = HomeData.header?.[0];
-  const footerData = await payload.findGlobal({
-    slug: "footer",
-  });
 
   const menuItems = HomeData.layout?.reduce(
     (acc, block) => {
@@ -34,13 +31,6 @@ export default async function Home() {
     },
     [] as { label: string; link: string }[]
   );
-
-  // TODO add data pages & socials
-  const dynamicPages = [] as {
-    label: string;
-    link: string;
-  }[];
-  const socials = [] as { label: string; link: string }[];
 
   return (
     <>
@@ -115,12 +105,7 @@ export default async function Home() {
       </header>
 
       <PageContent blocks={HomeData.layout} />
-      <PageFooter
-        anchors={menuItems}
-        pages={dynamicPages}
-        socials={socials}
-        content={footerData?.copyright}
-      />
+      <PageFooter anchors={menuItems} />
     </>
   );
 }

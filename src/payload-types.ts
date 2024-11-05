@@ -259,6 +259,13 @@ export interface Footer {
     };
     [k: string]: unknown;
   } | null;
+  socials?:
+    | {
+        label: string;
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

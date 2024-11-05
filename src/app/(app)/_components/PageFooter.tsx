@@ -38,7 +38,7 @@ export default async function PageFooter({
   });
 
   return (
-    <footer className="w-full overflow-hidden pt-[80%] mt-[-80%] pb-36">
+    <footer className="w-full overflow-hidden pt-[80%] mt-[-80%] pb-12 md:pb-36">
       <div className="max-w-5xl mx-auto p-4 flex justify-between items-end pt-36">
         <div>
           <MainLogo
@@ -52,9 +52,9 @@ export default async function PageFooter({
         <div className="relative">
           <Triangle
             wrapperClassName="absolute -bottom-40 -left-36 z-[-1] origin-bottom-left w-[2000px]"
-            className="bg-yellow-300 scale-y-[-1] rotate-180"
+            className="bg-yellow scale-y-[-1] rotate-180"
           />
-          <nav className="min-w-80">
+          <nav className="min-w-80 z-10">
             {/* main page anchors menu */}
             <ul className="border border-foreground bg-background">
               {footerAnchors?.map((item, i) => {

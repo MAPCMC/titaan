@@ -7,6 +7,8 @@
   --foreground: #121825;
   --blue: #2400ff;
   --blue-light: #e5e0ff;
+  --yellow: 255 205 26;
+  --yellow-light: 255 246 214;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -52,4 +54,16 @@ body {
   font-weight: 300;
   line-height: 150%; /* 39px */
   letter-spacing: 0.13rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .h-small,
+  .h-small-light {
+    font-size: 1.125rem;
+    line-height: 150%;
+  }
+
+  .h-medium {
+    font-size: 2.2rem;
+  }
 }

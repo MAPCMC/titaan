@@ -20,7 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl">
+    <html
+      lang="nl"
+      className="text-xs sm:text-sm md:text-base"
+    >
       <body
         className={`${font.className} flex flex-col min-h-screen`}
         id="body"

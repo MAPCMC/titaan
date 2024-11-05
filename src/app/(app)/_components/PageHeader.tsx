@@ -3,6 +3,10 @@ import { Triangle } from "@/app/(app)/_components/Triangle";
 import { MainLogo } from "@/app/(app)/_components/MainLogo";
 import { Button } from "@/app/(app)/_components/Button";
 import { Header } from "@/payload-types";
+import { getPayloadHMR } from "@payloadcms/next/utilities";
+import config from "@payload-config";
+
+const payload = await getPayloadHMR({ config });
 
 import Image from "next/image";
 import {
@@ -12,12 +16,28 @@ import {
 } from "@/app/(app)/_helpers";
 
 export default async function PageHeader({
-  menuItems,
   headerData,
 }: {
-  menuItems: { link: string; label: string }[];
   headerData?: Header | { title: string };
 }) {
+  const HomeData = await payload.findGlobal({
+    slug: "home",
+    depth: 4,
+  });
+
+  const menuItems = HomeData.layout?.reduce(
+    (acc, block) => {
+      if (block.blockType === "section" && block.anchor) {
+        acc.push({
+          label: block.title,
+          link: `/#${block.anchor}`,
+        });
+      }
+      return acc;
+    },
+    [] as { label: string; link: string }[]
+  );
+
   return (
     <header className="w-full overflow-hidden pb-[50%] -mb-[50%]">
       <nav className="grid grid-flow-col auto-cols-fr w-full border-b border-foreground bg-background md:hidden z-10">

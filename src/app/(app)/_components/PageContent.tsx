@@ -1,17 +1,19 @@
 import React from "react";
 import { Section } from "@/payload-types";
-import { isTextBlock } from "../_helpers";
+import { cn, isTextBlock } from "../_helpers";
 
 import { Lexical } from "./Lexical";
 
 export default function PageContent({
   blocks,
+  className,
 }: {
+  className?: string;
   blocks: Section[] | null | undefined;
 }) {
   if (!blocks || blocks.length < 1) return null;
   return (
-    <main className="space-y-36 my-44 grow">
+    <main className={cn("space-y-36 grow", className)}>
       {blocks?.map((block) => {
         return (() => {
           switch (block.blockType) {

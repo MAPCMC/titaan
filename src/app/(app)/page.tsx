@@ -34,8 +34,11 @@ export default async function Home() {
         menuItems={menuItems ?? []}
         headerData={headerData}
       />
-      <PageContent blocks={HomeData.layout} />
-      <PageFooter anchors={menuItems} />
+      <PageContent
+        blocks={HomeData.layout}
+        className="mt-44"
+      />
+      <PageFooter />
     </>
   );
 }

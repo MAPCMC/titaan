@@ -9,11 +9,25 @@ import config from "@payload-config";
 
 const payload = await getPayloadHMR({ config });
 
-export default async function PageFooter({
-  anchors,
-}: {
-  anchors?: { label: string; link: string }[];
-}) {
+export default async function PageFooter() {
+  const HomeData = await payload.findGlobal({
+    slug: "home",
+    depth: 4,
+  });
+
+  const menuItems = HomeData.layout?.reduce(
+    (acc, block) => {
+      if (block.blockType === "section" && block.anchor) {
+        acc.push({
+          label: block.title,
+          link: `/#${block.anchor}`,
+        });
+      }
+      return acc;
+    },
+    [] as { label: string; link: string }[]
+  );
+
   const { docs: pages } = await payload.find({
     collection: "pages",
     limit: 100,
@@ -30,7 +44,7 @@ export default async function PageFooter({
       label: "terug naar boven",
       link: "#body",
     },
-    ...(anchors ?? []),
+    ...(menuItems ?? []),
   ];
 
   const footerData = await payload.findGlobal({
@@ -38,20 +52,23 @@ export default async function PageFooter({
   });
 
   return (
-    <footer className="w-full overflow-hidden pt-[80%] mt-[-80%] pb-12 md:pb-36">
-      <div className="max-w-5xl mx-auto p-4 flex justify-between items-end pt-36">
+    <footer className="w-full overflow-hidden pt-[50%] mt-[-50%] pb-12 md:pb-36">
+      <div className="max-w-5xl mx-auto p-4 gap-x-12 flex max-md:flex-col md:justify-between md:items-end pt-36">
         <div>
           <MainLogo
             position="footer"
-            className="w-120 mb-16"
+            className="w-120 h-auto max-w-full mb-12"
           />
           {isLexicalText(footerData?.copyright) && (
-            <Lexical content={footerData?.copyright} />
+            <Lexical
+              content={footerData?.copyright}
+              className="max-md:hidden"
+            />
           )}
         </div>
         <div className="relative">
           <Triangle
-            wrapperClassName="absolute -bottom-40 -left-36 z-[-1] origin-bottom-left w-[2000px]"
+            wrapperClassName="absolute -bottom-40 left-1/2 md:-left-36 z-[-1] origin-bottom-left w-[2000px]"
             className="bg-yellow scale-y-[-1] rotate-180"
           />
           <nav className="min-w-80 z-10">
@@ -63,10 +80,15 @@ export default async function PageFooter({
                     <Button
                       asChild
                       variant="link"
-                      className="w-full justify-start"
+                      className="w-full flex justify-start"
                     >
-                      <Link href={item.link}>
-                        {item.label}
+                      <Link
+                        href={item.link}
+                        className="block"
+                      >
+                        <span className="first-letter:uppercase">
+                          {item.label}
+                        </span>
                       </Link>
                     </Button>
                   </li>
@@ -89,10 +111,12 @@ export default async function PageFooter({
                       <Button
                         asChild
                         variant="link"
-                        className="w-full justify-start"
+                        className="w-full flex justify-start"
                       >
                         <Link href={`/${item.slug}`}>
-                          {item.title}
+                          <span className="first-letter:uppercase">
+                            {item.title}
+                          </span>
                         </Link>
                       </Button>
                     </li>
@@ -109,14 +133,12 @@ export default async function PageFooter({
                       <Button
                         asChild
                         variant="link"
-                        className="w-full justify-start"
+                        className="w-full flex justify-start"
                       >
-                        <a
-                          target="_blank"
-                          href={item.link}
-                          className="p-3 hover:bg-foreground hover:text-background"
-                        >
-                          {item.label}
+                        <a target="_blank" href={item.link}>
+                          <span className="first-letter:uppercase">
+                            {item.label}
+                          </span>
                         </a>
                       </Button>
                     </li>
@@ -127,6 +149,12 @@ export default async function PageFooter({
           </nav>
         </div>
       </div>
+      {isLexicalText(footerData?.copyright) && (
+        <Lexical
+          content={footerData?.copyright}
+          className="px-4 md:hidden"
+        />
+      )}
     </footer>
   );
 }

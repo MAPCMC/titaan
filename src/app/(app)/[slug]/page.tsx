@@ -64,17 +64,10 @@ export default async function Page({
     <>
       {/* Allows redirects for valid pages too */}
       {/* <PayloadRedirects disableNotFound url={url} /> */}
-      <PageHeader
-        menuItems={[
-          { label: "Terug naar home", link: "/" },
-        ]}
-        headerData={{ title: title }}
-      />
+      <PageHeader headerData={{ title: title }} />
       <PageClient />
       <PageContent blocks={layout} />
-      <PageFooter
-        anchors={[{ label: "Terug naar home", link: "/" }]}
-      />
+      <PageFooter />
     </>
   );
 }

@@ -117,7 +117,7 @@ export default async function PageHeader({
           )}
           {headerData.callToAction &&
             headerData.callToAction?.length > 0 && (
-              <div className="sm:max-sm:row-start-3 flex flex-wrap gap-2 items-end">
+              <div className="sm:max-sm:row-start-3 flex flex-wrap gap-2 items-start md:items-end">
                 {headerData.callToAction?.map((cta, i) => {
                   return (
                     <Button asChild key={i} shape="skewed">

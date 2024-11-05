@@ -11,7 +11,7 @@ export default function PageContent({
 }) {
   if (!blocks || blocks.length < 1) return null;
   return (
-    <main className="space-y-36">
+    <main className="space-y-36 grow">
       {blocks?.map((block) => {
         return (() => {
           switch (block.blockType) {

@@ -23,33 +23,33 @@ body {
 }
 
 .h-large {
-  font-size: 68px;
+  font-size: 4.25rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 110px; /* 161.765% */
-  letter-spacing: 1.36px;
+  line-height: 6.875rem; /* 161.765% */
+  letter-spacing: 0.085rem;
   text-transform: uppercase;
 }
 
 .h-medium {
-  font-size: 42px;
+  font-size: 2.625rem;
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 63px */
 }
 
 .h-small {
-  font-size: 26px;
+  font-size: 1.625rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 42px; /* 161.538% */
-  letter-spacing: 2.08px;
+  line-height: 2.625rem; /* 161.538% */
+  letter-spacing: 0.13rem;
 }
 
 .h-small-light {
-  font-size: 26px;
+  font-size: 1.625rem;
   font-style: normal;
   font-weight: 300;
   line-height: 150%; /* 39px */
-  letter-spacing: 2.08px;
+  letter-spacing: 0.13rem;
 }

@@ -8,8 +8,10 @@ import React, { cache } from "react";
 import type { Page as PageType } from "@/payload-types";
 
 import PageClient from "./page.client";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
+import PageHeader from "../_components/PageHeader";
 import PageContent from "../_components/PageContent";
+import PageFooter from "../_components/PageFooter";
 import { generateMeta } from "@/db/utilities/generateMeta";
 
 export async function generateStaticParams() {
@@ -54,7 +56,6 @@ export default async function Page({
 
   if (!page) {
     notFound();
-    // return <PayloadRedirects url={url} />
   }
 
   const { title, layout } = page;
@@ -63,13 +64,17 @@ export default async function Page({
     <>
       {/* Allows redirects for valid pages too */}
       {/* <PayloadRedirects disableNotFound url={url} /> */}
-      <header>
-        <h1>{title}</h1>
-      </header>
-      <main className="pt-16 pb-24">
-        <PageClient />
-        <PageContent blocks={layout} />
-      </main>
+      <PageHeader
+        menuItems={[
+          { label: "Terug naar home", link: "/" },
+        ]}
+        headerData={{ title: title }}
+      />
+      <PageClient />
+      <PageContent blocks={layout} />
+      <PageFooter
+        anchors={[{ label: "Terug naar home", link: "/" }]}
+      />
     </>
   );
 }

@@ -21,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="nl">
-      <body className={`${font.className}`} id="body">
+      <body
+        className={`${font.className} flex flex-col min-h-screen`}
+        id="body"
+      >
         {children}
       </body>
     </html>

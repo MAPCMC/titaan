@@ -11,7 +11,7 @@ export function Lexical({
   content: PayloadLexicalReactContent;
 }) {
   return (
-    <div className="lexical max-w-2xl">
+    <div className="lexical max-w-2xl mt-4">
       <PayloadLexicalReact content={content} />
     </div>
   );

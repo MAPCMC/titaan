@@ -8,7 +8,7 @@ export default function NotFound() {
       <p>De pagina is niet gevonden.</p>
       <Button shape="skewed" asChild className="mt-8">
         <Link href="/">
-          <span>Naar de hoofdpagina</span>
+          <span>Terug naar home</span>
         </Link>
       </Button>
     </main>

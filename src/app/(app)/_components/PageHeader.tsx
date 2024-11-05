@@ -45,7 +45,7 @@ export default async function PageHeader({
           <>
             <Link
               href="/"
-              className="block max-w-max ring-offset-background focus-visible:outline-none focus-visible:ring-2 hover:outline hover:outline-4 focus-visible:ring-blue focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              className="block max-w-max ring-offset-background focus-visible:outline-none focus-visible:ring-2 hover:outline hover:outline-offset-2 hover:outline-2 focus-visible:ring-blue focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             >
               <MainLogo
                 position="header"

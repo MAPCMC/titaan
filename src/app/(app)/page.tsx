@@ -15,25 +15,9 @@ export default async function Home() {
 
   const headerData = HomeData.header?.[0];
 
-  const menuItems = HomeData.layout?.reduce(
-    (acc, block) => {
-      if (block.blockType === "section" && block.anchor) {
-        acc.push({
-          label: block.title,
-          link: `#${block.anchor}`,
-        });
-      }
-      return acc;
-    },
-    [] as { label: string; link: string }[]
-  );
-
   return (
     <>
-      <PageHeader
-        menuItems={menuItems ?? []}
-        headerData={headerData}
-      />
+      <PageHeader headerData={headerData} />
       <PageContent
         blocks={HomeData.layout}
         className="mt-44"

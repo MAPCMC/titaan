@@ -15,6 +15,7 @@ import sharp from "sharp";
 import { en } from "@payloadcms/translations/languages/en";
 import { nl } from "@payloadcms/translations/languages/nl";
 
+import { migrations } from "./db/migrations";
 import { Users } from "./db/collections/Users";
 import { Media } from "./db/collections/Media";
 import { Home } from "./db/globals/Home";
@@ -70,6 +71,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || "",
     },
     migrationDir: path.resolve(dirname, "db/migrations"),
+    prodMigrations: migrations,
   }),
   sharp,
   plugins: [

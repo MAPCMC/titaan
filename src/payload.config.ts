@@ -7,6 +7,7 @@ import {
 } from "@payloadcms/plugin-seo/types";
 import { Page } from "@/payload-types";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
@@ -41,6 +42,17 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    meta: {
+      title: "Titaan admin",
+      description: "Sitebeheer",
+      icons: [
+        {
+          rel: "icon",
+          type: "image/svg+xml",
+          url: "/icon.svg",
+        },
+      ],
+    },
   },
   i18n: {
     supportedLanguages: { nl, en },
@@ -65,4 +77,17 @@ export default buildConfig({
       generateURL,
     }),
   ],
+  email: nodemailerAdapter({
+    defaultFromAddress: "info@maartenpeene.nl",
+    defaultFromName: "Admin Titaan producties",
+    // Nodemailer transportOptions
+    transportOptions: {
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD,
+      },
+    },
+  }),
 });

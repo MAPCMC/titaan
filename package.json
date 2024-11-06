@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "prestart": "payload migrate",
     "start": "next start",
     "lint": "next lint",
     "payload": "payload"

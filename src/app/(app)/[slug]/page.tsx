@@ -72,9 +72,9 @@ export default async function Page({
   );
 }
 
-type Params = {
+type Params = Promise<{
   slug?: string;
-};
+}>;
 
 export async function generateMetadata({
   params: paramsPromise,

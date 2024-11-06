@@ -25,6 +25,8 @@ export async function generateStaticParams() {
     overrideAccess: false,
   });
 
+  if (!pages) return [];
+
   const params = pages.docs
     ?.filter((doc) => {
       return doc.slug !== "home";

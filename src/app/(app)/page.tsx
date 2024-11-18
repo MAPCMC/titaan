@@ -4,14 +4,14 @@ import config from "@payload-config";
 import PageHeader from "./_components/PageHeader";
 import PageContent from "./_components/PageContent";
 import PageFooter from "./_components/PageFooter";
-
-const payload = await getPayloadHMR({ config });
+import { getCachedGlobal } from "@/db/utilities/getGlobals";
+import { Home as HomeData } from "@/payload-types";
 
 export default async function Home() {
-  const HomeData = await payload.findGlobal({
-    slug: "home",
-    depth: 4,
-  });
+  const HomeData: HomeData = await getCachedGlobal(
+    "home",
+    4
+  )();
 
   const headerData = HomeData.header?.[0];
 

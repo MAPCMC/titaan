@@ -2,7 +2,6 @@ import type { CollectionConfig } from "payload";
 
 import { authenticated } from "@/db/access/authenticated";
 import { authenticatedOrPublished } from "@/db/access/authenticatedOrPublished";
-import { HeaderBlock } from "@/db/blocks/HeaderBlock";
 import { SectionBlock } from "@/db/blocks/SectionBlock";
 import { slugField } from "@/db/fields/slug";
 import { populatePublishedAt } from "@/db/hooks/populatePublishedAt";
@@ -16,6 +15,7 @@ import {
   OverviewField,
   PreviewField,
 } from "@payloadcms/plugin-seo/fields";
+import { revalidateActivePages } from "./hooks/revalidateActivePages";
 export const Pages: CollectionConfig = {
   slug: "pages",
   access: {
@@ -108,7 +108,7 @@ export const Pages: CollectionConfig = {
     ...slugField(),
   ],
   hooks: {
-    afterChange: [revalidatePage],
+    afterChange: [revalidatePage, revalidateActivePages],
     beforeChange: [populatePublishedAt],
   },
   versions: {

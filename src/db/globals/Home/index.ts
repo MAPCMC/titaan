@@ -1,6 +1,7 @@
 import { GlobalConfig } from "payload";
-import { SectionBlock } from "../blocks/SectionBlock";
-import { HeaderBlock } from "../blocks/HeaderBlock";
+import { SectionBlock } from "@/db/blocks/SectionBlock";
+import { HeaderBlock } from "@/db/blocks/HeaderBlock";
+import { revalidateHome } from "./hooks/revalidateHome";
 
 export const Home: GlobalConfig = {
   slug: "home",
@@ -20,4 +21,7 @@ export const Home: GlobalConfig = {
       blocks: [SectionBlock],
     },
   ],
+  hooks: {
+    afterChange: [revalidateHome],
+  },
 };

@@ -4,16 +4,21 @@ import { Triangle } from "@/app/(app)/_components/Triangle";
 import { MainLogo } from "@/app/(app)/_components/MainLogo";
 import { Lexical } from "@/app/(app)/_components/Lexical";
 import { Button } from "@/app/(app)/_components/Button";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
-import config from "@payload-config";
-
-const payload = await getPayloadHMR({ config });
+import { getCachedGlobal } from "@/db/utilities/getGlobals";
+import {
+  Home as HomeData,
+  Footer as FooterData,
+} from "@/payload-types";
+import { getCachedPages } from "@/db/collections/Pages/utilities/getActivePages";
 
 export default async function PageFooter() {
-  const HomeData = await payload.findGlobal({
-    slug: "home",
-    depth: 4,
-  });
+  const HomeData: HomeData = await getCachedGlobal(
+    "home",
+    4
+  )();
+  const footerData: FooterData =
+    await getCachedGlobal("footer")();
+  const pages = await getCachedPages()();
 
   const menuItems = HomeData.layout?.reduce(
     (acc, block) => {
@@ -28,17 +33,6 @@ export default async function PageFooter() {
     [] as { label: string; link: string }[]
   );
 
-  const { docs: pages } = await payload.find({
-    collection: "pages",
-    limit: 100,
-    depth: 0,
-    where: {
-      slug: {
-        not_equals: "home",
-      },
-    },
-  });
-
   const footerAnchors = [
     {
       label: "terug naar boven",
@@ -46,10 +40,6 @@ export default async function PageFooter() {
     },
     ...(menuItems ?? []),
   ];
-
-  const footerData = await payload.findGlobal({
-    slug: "footer",
-  });
 
   return (
     <footer className="w-full overflow-hidden pt-[50%] mt-[-50%] pb-12 md:pb-36">

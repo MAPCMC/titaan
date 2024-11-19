@@ -13,6 +13,7 @@ import PageHeader from "../_components/PageHeader";
 import PageContent from "../_components/PageContent";
 import PageFooter from "../_components/PageFooter";
 import { generateMeta } from "@/db/utilities/generateMeta";
+import PageTitle from "./_components/PageTitle";
 
 export async function generateStaticParams() {
   const payload = await getPayloadHMR({
@@ -64,7 +65,9 @@ export default async function Page({
     <>
       {/* Allows redirects for valid pages too */}
       {/* <PayloadRedirects disableNotFound url={url} /> */}
-      <PageHeader headerData={{ title: title }} />
+      <PageHeader>
+        <PageTitle title={title} />
+      </PageHeader>
       <PageClient />
       <PageContent blocks={layout} />
       <PageFooter />

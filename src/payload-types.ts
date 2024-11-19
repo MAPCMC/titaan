@@ -125,7 +125,7 @@ export interface Page {
  * via the `definition` "Section".
  */
 export interface Section {
-  title: string;
+  title?: string | null;
   anchor?: string | null;
   introduction?: string | null;
   type?: ('section-text' | 'section-partners' | 'section-services' | 'section-cases') | null;

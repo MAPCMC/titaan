@@ -8,38 +8,24 @@ import {
 import { cn } from "../_helpers";
 
 const buttonVariants = cva(
-  "z-10 inline-flex items-center justify-center whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 hover:outline hover:outline-4 focus-visible:ring-blue focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 max-md:min-h-16",
+  "z-10 inline-flex items-center justify-center whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 hover:outline hover:outline-4 focus-visible:ring-blue focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-8 h-small py-2 max-md:min-h-16",
   {
     variants: {
       variant: {
         default:
           "bg-blue text-background hover:bg-foreground hover:outline-foreground",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-primary bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost:
-          "px-0 py-0 hover:bg-accent hover:text-accent-foreground",
         link: "hover:text-background hover:bg-foreground hover:outline-foreground *:block  block first-letter:uppercase",
       },
       shape: {
         default: "",
         skewed:
           "origin-bottom-left skew-x-[-30deg] *:block *:skew-x-[30deg] outline-offset-[-1px] mr-[2.3rem]",
-      },
-      size: {
-        default: "px-8 h-small py-2",
-        sm: "px-3",
-        lg: "px-8",
         icon: "h-10 w-10",
       },
     },
     defaultVariants: {
       shape: "default",
       variant: "default",
-      size: "default",
     },
   }
 );
@@ -58,7 +44,6 @@ const Button = React.forwardRef<
     {
       className,
       variant,
-      size,
       shape,
       asChild = false,
       ...props
@@ -71,7 +56,6 @@ const Button = React.forwardRef<
         className={cn(
           buttonVariants({
             variant,
-            size,
             shape,
             className,
           })

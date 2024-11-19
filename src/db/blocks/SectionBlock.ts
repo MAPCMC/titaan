@@ -23,7 +23,6 @@ export const SectionBlock: Block = {
         en: "Title",
       },
       type: "text",
-      required: true,
     },
     {
       name: "anchor",

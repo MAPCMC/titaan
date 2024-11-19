@@ -7,10 +7,14 @@ import { Lexical } from "./Lexical";
 export default function PageContent({
   blocks,
   className,
+  variant,
 }: {
   className?: string;
+  variant?: "home";
   blocks: Section[] | null | undefined;
 }) {
+  const isHome = variant === "home";
+
   if (!blocks || blocks.length < 1) return null;
   return (
     <main className={cn("space-y-36 grow", className)}>
@@ -28,7 +32,11 @@ export default function PageContent({
                   className="max-w-5xl mx-auto p-4"
                 >
                   {block.title && (
-                    <h2 className="h-large">
+                    <h2
+                      className={
+                        isHome ? "h-large" : "h-medium"
+                      }
+                    >
                       {block.title}
                     </h2>
                   )}

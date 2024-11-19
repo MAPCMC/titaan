@@ -1,11 +1,4 @@
-// storage-adapter-import-placeholder
 import { postgresAdapter } from "@payloadcms/db-postgres";
-import { seoPlugin } from "@payloadcms/plugin-seo";
-import {
-  GenerateTitle,
-  GenerateURL,
-} from "@payloadcms/plugin-seo/types";
-import { Page } from "@/payload-types";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import path from "path";
@@ -15,6 +8,7 @@ import sharp from "sharp";
 import { en } from "@payloadcms/translations/languages/en";
 import { nl } from "@payloadcms/translations/languages/nl";
 
+import { plugins } from "./db/plugins";
 import { migrations } from "./db/migrations";
 import { Users } from "./db/collections/Users";
 import { Media } from "./db/collections/Media";
@@ -24,18 +18,6 @@ import { Pages } from "./db/collections/Pages";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-
-const generateTitle: GenerateTitle<Page> = ({ doc }) => {
-  return doc?.title
-    ? `${doc.title} | Titaan producties`
-    : "Titaan producties";
-};
-
-const generateURL: GenerateURL<Page> = ({ doc }) => {
-  return doc?.slug
-    ? `${process.env.NEXT_PUBLIC_SERVER_URL!}/${doc.slug}`
-    : process.env.NEXT_PUBLIC_SERVER_URL!;
-};
 
 export default buildConfig({
   admin: {
@@ -96,12 +78,7 @@ export default buildConfig({
     prodMigrations: migrations,
   }),
   sharp,
-  plugins: [
-    seoPlugin({
-      generateTitle,
-      generateURL,
-    }),
-  ],
+  plugins: plugins,
   email: nodemailerAdapter({
     defaultFromAddress: "info@maartenpeene.nl",
     defaultFromName: "Admin Titaan producties",

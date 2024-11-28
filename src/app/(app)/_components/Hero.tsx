@@ -17,7 +17,7 @@ export default function Hero({ data }: { data: Header }) {
         </h1>
       )}
       {introduction && (
-        <p className="max-w-2xl h-small-light max-sm:order-last">
+        <p className="max-w-2xl w-full h-small-light max-sm:order-last">
           {introduction}
         </p>
       )}

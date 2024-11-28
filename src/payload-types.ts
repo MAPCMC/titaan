@@ -128,11 +128,28 @@ export interface Section {
   title?: string | null;
   anchor?: string | null;
   introduction?: string | null;
-  type?: ('section-text' | 'section-partners' | 'section-services' | 'section-cases') | null;
-  content?: (CallToAction | Text)[] | null;
+  type?: ('section-text' | 'section-clients' | 'section-partners' | 'section-services' | 'section-cases') | null;
+  content?: (Clients | CallToAction | Text)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'section';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Clients".
+ */
+export interface Clients {
+  list?:
+    | {
+        logo: number | Media;
+        url?: string | null;
+        companyName?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'clients';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -282,6 +299,20 @@ export interface PagesSelect<T extends boolean = true> {
               content?:
                 | T
                 | {
+                    clients?:
+                      | T
+                      | {
+                          list?:
+                            | T
+                            | {
+                                logo?: T;
+                                url?: T;
+                                companyName?: T;
+                                id?: T;
+                              };
+                          id?: T;
+                          blockName?: T;
+                        };
                     callToAction?:
                       | T
                       | {
@@ -448,6 +479,20 @@ export interface HomeSelect<T extends boolean = true> {
               content?:
                 | T
                 | {
+                    clients?:
+                      | T
+                      | {
+                          list?:
+                            | T
+                            | {
+                                logo?: T;
+                                url?: T;
+                                companyName?: T;
+                                id?: T;
+                              };
+                          id?: T;
+                          blockName?: T;
+                        };
                     callToAction?:
                       | T
                       | {

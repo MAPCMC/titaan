@@ -1,3 +1,4 @@
+import { ArrayRowLabel as ArrayRowLabel_041d68fc9b807e11309c9c88fad1ff74 } from '@/db/blocks/ClientsBlock/RowLabel'
 import { RichTextCell as RichTextCell_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { RichTextField as RichTextField_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { getGenerateComponentMap as getGenerateComponentMap_ec38dd6bee95fe7974552968355b33ae } from '@payloadcms/richtext-lexical/generateComponentMap'
@@ -30,6 +31,7 @@ import { SlugComponent as SlugComponent_ce0eb93181d6e2b59032d87493a6ac72 } from 
 import { SocialRowLabel as SocialRowLabel_113c28ef883c485d291faa04eca34b54 } from '@/db/globals/Footer/SocialRowLabel'
 
 export const importMap = {
+  "@/db/blocks/ClientsBlock/RowLabel#ArrayRowLabel": ArrayRowLabel_041d68fc9b807e11309c9c88fad1ff74,
   "@payloadcms/richtext-lexical/client#RichTextCell": RichTextCell_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#RichTextField": RichTextField_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/generateComponentMap#getGenerateComponentMap": getGenerateComponentMap_ec38dd6bee95fe7974552968355b33ae,

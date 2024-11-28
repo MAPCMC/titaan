@@ -67,8 +67,14 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({
           );
         })}
       </CarouselContent>
-      <CarouselPrevious className="left-0 top-full m-4 disabled:hidden" />
-      <CarouselNext className="right-0 top-full m-4 disabled:hidden" />
+      <CarouselPrevious
+        className="left-0 top-full m-4 disabled:hidden rounded-none"
+        variant="ghost"
+      />
+      <CarouselNext
+        className="right-0 top-full m-4 disabled:hidden rounded-none"
+        variant="ghost"
+      />
     </Carousel>
   );
 };

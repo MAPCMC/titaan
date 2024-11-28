@@ -31,6 +31,7 @@ export function BlocksContent({
                   action={block.action}
                   type={block.type}
                   variant={block.variant}
+                  className="mr-3 mb-3"
                 />
               );
             default:

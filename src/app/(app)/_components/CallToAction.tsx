@@ -9,6 +9,7 @@ type CallToActionProps = {
   action: string;
   label: string;
   variant?: "outline" | "selected" | "dark" | "default" | null;
+  [x: string]: any;
 };
 
 export const CallToAction = ({
@@ -16,11 +17,12 @@ export const CallToAction = ({
   action,
   label,
   variant,
+  ...props
 }: CallToActionProps) => {
   switch (type) {
     case "link":
       return (
-        <Button asChild shape="skewed" variant={variant}>
+        <Button asChild shape="skewed" variant={variant} {...props}>
           <Link href={action}>
             <span>{label}</span>
           </Link>
@@ -32,13 +34,14 @@ export const CallToAction = ({
           variant={variant}
           shape="skewed"
           onClick={() => navigator.clipboard.writeText(action)}
+          {...props}
         >
           <span>{label}</span>
         </Button>
       );
     default:
       return (
-        <Button asChild shape="skewed" variant={variant}>
+        <Button asChild shape="skewed" variant={variant} {...props}>
           <Link href={action}>
             <span>{label}</span>
           </Link>

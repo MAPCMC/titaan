@@ -42,8 +42,9 @@ export default function Hero({ data }: { data: Header }) {
             className="h-full w-full"
           />
           <Triangle
-            wrapperClassName="absolute inset-0 rotate-90 translate-x-[calc(100%-13.3%)]"
+            wrapperClassName="absolute inset-0 translate-x-full"
             className="bg-yellow/20"
+            orientation="right"
           />
         </div>
       )}

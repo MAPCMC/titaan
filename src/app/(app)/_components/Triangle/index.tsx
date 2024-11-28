@@ -3,10 +3,12 @@ import "./index.css";
 
 export const Triangle = ({
   className,
+  orientation = "up",
   wrapperClassName,
   ...props
 }: {
   className?: string;
+  orientation?: "up" | "down" | "left" | "right";
   wrapperClassName?: string;
   [x: string]: any;
 }) => (
@@ -15,6 +17,6 @@ export const Triangle = ({
     className={`triangle-wrapper ${wrapperClassName}`}
     {...props}
   >
-    <div className={`triangle ${className}`}></div>
+    <div className={`triangle ${orientation} ${className}`}></div>
   </div>
 );

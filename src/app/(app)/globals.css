@@ -4,17 +4,16 @@
 
 @layer base {
   :root {
-    --radius: 0;
-    --background: #ffffff;
-    --background-dark: #9aa3b9;
-    --foreground: #121825;
-    --foreground-light: #3c4f79;
-    --blue: #2400ff;
-    --blue-light: #e5e0ff;
+    --background: 255 255 255;
+    --background-dark: 154 163 185;
+    --foreground: 18 24 37;
+    --foreground-light: 60 79 121;
     --yellow: 255 205 26;
     --yellow-light: 255 246 214;
-    --red: #e34326;
-    --red-light: #fce8e5;
+    --blue: 36 0 255;
+    --blue-light: 229 224 255;
+    --red: 227 67 38;
+    --red-light: 252 232 229;
   }
 }
 

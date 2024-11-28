@@ -1,8 +1,7 @@
 import React from "react";
 import { Section } from "@/payload-types";
-import { cn, isTextBlock } from "../_helpers";
-
-import { Lexical } from "./Lexical";
+import { cn } from "../_helpers";
+import { BlocksContent } from "./BlocksContent";
 
 export default function PageContent({
   blocks,
@@ -20,8 +19,27 @@ export default function PageContent({
     <main className={cn("space-y-36 grow", className)}>
       {blocks?.map((block) => {
         return (() => {
-          switch (block.blockType) {
-            case "section":
+          switch (block.type) {
+            case "section-clients":
+              return (
+                <section className="bg-white/30">
+                  {block.title && (
+                    <h2
+                      className={
+                        isHome ? "hidden" : "h-medium"
+                      }
+                    >
+                      {block.title}
+                    </h2>
+                  )}
+                  <BlocksContent content={block.content} />
+                </section>
+              );
+
+            case "section-partners":
+            case "section-services":
+            case "section-cases":
+            case "section-text":
               const idProp = block.anchor
                 ? { id: block.anchor }
                 : {};
@@ -45,20 +63,7 @@ export default function PageContent({
                       {block.introduction}
                     </p>
                   )}
-                  {!!block.content &&
-                    block.content.length > 0 &&
-                    block.content?.map(
-                      (blockContent, i) => {
-                        if (isTextBlock(blockContent))
-                          return (
-                            <Lexical
-                              key={i}
-                              content={blockContent.text}
-                            />
-                          );
-                        return null;
-                      }
-                    )}
+                  <BlocksContent content={block.content} />
                 </section>
               );
             default:

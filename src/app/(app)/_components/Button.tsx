@@ -5,16 +5,17 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../_helpers";
 
 const buttonVariants = cva(
-  "z-10 inline-flex items-center justify-center whitespace-nowrap border box-border border-transparent disabled:pointer-events-none disabled:opacity-50 px-10 h-small py-2 max-md:min-h-16 hover:ring-4 focus-visible:hover:ring-8 hover:ring-foreground",
+  "z-10 inline-flex items-center justify-center whitespace-nowrap border box-border border-transparent disabled:pointer-events-none disabled:opacity-50 px-10 h-small py-2 max-md:min-h-16 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue hover:ring-4 focus-visible:hover:ring-8 hover:ring-foreground",
   {
     variants: {
       variant: {
-        default: "bg-blue text-background hover:bg-foreground",
+        default:
+          "bg-blue text-background hover:bg-foreground border-blue hover:border-foreground",
         outline:
-          "border-foreground hover:bg-foreground hover:text-background checked:text-background checked:bg-foreground-light",
+          "border-foreground bg-background hover:bg-foreground hover:text-background checked:text-background checked:bg-foreground-light",
         selected:
-          "bg-foreground-light text-background hover:text-foreground hover:bg-background hover:border-foreground",
-        dark: "bg-foreground text-background hover:bg-foreground-light",
+          "bg-foreground-light border-foreground-light text-background hover:text-foreground hover:border-background-dark hover:bg-background-dark hover:ring-background-dark",
+        dark: "bg-foreground text-background hover:bg-foreground-light hover:ring-foreground-light",
         link: "px-6 hover:text-background hover:bg-foreground *:block block first-letter:uppercase",
       },
       shape: {

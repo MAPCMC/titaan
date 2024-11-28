@@ -22,10 +22,6 @@ body {
   font-synthesis: none;
 }
 
-* {
-  @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue;
-}
-
 .h-large {
   font-size: 4.25rem;
   font-style: normal;

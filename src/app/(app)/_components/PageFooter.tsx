@@ -5,28 +5,17 @@ import { MainLogo } from "@/app/(app)/_components/MainLogo";
 import { Lexical } from "@/app/(app)/_components/Lexical";
 import { Button } from "@/app/(app)/_components/Button";
 import { getCachedGlobal } from "@/db/utilities/getGlobals";
-import {
-  Home as HomeData,
-  Footer as FooterData,
-} from "@/payload-types";
+import { Home as HomeData, Footer as FooterData } from "@/payload-types";
 import { getCachedPages } from "@/db/collections/Pages/utilities/getActivePages";
 
 export default async function PageFooter() {
-  const HomeData: HomeData = await getCachedGlobal(
-    "home",
-    4
-  )();
-  const footerData: FooterData =
-    await getCachedGlobal("footer")();
+  const HomeData: HomeData = await getCachedGlobal("home", 4)();
+  const footerData: FooterData = await getCachedGlobal("footer")();
   const pages = await getCachedPages()();
 
   const menuItems = HomeData.layout?.reduce(
     (acc, block) => {
-      if (
-        block.blockType === "section" &&
-        block.title &&
-        block.anchor
-      ) {
+      if (block.blockType === "section" && block.title && block.anchor) {
         acc.push({
           label: block.title,
           link: `/#${block.anchor}`,
@@ -34,7 +23,7 @@ export default async function PageFooter() {
       }
       return acc;
     },
-    [] as { label: string; link: string }[]
+    [] as { label: string; link: string }[],
   );
 
   const footerAnchors = [
@@ -62,8 +51,8 @@ export default async function PageFooter() {
         </div>
         <div className="relative">
           <Triangle
-            wrapperClassName="absolute -bottom-40 left-1/2 md:-left-36 z-[-1] origin-bottom-left w-[2000px]"
-            className="bg-yellow scale-y-[-1] rotate-180"
+            wrapperClassName="absolute -bottom-40 left-1/2 md:-left-36 z-[-1] w-[2000px] flex flex-col justify-end"
+            className="bg-yellow"
           />
           <nav className="min-w-80 z-10">
             {/* main page anchors menu */}
@@ -76,10 +65,7 @@ export default async function PageFooter() {
                       variant="link"
                       className="w-full flex justify-start"
                     >
-                      <Link
-                        href={item.link}
-                        className="block"
-                      >
+                      <Link href={item.link} className="block">
                         <span className="first-letter:uppercase">
                           {item.label}
                         </span>
@@ -94,10 +80,7 @@ export default async function PageFooter() {
               <ul className="border border-foreground bg-background border-t-0">
                 {pages?.map((item, i) => {
                   if (!item.slug || !item.title) {
-                    console.error(
-                      "missing slug or title",
-                      item
-                    );
+                    console.error("missing slug or title", item);
                     return null;
                   }
                   return (
@@ -144,10 +127,7 @@ export default async function PageFooter() {
         </div>
       </div>
       {isLexicalText(footerData?.copyright) && (
-        <Lexical
-          content={footerData?.copyright}
-          className="px-4 md:hidden"
-        />
+        <Lexical content={footerData?.copyright} className="px-4 md:hidden" />
       )}
     </footer>
   );

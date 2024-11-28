@@ -10,12 +10,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        blue: "var(--blue)",
-        "blue-light": "var(--blue-light)",
+        background: "rgb(var(--background))",
+        foreground: "rgb(var(--foreground))",
+        blue: "rgb(var(--blue))",
+        "blue-light": "rgb(var(--blue-light))",
         yellow: "rgb(var(--yellow))",
         "yellow-light": "rgb(var(--yellow-light))",
+        "foreground-light": "rgb(var(--foreground-light))",
+        "background-dark": "rgb(var(--background-dark))",
+        red: "rgb(var(--red))",
+        "red-light": "rgb(var(--red-light))",
       },
       fontFamily: {
         sans: ["Yantramanav"],

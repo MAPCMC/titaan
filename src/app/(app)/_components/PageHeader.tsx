@@ -14,18 +14,11 @@ export default async function PageHeader({
   logoLarge?: boolean;
   children: React.ReactNode;
 }) {
-  const HomeData: HomeData = await getCachedGlobal(
-    "home",
-    4
-  )();
+  const HomeData: HomeData = await getCachedGlobal("home", 4)();
 
   const menuItems = HomeData.layout?.reduce(
     (acc, block) => {
-      if (
-        block.blockType === "section" &&
-        block.title &&
-        block.anchor
-      ) {
+      if (block.blockType === "section" && block.title && block.anchor) {
         acc.push({
           label: block.title,
           link: `/#${block.anchor}`,
@@ -33,7 +26,7 @@ export default async function PageHeader({
       }
       return acc;
     },
-    [] as { label: string; link: string }[]
+    [] as { label: string; link: string }[],
   );
 
   return (
@@ -74,13 +67,13 @@ export default async function PageHeader({
             </Link>
             <Triangle
               wrapperClassName={cn(
-                "absolute w-[120rem] top-[1.8rem] left-[4rem] -translate-y-1/2 z-[-1] md:top-[1.5rem] md:left-[1.5rem]",
+                "absolute w-[120rem] top-[1.8rem] left-[12rem] -translate-y-1/2 z-[-1] md:top-[1.5rem] md:left-[9.6rem]",
                 {
-                  "lg:top-[2.5rem] lg:left-[8rem]":
-                    logoLarge,
-                }
+                  "lg:top-[2.5rem] lg:left-[16rem]": logoLarge,
+                },
               )}
-              className="bg-yellow-light scale-y-[-1] rotate-90"
+              className="bg-yellow-light !ml-0"
+              orientation="left"
             />
           </>
         </div>

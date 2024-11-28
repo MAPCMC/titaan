@@ -1,13 +1,14 @@
 "use client";
 
 import * as React from "react";
+
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/app/(app)/_components/ui/carousel";
+} from "@/app/(app)/_components/Carousel";
 import { type Clients } from "@/payload-types";
 import Image from "next/image";
 
@@ -15,9 +16,7 @@ interface ClientsFeedProps {
   clients: Clients["list"];
 }
 
-export const ClientsFeed: React.FC<ClientsFeedProps> = ({
-  clients,
-}) => {
+export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
   if (!clients || !clients.length) return null;
 
   return (
@@ -44,9 +43,7 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({
                           ? ""
                           : client.logo.url || ""
                       }
-                      alt={
-                        client.companyName || "Client logo"
-                      }
+                      alt={client.companyName || "logo"}
                       fill
                       className="object-contain"
                     />
@@ -58,23 +55,15 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({
                       Naar {client.companyName}
                     </a>
                   ) : (
-                    <p className="sr-only">
-                      {client.companyName}
-                    </p>
+                    <p className="sr-only">{client.companyName}</p>
                   ))}
               </div>
             </CarouselItem>
           );
         })}
       </CarouselContent>
-      <CarouselPrevious
-        className="left-0 top-full m-4 disabled:hidden rounded-none"
-        variant="ghost"
-      />
-      <CarouselNext
-        className="right-0 top-full m-4 disabled:hidden rounded-none"
-        variant="ghost"
-      />
+      <CarouselPrevious className="border-none" />
+      <CarouselNext className="border-none" />
     </Carousel>
   );
 };

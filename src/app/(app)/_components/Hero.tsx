@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "@/payload-types";
 import Link from "next/link";
 import { Triangle } from "@/app/(app)/_components/Triangle";
-import { Button } from "@/app/(app)/_components/Button";
+import { CallToAction } from "@/app/(app)/_components/CallToAction";
 import { isMedia } from "@/app/(app)/_helpers";
 
 import Image from "next/image";
@@ -12,9 +12,7 @@ export default function Hero({ data }: { data: Header }) {
   return (
     <div className="max-w-5xl mx-auto p-4 flex flex-wrap sm:grid sm:grid-cols-[auto_1fr] gap-4 mt-12">
       {title && (
-        <h1 className="h-medium max-w-4xl col-span-full">
-          {title}
-        </h1>
+        <h1 className="h-medium max-w-4xl w-full col-span-full">{title}</h1>
       )}
       {introduction && (
         <p className="max-w-2xl w-full h-small-light max-sm:order-last">
@@ -23,15 +21,15 @@ export default function Hero({ data }: { data: Header }) {
       )}
       {callToAction && callToAction?.length > 0 && (
         <div className="sm:max-sm:row-start-3 flex flex-wrap gap-2 items-start md:items-end">
-          {callToAction?.map((cta, i) => {
-            return (
-              <Button asChild key={i} shape="skewed">
-                <Link href={cta.link}>
-                  <span>{cta.label}</span>
-                </Link>
-              </Button>
-            );
-          })}
+          {callToAction?.map((cta, i) => (
+            <CallToAction
+              key={i}
+              type={cta.type}
+              action={cta.action}
+              label={cta.label}
+              variant={cta.variant}
+            />
+          ))}
         </div>
       )}
       {image && isMedia(image) && (
@@ -44,8 +42,9 @@ export default function Hero({ data }: { data: Header }) {
             className="h-full w-full"
           />
           <Triangle
-            wrapperClassName="absolute inset-0 rotate-90 translate-x-[calc(100%-13.3%)]"
+            wrapperClassName="absolute inset-0 translate-x-full"
             className="bg-yellow/20"
+            orientation="right"
           />
         </div>
       )}

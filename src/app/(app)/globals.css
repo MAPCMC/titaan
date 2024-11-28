@@ -4,13 +4,16 @@
 
 @layer base {
   :root {
-    --radius: 0;
-    --background: #ffffff;
-    --foreground: #121825;
-    --blue: #2400ff;
-    --blue-light: #e5e0ff;
+    --background: 255 255 255;
+    --background-dark: 154 163 185;
+    --foreground: 18 24 37;
+    --foreground-light: 60 79 121;
     --yellow: 255 205 26;
     --yellow-light: 255 246 214;
+    --blue: 36 0 255;
+    --blue-light: 229 224 255;
+    --red: 227 67 38;
+    --red-light: 252 232 229;
   }
 }
 
@@ -39,7 +42,7 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: 2.625rem; /* 161.538% */
-  letter-spacing: 0.13rem;
+  letter-spacing: 0.15rem;
 }
 
 .h-small-light {
@@ -47,7 +50,7 @@ body {
   font-style: normal;
   font-weight: 300;
   line-height: 150%; /* 39px */
-  letter-spacing: 0.13rem;
+  letter-spacing: 0.15rem;
 }
 
 @media screen and (max-width: 1024px) {

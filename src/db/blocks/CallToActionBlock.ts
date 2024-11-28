@@ -24,10 +24,43 @@ export const CallToActionBlock: Block = {
       required: true,
     },
     {
-      name: "link",
+      name: "type",
       label: {
-        nl: "Link",
-        en: "Link",
+        nl: "Actie",
+        en: "Action",
+      },
+      type: "select",
+      required: true,
+      defaultValue: "link",
+      options: [
+        {
+          label: {
+            nl: "link intern",
+            en: "link internal",
+          },
+          value: "link",
+        },
+        {
+          label: {
+            nl: "link extern",
+            en: "link external",
+          },
+          value: "linkExternal",
+        },
+        {
+          label: {
+            nl: "Kopieer tekst",
+            en: "Copy text",
+          },
+          value: "copy",
+        },
+      ],
+    },
+    {
+      name: "action",
+      label: {
+        nl: "Actie inhoud (link/tekst)",
+        en: "Action content (link/text)",
       },
       type: "text",
       required: true,

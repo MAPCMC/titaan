@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  CallToAction,
+  CallToAction as CTAType,
   Clients,
   Text,
 } from "@/payload-types";
@@ -8,13 +8,14 @@ import { cn } from "../_helpers";
 
 import { ClientsFeed } from "./ClientsFeed";
 import { Lexical } from "./Lexical";
+import { CallToAction } from "./CallToAction";
 
 export function BlocksContent({
   content,
   className,
 }: {
   className?: string;
-  content?: (CallToAction | Text | Clients)[] | null;
+  content?: (CTAType | Text | Clients | any)[] | null;
 }) {
   if (!content || content.length < 1) return null;
   return (
@@ -30,8 +31,17 @@ export function BlocksContent({
               return (
                 <Lexical key={i} content={block.text} />
               );
+            case "callToAction":
+              return (
+                <CallToAction
+                  key={i}
+                  label={block.label}
+                  action={block.action}
+                  type={block.type}
+                />
+              );
             default:
-              console.error(`Unknown block type`);
+              console.error(`Unknown content block type`);
               return null;
           }
         })();

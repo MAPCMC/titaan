@@ -67,7 +67,7 @@ export default function PageContent({
                 </section>
               );
             default:
-              console.error(`Unknown block type`);
+              console.error(`Unknown page section type`);
               return null;
           }
         })();

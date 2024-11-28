@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "@/payload-types";
 import Link from "next/link";
 import { Triangle } from "@/app/(app)/_components/Triangle";
-import { Button } from "@/app/(app)/_components/Button";
+import { CallToAction } from "@/app/(app)/_components/CallToAction";
 import { isMedia } from "@/app/(app)/_helpers";
 
 import Image from "next/image";
@@ -23,15 +23,14 @@ export default function Hero({ data }: { data: Header }) {
       )}
       {callToAction && callToAction?.length > 0 && (
         <div className="sm:max-sm:row-start-3 flex flex-wrap gap-2 items-start md:items-end">
-          {callToAction?.map((cta, i) => {
-            return (
-              <Button asChild key={i} shape="skewed">
-                <Link href={cta.link}>
-                  <span>{cta.label}</span>
-                </Link>
-              </Button>
-            );
-          })}
+          {callToAction?.map((cta, i) => (
+            <CallToAction
+              key={i}
+              type={cta.type}
+              action={cta.action}
+              label={cta.label}
+            />
+          ))}
         </div>
       )}
       {image && isMedia(image) && (

@@ -159,6 +159,7 @@ export interface CallToAction {
   label: string;
   type: 'link' | 'linkExternal' | 'copy';
   action: string;
+  variant?: ('default' | 'selected' | 'dark' | 'outline') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'callToAction';
@@ -320,6 +321,7 @@ export interface PagesSelect<T extends boolean = true> {
                           label?: T;
                           type?: T;
                           action?: T;
+                          variant?: T;
                           id?: T;
                           blockName?: T;
                         };
@@ -461,6 +463,7 @@ export interface HomeSelect<T extends boolean = true> {
                           label?: T;
                           type?: T;
                           action?: T;
+                          variant?: T;
                           id?: T;
                           blockName?: T;
                         };
@@ -502,6 +505,7 @@ export interface HomeSelect<T extends boolean = true> {
                           label?: T;
                           type?: T;
                           action?: T;
+                          variant?: T;
                           id?: T;
                           blockName?: T;
                         };

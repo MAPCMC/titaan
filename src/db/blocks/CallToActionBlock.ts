@@ -65,5 +65,44 @@ export const CallToActionBlock: Block = {
       type: "text",
       required: true,
     },
+    {
+      name: "variant",
+      label: {
+        nl: "Variant",
+        en: "Variant",
+      },
+      type: "select",
+      defaultValue: "default",
+      options: [
+        {
+          label: {
+            nl: "Blauw",
+            en: "Blue",
+          },
+          value: "default",
+        },
+        {
+          label: {
+            nl: "Donkergrijs",
+            en: "Dark gray",
+          },
+          value: "selected",
+        },
+        {
+          label: {
+            nl: "Zwart",
+            en: "Black",
+          },
+          value: "dark",
+        },
+        {
+          label: {
+            nl: "Wit (border)",
+            en: "White (bordered)",
+          },
+          value: "outline",
+        },
+      ],
+    },
   ],
 };

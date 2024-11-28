@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  CallToAction as CTAType,
-  Clients,
-  Text,
-} from "@/payload-types";
+import { CallToAction as CTAType, Clients, Text } from "@/payload-types";
 import { cn } from "../_helpers";
 
 import { ClientsFeed } from "./ClientsFeed";
@@ -24,13 +20,9 @@ export function BlocksContent({
         return (() => {
           switch (block.blockType) {
             case "clients":
-              return (
-                <ClientsFeed key={i} clients={block.list} />
-              );
+              return <ClientsFeed key={i} clients={block.list} />;
             case "text":
-              return (
-                <Lexical key={i} content={block.text} />
-              );
+              return <Lexical key={i} content={block.text} />;
             case "callToAction":
               return (
                 <CallToAction
@@ -38,6 +30,7 @@ export function BlocksContent({
                   label={block.label}
                   action={block.action}
                   type={block.type}
+                  variant={block.variant}
                 />
               );
             default:

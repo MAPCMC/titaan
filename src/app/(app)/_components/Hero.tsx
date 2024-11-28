@@ -12,9 +12,7 @@ export default function Hero({ data }: { data: Header }) {
   return (
     <div className="max-w-5xl mx-auto p-4 flex flex-wrap sm:grid sm:grid-cols-[auto_1fr] gap-4 mt-12">
       {title && (
-        <h1 className="h-medium max-w-4xl col-span-full">
-          {title}
-        </h1>
+        <h1 className="h-medium max-w-4xl w-full col-span-full">{title}</h1>
       )}
       {introduction && (
         <p className="max-w-2xl w-full h-small-light max-sm:order-last">
@@ -29,6 +27,7 @@ export default function Hero({ data }: { data: Header }) {
               type={cta.type}
               action={cta.action}
               label={cta.label}
+              variant={cta.variant}
             />
           ))}
         </div>

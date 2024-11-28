@@ -16,6 +16,10 @@ const config: Config = {
         "blue-light": "var(--blue-light)",
         yellow: "rgb(var(--yellow))",
         "yellow-light": "rgb(var(--yellow-light))",
+        "foreground-light": "var(--foreground-light)",
+        "background-dark": "var(--background-dark)",
+        red: "var(--red)",
+        "red-light": "var(--red-light)",
       },
       fontFamily: {
         sans: ["Yantramanav"],

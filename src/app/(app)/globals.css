@@ -6,16 +6,24 @@
   :root {
     --radius: 0;
     --background: #ffffff;
+    --background-dark: #9aa3b9;
     --foreground: #121825;
+    --foreground-light: #3c4f79;
     --blue: #2400ff;
     --blue-light: #e5e0ff;
     --yellow: 255 205 26;
     --yellow-light: 255 246 214;
+    --red: #e34326;
+    --red-light: #fce8e5;
   }
 }
 
 body {
   font-synthesis: none;
+}
+
+* {
+  @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue;
 }
 
 .h-large {
@@ -39,7 +47,7 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: 2.625rem; /* 161.538% */
-  letter-spacing: 0.13rem;
+  letter-spacing: 0.15rem;
 }
 
 .h-small-light {
@@ -47,7 +55,7 @@ body {
   font-style: normal;
   font-weight: 300;
   line-height: 150%; /* 39px */
-  letter-spacing: 0.13rem;
+  letter-spacing: 0.15rem;
 }
 
 @media screen and (max-width: 1024px) {

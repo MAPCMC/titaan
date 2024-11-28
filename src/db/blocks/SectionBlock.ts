@@ -65,13 +65,6 @@ export const SectionBlock: Block = {
         },
         {
           label: {
-            nl: "Partners",
-            en: "Partners",
-          },
-          value: "section-partners",
-        },
-        {
-          label: {
             nl: "Diensten",
             en: "Services",
           },

@@ -128,7 +128,7 @@ export interface Section {
   title?: string | null;
   anchor?: string | null;
   introduction?: string | null;
-  type?: ('section-text' | 'section-clients' | 'section-partners' | 'section-services' | 'section-cases') | null;
+  type?: ('section-text' | 'section-clients' | 'section-services' | 'section-cases') | null;
   content?: (Clients | CallToAction | Text)[] | null;
   id?: string | null;
   blockName?: string | null;

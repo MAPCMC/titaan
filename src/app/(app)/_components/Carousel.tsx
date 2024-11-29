@@ -194,6 +194,52 @@ const CarouselItem = React.forwardRef<
 });
 CarouselItem.displayName = "CarouselItem";
 
+type UsePrevNextButtonsType = {
+  prevBtnDisabled: boolean;
+  nextBtnDisabled: boolean;
+  onPrevButtonClick: () => void;
+  onNextButtonClick: () => void;
+};
+
+export const usePrevNextButtons = (
+  api: CarouselApi | undefined,
+  onButtonClick?: (api: CarouselApi) => void,
+): UsePrevNextButtonsType => {
+  const [prevBtnDisabled, setPrevBtnDisabled] = React.useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = React.useState(true);
+
+  const onPrevButtonClick = React.useCallback(() => {
+    if (!api) return;
+    api.scrollPrev();
+    if (onButtonClick) onButtonClick(api);
+  }, [api, onButtonClick]);
+
+  const onNextButtonClick = React.useCallback(() => {
+    if (!api) return;
+    api.scrollNext();
+    if (onButtonClick) onButtonClick(api);
+  }, [api, onButtonClick]);
+
+  const onSelect = React.useCallback((api: CarouselApi) => {
+    setPrevBtnDisabled(!api?.canScrollPrev());
+    setNextBtnDisabled(!api?.canScrollNext());
+  }, []);
+
+  React.useEffect(() => {
+    if (!api) return;
+
+    onSelect(api);
+    api.on("reInit", onSelect).on("select", onSelect);
+  }, [api, onSelect]);
+
+  return {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick,
+  };
+};
+
 const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
@@ -207,10 +253,10 @@ const CarouselPrevious = React.forwardRef<
       shape={shape}
       className={cn(
         orientation === "horizontal"
-          ? "absolute top-full left-0 -translate-y-1/2"
+          ? "absolute left-0 top-full -translate-y-1/2"
           : "absolute -top-12 left-1/2 -translate-x-1/2",
         className,
-        "group disabled:opacity-0 bg-transparent",
+        "group bg-transparent disabled:opacity-0",
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
@@ -240,10 +286,10 @@ const CarouselNext = React.forwardRef<
       shape={shape}
       className={cn(
         orientation === "horizontal"
-          ? "absolute top-full right-0 -translate-y-1/2"
+          ? "absolute right-0 top-full -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className,
-        "group disabled:opacity-0 bg-transparent",
+        "group bg-transparent disabled:opacity-0",
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}

@@ -5,11 +5,13 @@ export const Triangle = ({
   className,
   orientation = "up",
   wrapperClassName,
+  ref,
   ...props
 }: {
   className?: string;
   orientation?: "up" | "down" | "left" | "right";
   wrapperClassName?: string;
+  ref?: React.RefObject<HTMLDivElement>;
   [x: string]: any;
 }) => (
   <div
@@ -17,6 +19,6 @@ export const Triangle = ({
     className={`triangle-wrapper ${wrapperClassName}`}
     {...props}
   >
-    <div className={`triangle ${orientation} ${className}`}></div>
+    <div ref={ref} className={`triangle ${orientation} ${className}`}></div>
   </div>
 );

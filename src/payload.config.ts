@@ -15,6 +15,7 @@ import { Media } from "./db/collections/Media";
 import { Home } from "./db/globals/Home";
 import { Footer } from "./db/globals/Footer";
 import { Pages } from "./db/collections/Pages";
+import { Cases } from './db/collections/Cases'
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -63,7 +64,7 @@ export default buildConfig({
     supportedLanguages: { nl, en },
     fallbackLanguage: "nl",
   },
-  collections: [Users, Media, Pages],
+  collections: [Users, Media, Pages, Cases],
   globals: [Home, Footer],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

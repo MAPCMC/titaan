@@ -3,6 +3,7 @@ import { CallToAction as CTAType, Clients, Text } from "@/payload-types";
 import { cn } from "../_helpers";
 
 import { ClientsFeed } from "./ClientsFeed";
+import { CasesFeed } from "./CasesFeed/index";
 import { Lexical } from "./Lexical";
 import { CallToAction } from "./CallToAction";
 
@@ -15,14 +16,16 @@ export function BlocksContent({
 }) {
   if (!content || content.length < 1) return null;
   return (
-    <div className={cn("", className)}>
+    <div className={cn("my-4 space-y-4", className)}>
       {content?.map((block, i) => {
         return (() => {
           switch (block.blockType) {
+            case "cases":
+              return <CasesFeed key={block.id} />;
             case "clients":
-              return <ClientsFeed key={i} clients={block.list} />;
+              return <ClientsFeed key={block.id} clients={block.list} />;
             case "text":
-              return <Lexical key={i} content={block.text} />;
+              return <Lexical key={block.id} content={block.text} />;
             case "callToAction":
               return (
                 <CallToAction
@@ -31,7 +34,7 @@ export function BlocksContent({
                   action={block.action}
                   type={block.type}
                   variant={block.variant}
-                  className="mr-3 mb-3"
+                  className="mb-3 mr-3"
                 />
               );
             default:

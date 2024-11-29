@@ -47,7 +47,7 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      embla-carousel-autoplay:
+      embla-carousel-auto-scroll:
         specifier: ^8.5.1
         version: 8.5.1(embla-carousel@8.5.1)
       embla-carousel-react:
@@ -2316,8 +2316,8 @@ packages:
   ecdsa-sig-formatter@1.0.11:
     resolution: {integrity: sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==}
 
-  embla-carousel-autoplay@8.5.1:
-    resolution: {integrity: sha512-FnZklFpePfp8wbj177UwVaGFehgs+ASVcJvYLWTtHuYKURynCc3IdDn2qrn0E5Qpa3g9yeGwCS4p8QkrZmO8xg==}
+  embla-carousel-auto-scroll@8.5.1:
+    resolution: {integrity: sha512-fbkZ5+kPHJnJ0aVhRClodnBuaWp8RvV/AW4ex+YhXtvkTld9ApAxmyKQsZzycQc24uz15kzyRjSTNfEvzXPYuQ==}
     peerDependencies:
       embla-carousel: 8.5.1
 
@@ -6715,7 +6715,7 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
-  embla-carousel-autoplay@8.5.1(embla-carousel@8.5.1):
+  embla-carousel-auto-scroll@8.5.1(embla-carousel@8.5.1):
     dependencies:
       embla-carousel: 8.5.1
 

@@ -13,7 +13,7 @@ import { type Case } from "@/payload-types";
 import { Lexical } from "../Lexical";
 import { Button } from "@/app/(app)/_components/Button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { PopoverArrow, PopoverClose } from "@radix-ui/react-popover";
+import { PopoverClose } from "@radix-ui/react-popover";
 
 interface CasesFeedProps {
   cases: Case[];

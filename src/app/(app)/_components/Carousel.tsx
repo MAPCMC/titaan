@@ -194,6 +194,52 @@ const CarouselItem = React.forwardRef<
 });
 CarouselItem.displayName = "CarouselItem";
 
+type UsePrevNextButtonsType = {
+  prevBtnDisabled: boolean;
+  nextBtnDisabled: boolean;
+  onPrevButtonClick: () => void;
+  onNextButtonClick: () => void;
+};
+
+export const usePrevNextButtons = (
+  api: CarouselApi | undefined,
+  onButtonClick?: (api: CarouselApi) => void,
+): UsePrevNextButtonsType => {
+  const [prevBtnDisabled, setPrevBtnDisabled] = React.useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = React.useState(true);
+
+  const onPrevButtonClick = React.useCallback(() => {
+    if (!api) return;
+    api.scrollPrev();
+    if (onButtonClick) onButtonClick(api);
+  }, [api, onButtonClick]);
+
+  const onNextButtonClick = React.useCallback(() => {
+    if (!api) return;
+    api.scrollNext();
+    if (onButtonClick) onButtonClick(api);
+  }, [api, onButtonClick]);
+
+  const onSelect = React.useCallback((api: CarouselApi) => {
+    setPrevBtnDisabled(!api?.canScrollPrev());
+    setNextBtnDisabled(!api?.canScrollNext());
+  }, []);
+
+  React.useEffect(() => {
+    if (!api) return;
+
+    onSelect(api);
+    api.on("reInit", onSelect).on("select", onSelect);
+  }, [api, onSelect]);
+
+  return {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick,
+  };
+};
+
 const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>

@@ -2,6 +2,7 @@ import { Block } from "payload";
 import { CallToActionBlock } from "../blocks/CallToActionBlock";
 import { TextBlock } from "../blocks/TextBlock";
 import { ClientsBlock } from "@/db/blocks/ClientsBlock";
+import { CasesBlock } from "./CasesBlock";
 
 export const SectionBlock: Block = {
   slug: "section",
@@ -86,7 +87,7 @@ export const SectionBlock: Block = {
         en: "Content",
       },
       type: "blocks",
-      blocks: [ClientsBlock, CallToActionBlock, TextBlock],
+      blocks: [ClientsBlock, CallToActionBlock, TextBlock, CasesBlock],
     },
   ],
 };

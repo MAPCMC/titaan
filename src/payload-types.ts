@@ -14,6 +14,7 @@ export interface Config {
     users: User;
     media: Media;
     pages: Page;
+    cases: Case;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -22,6 +23,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    cases: CasesSelect<false> | CasesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -129,7 +131,7 @@ export interface Section {
   anchor?: string | null;
   introduction?: string | null;
   type?: ('section-text' | 'section-clients' | 'section-services' | 'section-cases') | null;
-  content?: (Clients | CallToAction | Text)[] | null;
+  content?: (Clients | CallToAction | Text | Cases)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'section';
@@ -190,6 +192,59 @@ export interface Text {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Cases".
+ */
+export interface Cases {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cases';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cases".
+ */
+export interface Case {
+  id: number;
+  title: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  name: string;
+  fullname: string;
+  position?: string | null;
+  commentary?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -206,6 +261,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'cases';
+        value: number | Case;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -332,6 +391,12 @@ export interface PagesSelect<T extends boolean = true> {
                           id?: T;
                           blockName?: T;
                         };
+                    cases?:
+                      | T
+                      | {
+                          id?: T;
+                          blockName?: T;
+                        };
                   };
               id?: T;
               blockName?: T;
@@ -349,6 +414,21 @@ export interface PagesSelect<T extends boolean = true> {
   publishedAt?: T;
   slug?: T;
   slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cases_select".
+ */
+export interface CasesSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  name?: T;
+  fullname?: T;
+  position?: T;
+  commentary?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -513,6 +593,12 @@ export interface HomeSelect<T extends boolean = true> {
                       | T
                       | {
                           text?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                    cases?:
+                      | T
+                      | {
                           id?: T;
                           blockName?: T;
                         };

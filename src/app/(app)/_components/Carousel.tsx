@@ -207,10 +207,10 @@ const CarouselPrevious = React.forwardRef<
       shape={shape}
       className={cn(
         orientation === "horizontal"
-          ? "absolute top-full left-0 -translate-y-1/2"
+          ? "absolute left-0 top-full -translate-y-1/2"
           : "absolute -top-12 left-1/2 -translate-x-1/2",
         className,
-        "group disabled:opacity-0 bg-transparent",
+        "group bg-transparent disabled:opacity-0",
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
@@ -240,10 +240,10 @@ const CarouselNext = React.forwardRef<
       shape={shape}
       className={cn(
         orientation === "horizontal"
-          ? "absolute top-full right-0 -translate-y-1/2"
+          ? "absolute right-0 top-full -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className,
-        "group disabled:opacity-0 bg-transparent",
+        "group bg-transparent disabled:opacity-0",
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}

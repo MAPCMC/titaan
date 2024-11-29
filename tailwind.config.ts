@@ -21,6 +21,9 @@ const config: Config = {
         red: "rgb(var(--red))",
         "red-light": "rgb(var(--red-light))",
       },
+      screens: {
+        '3xl': '1600px',
+      },
       fontFamily: {
         sans: ["Yantramanav"],
         mono: ["Yantramanav"],

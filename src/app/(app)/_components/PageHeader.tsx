@@ -77,14 +77,14 @@ export default async function PageHeader({
             />
           </>
         </div>
-        <nav className="max-md:hidden flex w-auto z-10">
+        <nav className="max-md:hidden flex w-auto z-10 lg:-mr-6">
           {menuItems?.map((item, i) => {
             return (
               <Button
                 asChild
                 key={i}
                 variant="link"
-                className="w-full md:w-auto"
+                className="w-full md:w-auto md:px-6"
               >
                 <Link href={item.link}>
                   <span>{item.label}</span>

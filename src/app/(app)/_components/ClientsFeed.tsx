@@ -26,6 +26,7 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
         slidesToScroll: "auto",
         loop: true,
       }}
+      className="3xl:max-w-7xl mx-auto"
     >
       <CarouselContent>
         {clients.map((client, index) => {

@@ -2,6 +2,7 @@ import React from "react";
 import { Section } from "@/payload-types";
 import { cn } from "../_helpers";
 import { BlocksContent } from "./BlocksContent";
+import { Triangle } from "./Triangle";
 
 export default function PageContent({
   blocks,
@@ -16,13 +17,13 @@ export default function PageContent({
 
   if (!blocks || blocks.length < 1) return null;
   return (
-    <main className={cn("space-y-36 grow", className)}>
-      {blocks?.map((block) => {
+    <main className={cn("space-y-36 grow overflow-x-hidden", className)}>
+      {blocks?.map((block, i) => {
         return (() => {
           switch (block.type) {
             case "section-clients":
               return (
-                <section className="bg-white/30">
+                <section className="bg-white/30" key={block.id}>
                   {block.title && (
                     <h2
                       className={
@@ -36,13 +37,70 @@ export default function PageContent({
                 </section>
               );
 
-            case "section-partners":
             case "section-services":
             case "section-cases":
             case "section-text":
               const idProp = block.anchor
                 ? { id: block.anchor }
                 : {};
+
+
+              // Quick implementation of home background triangle
+              if (blocks.length > 4 && i === 2 && isHome) {
+                return (
+                  <section key={block.id} className='relative'>
+                    <Triangle orientation="left" wrapperClassName="w-[180%] max-w-6xl absolute right-0 top-1/2 -translate-y-1/2 z-[-1]" className="bg-blue-light" />
+                    <div
+                      {...idProp}
+                      className="max-w-5xl mx-auto p-4"
+                    >
+                      {block.title && (
+                        <h2
+                          className={
+                            isHome ? "h-large" : "h-medium"
+                          }
+                        >
+                          {block.title}
+                        </h2>
+                      )}
+                      {block.introduction && (
+                        <p className="h-small-light max-w-2xl">
+                          {block.introduction}
+                        </p>
+                      )}
+                      <BlocksContent content={block.content} />
+                    </div>
+                  </section>
+                )
+              }
+              if (blocks.length > 4 && i === 3 && isHome) {
+                return (
+                  <section key={block.id} className='relative'>
+                    <Triangle orientation="right" wrapperClassName="w-[140%] md:w-3/4 max-w-4xl absolute left-0 top-1/2 -translate-y-1/2 z-[-1]" className="bg-yellow-light" />
+                    <div
+                      {...idProp}
+                      className="max-w-5xl mx-auto p-4"
+                    >
+                      {block.title && (
+                        <h2
+                          className={
+                            isHome ? "h-large" : "h-medium"
+                          }
+                        >
+                          {block.title}
+                        </h2>
+                      )}
+                      {block.introduction && (
+                        <p className="h-small-light max-w-2xl">
+                          {block.introduction}
+                        </p>
+                      )}
+                      <BlocksContent content={block.content} />
+                    </div>
+                  </section>
+                )
+              }
+
               return (
                 <section
                   {...idProp}

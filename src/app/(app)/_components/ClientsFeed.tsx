@@ -11,6 +11,7 @@ import {
 } from "@/app/(app)/_components/Carousel";
 import { type Clients } from "@/payload-types";
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
 
 interface ClientsFeedProps {
   clients: Clients["list"];
@@ -21,23 +22,28 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
 
   return (
     <Carousel
+      plugins={[
+        Autoplay({
+          delay: 4000,
+        }),
+      ]}
       opts={{
         align: "start",
         slidesToScroll: "auto",
         loop: true,
       }}
-      className="3xl:max-w-7xl mx-auto"
+      className="mx-auto 3xl:max-w-7xl"
     >
       <CarouselContent>
         {clients.map((client, index) => {
           return (
             <CarouselItem
               key={client.id || index}
-              className="basis-1/2 md:basis-1/3 lg:basis-1/4 py-4"
+              className="basis-1/2 py-4 md:basis-1/3 lg:basis-1/4"
             >
               <div className="flex items-center">
                 {client.logo && (
-                  <div className="relative aspect-[3/2] w-full max-h-32">
+                  <div className="relative aspect-[3/2] max-h-32 w-full">
                     <Image
                       src={
                         typeof client.logo === "number"

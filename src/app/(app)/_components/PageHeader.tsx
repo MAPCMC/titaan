@@ -30,15 +30,15 @@ export default async function PageHeader({
   );
 
   return (
-    <header className="w-full overflow-hidden pb-[50%] -mb-[50%]">
-      <nav className="grid grid-flow-col auto-cols-fr w-full border-b border-foreground bg-background md:hidden z-10">
+    <header className="-mb-[50%] w-full overflow-hidden pb-[50%]">
+      <nav className="z-10 grid w-full auto-cols-fr grid-flow-col border-b border-foreground bg-background md:hidden">
         {menuItems?.map((item, i) => {
           return (
             <Button
               asChild
               key={i}
               variant="link"
-              className="w-full md:w-auto h-full flex"
+              className="flex h-full w-full md:w-auto"
             >
               <Link href={item.link}>
                 <span>{item.label}</span>
@@ -47,20 +47,21 @@ export default async function PageHeader({
           );
         })}
       </nav>
-      <div className="max-w-5xl p-4 pt-12 mx-auto flex flex-col-reverse md:flex-row md:items-center md:justify-between">
+      <div className="mx-auto flex max-w-5xl flex-col-reverse p-4 pt-12 md:flex-row md:items-center md:justify-between">
         <div className="relative">
           <Triangle
             wrapperClassName="absolute -top-14 left-[-36rem] lg:left-[-34.3rem] z-[-1] -translate-x-1/2 w-[80rem]"
-            className="bg-yellow scale-y-[-1]"
+            className="scale-y-[-1] bg-yellow"
           />
           <>
             <Link
+              id="homeLink"
               href="/"
-              className="block max-w-max ring-offset-background focus-visible:outline-none focus-visible:ring-2 hover:outline hover:outline-offset-2 hover:outline-2 focus-visible:ring-blue focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              className="block max-w-max ring-offset-background hover:outline hover:outline-2 hover:outline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             >
               <MainLogo
                 position="header"
-                className={cn("w-60 md:w-48 h-auto", {
+                className={cn("h-auto w-60 md:w-48", {
                   "lg:w-80": logoLarge,
                 })}
               />
@@ -72,12 +73,12 @@ export default async function PageHeader({
                   "lg:top-[2.5rem] lg:left-[16rem]": logoLarge,
                 },
               )}
-              className="bg-yellow-light !ml-0"
+              className="!ml-0 bg-yellow-light"
               orientation="left"
             />
           </>
         </div>
-        <nav className="max-md:hidden flex w-auto z-10 lg:-mr-6">
+        <nav className="z-10 flex w-auto max-md:hidden lg:-mr-6">
           {menuItems?.map((item, i) => {
             return (
               <Button

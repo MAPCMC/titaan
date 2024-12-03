@@ -7,6 +7,7 @@ import { Button } from "@/app/(app)/_components/Button";
 import { getCachedGlobal } from "@/db/utilities/getGlobals";
 import { Home as HomeData, Footer as FooterData } from "@/payload-types";
 import { getCachedPages } from "@/db/collections/Pages/utilities/getActivePages";
+import { BackToTopButton } from "./BackToTopButton";
 
 export default async function PageFooter() {
   const HomeData: HomeData = await getCachedGlobal("home", 4)();
@@ -26,21 +27,15 @@ export default async function PageFooter() {
     [] as { label: string; link: string }[],
   );
 
-  const footerAnchors = [
-    {
-      label: "terug naar boven",
-      link: "#body",
-    },
-    ...(menuItems ?? []),
-  ];
+  const footerAnchors = [...(menuItems ?? [])];
 
   return (
-    <footer className="w-full overflow-hidden pt-[50%] mt-[-50%] pb-12 md:pb-36">
-      <div className="max-w-5xl mx-auto p-4 gap-x-12 flex max-md:flex-col md:justify-between md:items-end pt-36">
+    <footer className="mt-[-50%] w-full overflow-hidden pb-12 pt-[50%] md:pb-36">
+      <div className="mx-auto flex max-w-5xl gap-x-12 p-4 pt-36 max-md:flex-col md:items-end md:justify-between">
         <div>
           <MainLogo
             position="footer"
-            className="w-120 h-auto max-w-full mb-12"
+            className="w-120 mb-12 h-auto max-w-full"
           />
           {isLexicalText(footerData?.copyright) && (
             <Lexical
@@ -54,16 +49,19 @@ export default async function PageFooter() {
             wrapperClassName="absolute -bottom-40 left-1/2 md:-left-36 z-[-1] w-[2000px] flex flex-col justify-end"
             className="bg-yellow"
           />
-          <nav className="min-w-80 z-10">
+          <nav className="z-10 min-w-80">
             {/* main page anchors menu */}
             <ul className="border border-foreground bg-background">
+              <li>
+                <BackToTopButton />
+              </li>
               {footerAnchors?.map((item, i) => {
                 return (
                   <li key={i}>
                     <Button
                       asChild
                       variant="link"
-                      className="w-full flex justify-start"
+                      className="flex w-full justify-start"
                     >
                       <Link href={item.link} className="block">
                         <span className="first-letter:uppercase">
@@ -77,7 +75,7 @@ export default async function PageFooter() {
             </ul>
             {/* dynamic pages */}
             {(pages ?? []).length > 0 && (
-              <ul className="border border-foreground bg-background border-t-0">
+              <ul className="border border-t-0 border-foreground bg-background">
                 {pages?.map((item, i) => {
                   if (!item.slug || !item.title) {
                     console.error("missing slug or title", item);
@@ -88,7 +86,7 @@ export default async function PageFooter() {
                       <Button
                         asChild
                         variant="link"
-                        className="w-full flex justify-start"
+                        className="flex w-full justify-start"
                       >
                         <Link href={`/${item.slug}`}>
                           <span className="first-letter:uppercase">
@@ -103,14 +101,14 @@ export default async function PageFooter() {
             )}
             {/* social links */}
             {(footerData?.socials || [])?.length > 0 && (
-              <ul className="border border-foreground bg-background border-t-0">
+              <ul className="border border-t-0 border-foreground bg-background">
                 {footerData?.socials?.map((item, i) => {
                   return (
                     <li key={i} className="">
                       <Button
                         asChild
                         variant="link"
-                        className="w-full flex justify-start"
+                        className="flex w-full justify-start"
                       >
                         <a target="_blank" href={item.link}>
                           <span className="first-letter:uppercase">

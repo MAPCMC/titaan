@@ -9,17 +9,16 @@ export const useInView = (
   useEffect(() => {
     if (!ref.current) return;
 
+    const observedElement = ref.current;
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
       { rootMargin },
     );
 
-    observer.observe(ref.current);
+    observer.observe(observedElement);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      observer.unobserve(observedElement);
     };
   }, [ref, rootMargin]);
 

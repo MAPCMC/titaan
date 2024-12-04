@@ -27,7 +27,7 @@ export const CasesFeedClient: React.FC<CasesFeedProps> = ({ cases }) => {
       opts={{
         align: "start",
         slidesToScroll: "auto",
-        loop: true,
+        loop: false,
       }}
       className="mx-auto 3xl:max-w-7xl"
     >

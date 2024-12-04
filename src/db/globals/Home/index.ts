@@ -2,6 +2,7 @@ import { GlobalConfig } from "payload";
 import { SectionBlock } from "@/db/blocks/SectionBlock";
 import { HeaderBlock } from "@/db/blocks/HeaderBlock";
 import { revalidateHome } from "./hooks/revalidateHome";
+import { ServiceSectionBlock } from "@/db/blocks/ServiceSectionBlock";
 
 export const Home: GlobalConfig = {
   slug: "home",
@@ -18,7 +19,7 @@ export const Home: GlobalConfig = {
       type: "blocks",
       minRows: 1,
       maxRows: 10,
-      blocks: [SectionBlock],
+      blocks: [SectionBlock, ServiceSectionBlock],
     },
   ],
   hooks: {

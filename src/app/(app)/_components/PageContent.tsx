@@ -1,8 +1,8 @@
 import React from "react";
-import { Section } from "@/payload-types";
+import { Section, ServiceSection } from "@/payload-types";
 import { cn } from "../_helpers";
 import { BlocksContent } from "./BlocksContent";
-import { Triangle } from "./Triangle";
+import { Services } from "./Services";
 import { PageSectionTriangle } from "./PageSectionTriangle";
 
 export default function PageContent({
@@ -12,7 +12,7 @@ export default function PageContent({
 }: {
   className?: string;
   variant?: "home";
-  blocks: Section[] | null | undefined;
+  blocks: (Section | ServiceSection)[] | null | undefined;
 }) {
   const isHome = variant === "home";
 
@@ -22,7 +22,7 @@ export default function PageContent({
       {blocks?.map((block, i) => {
         return (() => {
           switch (block.type) {
-            case "section-clients":
+            case "section-clients": {
               return (
                 <section className="bg-white/30" key={block.id}>
                   {block.title && (
@@ -33,10 +33,29 @@ export default function PageContent({
                   <BlocksContent content={block.content} />
                 </section>
               );
-
-            case "section-services":
+            }
+            case "section-services": {
+              const idProp = block.anchor ? { id: block.anchor } : {};
+              return (
+                <section {...idProp} key={block.id}>
+                  <div className="mx-auto max-w-5xl p-4">
+                    {block.title && (
+                      <h2 className={isHome ? "h-large" : "h-medium"}>
+                        {block.title}
+                      </h2>
+                    )}
+                    {block.introduction && (
+                      <p className="h-small-light max-w-2xl">
+                        {block.introduction}
+                      </p>
+                    )}
+                  </div>
+                  <Services section={block} />
+                </section>
+              );
+            }
             case "section-cases":
-            case "section-text":
+            case "section-text": {
               const idProp = block.anchor ? { id: block.anchor } : {};
 
               // Quick implementation of home background triangle
@@ -112,9 +131,11 @@ export default function PageContent({
                   <BlocksContent content={block.content} />
                 </section>
               );
-            default:
+            }
+            default: {
               console.error(`Unknown page section type`);
               return null;
+            }
           }
         })();
       })}

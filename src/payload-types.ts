@@ -15,15 +15,20 @@ export interface Config {
     media: Media;
     pages: Page;
     cases: Case;
+    services: Service;
+    filters: Filter;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
+  collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     cases: CasesSelect<false> | CasesSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    filters: FiltersSelect<false> | FiltersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -43,9 +48,9 @@ export interface Config {
   user: User & {
     collection: 'users';
   };
-  jobs?: {
+  jobs: {
     tasks: unknown;
-    workflows?: unknown;
+    workflows: unknown;
   };
 }
 export interface UserAuthOperations {
@@ -130,7 +135,7 @@ export interface Section {
   title?: string | null;
   anchor?: string | null;
   introduction?: string | null;
-  type?: ('section-text' | 'section-clients' | 'section-services' | 'section-cases') | null;
+  type?: ('section-text' | 'section-clients' | 'section-cases') | null;
   content?: (Clients | CallToAction | Text | Cases)[] | null;
   id?: string | null;
   blockName?: string | null;
@@ -245,6 +250,54 @@ export interface Case {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  title: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "filters".
+ */
+export interface Filter {
+  id: number;
+  key: string;
+  level: number;
+  multiple: boolean;
+  options?:
+    | {
+        value: string;
+        label: string;
+        services?: (number | Service)[] | null;
+        filters?: (number | Filter)[] | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -265,6 +318,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'cases';
         value: number | Case;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: number | Service;
+      } | null)
+    | ({
+        relationTo: 'filters';
+        value: number | Filter;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -405,11 +466,9 @@ export interface PagesSelect<T extends boolean = true> {
   meta?:
     | T
     | {
-        overview?: T;
         title?: T;
         image?: T;
         description?: T;
-        preview?: T;
       };
   publishedAt?: T;
   slug?: T;
@@ -429,6 +488,38 @@ export interface CasesSelect<T extends boolean = true> {
   fullname?: T;
   position?: T;
   commentary?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "filters_select".
+ */
+export interface FiltersSelect<T extends boolean = true> {
+  key?: T;
+  level?: T;
+  multiple?: T;
+  options?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        services?: T;
+        filters?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -472,7 +563,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Home {
   id: number;
   header?: Header[] | null;
-  layout?: Section[] | null;
+  layout?: (Section | ServiceSection)[] | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -488,6 +579,34 @@ export interface Header {
   id?: string | null;
   blockName?: string | null;
   blockType: 'header';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServiceSection".
+ */
+export interface ServiceSection {
+  title?: string | null;
+  anchor?: string | null;
+  introduction?: string | null;
+  type?: 'section-services' | null;
+  resultsIntro?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'serviceSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -603,6 +722,17 @@ export interface HomeSelect<T extends boolean = true> {
                           blockName?: T;
                         };
                   };
+              id?: T;
+              blockName?: T;
+            };
+        serviceSection?:
+          | T
+          | {
+              title?: T;
+              anchor?: T;
+              introduction?: T;
+              type?: T;
+              resultsIntro?: T;
               id?: T;
               blockName?: T;
             };

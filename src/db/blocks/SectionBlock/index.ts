@@ -1,8 +1,8 @@
 import { Block } from "payload";
-import { CallToActionBlock } from "../blocks/CallToActionBlock";
-import { TextBlock } from "../blocks/TextBlock";
-import { ClientsBlock } from "@/db/blocks/ClientsBlock";
-import { CasesBlock } from "./CasesBlock";
+import { CallToActionBlock } from "@/db/blocks/CallToActionBlock";
+import { TextBlock } from "./blocks/TextBlock";
+import { ClientsBlock } from "./blocks/ClientsBlock";
+import { CasesBlock } from "./blocks/CasesBlock";
 
 export const SectionBlock: Block = {
   slug: "section",
@@ -63,13 +63,6 @@ export const SectionBlock: Block = {
             en: "Clients",
           },
           value: "section-clients",
-        },
-        {
-          label: {
-            nl: "Diensten",
-            en: "Services",
-          },
-          value: "section-services",
         },
         {
           label: {

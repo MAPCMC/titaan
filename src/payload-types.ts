@@ -21,7 +21,6 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -48,9 +47,9 @@ export interface Config {
   user: User & {
     collection: 'users';
   };
-  jobs: {
+  jobs?: {
     tasks: unknown;
-    workflows: unknown;
+    workflows?: unknown;
   };
 }
 export interface UserAuthOperations {
@@ -466,9 +465,11 @@ export interface PagesSelect<T extends boolean = true> {
   meta?:
     | T
     | {
+        overview?: T;
         title?: T;
         image?: T;
         description?: T;
+        preview?: T;
       };
   publishedAt?: T;
   slug?: T;

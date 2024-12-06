@@ -28,6 +28,7 @@ import { MetaImageComponent as MetaImageComponent_a8a977ebc872c5d5ea7ee689724c08
 import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { SlugComponent as SlugComponent_ce0eb93181d6e2b59032d87493a6ac72 } from '@/db/fields/slug/SlugComponent'
+import { RowDataLabel as RowDataLabel_75d6ce5f2ae551d2ed29f6b11f2a0526 } from '@/db/_components/RowDataLabel'
 import { SocialRowLabel as SocialRowLabel_113c28ef883c485d291faa04eca34b54 } from '@/db/globals/Footer/SocialRowLabel'
 
 export const importMap = {
@@ -61,5 +62,6 @@ export const importMap = {
   "@payloadcms/plugin-seo/client#MetaDescriptionComponent": MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@/db/fields/slug/SlugComponent#SlugComponent": SlugComponent_ce0eb93181d6e2b59032d87493a6ac72,
+  "@/db/_components/RowDataLabel#RowDataLabel": RowDataLabel_75d6ce5f2ae551d2ed29f6b11f2a0526,
   "@/db/globals/Footer/SocialRowLabel#SocialRowLabel": SocialRowLabel_113c28ef883c485d291faa04eca34b54
 }

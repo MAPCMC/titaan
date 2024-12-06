@@ -23,6 +23,7 @@ const buttonVariants = cva(
         skewed:
           "py-2 px-10 max-md:min-h-16 origin-bottom-left skew-x-[-30deg] *:block *:skew-x-[30deg]",
         icon: "h-10 w-10",
+        small: "py-2 px-6 max-md:min-h-10 !text-sm",
       },
     },
     defaultVariants: {

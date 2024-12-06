@@ -11,7 +11,9 @@ async function getFilters(): Promise<Filter[]> {
 
   const collection = await payload.find({
     collection: "filters",
-    limit: 50,
+    limit: 500,
+    depth: 0,
+    sort: ["level", "order"],
   });
 
   return collection.docs;

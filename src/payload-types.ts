@@ -279,8 +279,9 @@ export interface Service {
  */
 export interface Filter {
   id: number;
-  key: string;
+  order: number;
   level: number;
+  key: string;
   multiple: boolean;
   options?:
     | {
@@ -293,7 +294,6 @@ export interface Filter {
     | null;
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -509,8 +509,9 @@ export interface ServicesSelect<T extends boolean = true> {
  * via the `definition` "filters_select".
  */
 export interface FiltersSelect<T extends boolean = true> {
-  key?: T;
+  order?: T;
   level?: T;
+  key?: T;
   multiple?: T;
   options?:
     | T
@@ -523,7 +524,6 @@ export interface FiltersSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
-  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

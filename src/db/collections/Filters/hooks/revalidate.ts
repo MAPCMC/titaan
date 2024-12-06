@@ -1,7 +1,7 @@
 import type { CollectionAfterChangeHook } from "payload";
 import { Service } from "@/payload-types";
 
-import { revalidatePath } from "next/cache";
+import { revalidateTag, revalidatePath } from "next/cache";
 
 export const revalidateFilter: CollectionAfterChangeHook<Service> = ({
   doc,
@@ -10,6 +10,7 @@ export const revalidateFilter: CollectionAfterChangeHook<Service> = ({
 }) => {
   if (doc._status === "published" || previousDoc?._status === "published") {
     payload.logger.info(`Revalidating filter`);
+    revalidateTag("filters");
     revalidatePath("/");
   }
   return doc;

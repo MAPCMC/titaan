@@ -1,12 +1,15 @@
 "use client";
 
-// import { useRowLabel } from "@payloadcms/ui";
+import { useRowLabel } from "@payloadcms/ui";
 
 export const RowDataLabel = () => {
-  // const { data, rowNumber } = useRowLabel<{ label?: string }>();
+  const { data, rowNumber } = useRowLabel<{ label?: string; value?: string }>();
 
-  // const customLabel = `${data.label ?? ""} ${String(rowNumber).padStart(2, "0")} `;
+  const customLabel = data.label ?? "";
 
-  // return <p>{customLabel}</p>;
-  return "hi";
+  return (
+    <p>
+      ({data.value ?? rowNumber}) {customLabel}
+    </p>
+  );
 };

@@ -28,24 +28,55 @@ export const Filters: CollectionConfig = {
   },
   fields: [
     {
-      name: "key",
-      type: "text",
+      name: "order",
+      type: "number",
       required: true,
+      defaultValue: 1,
+      admin: {
+        position: "sidebar",
+      },
     },
     {
       name: "level",
       type: "number",
       required: true,
+      defaultValue: 1,
+      admin: {
+        position: "sidebar",
+      },
+    },
+    {
+      name: "key",
+      type: "text",
+      required: true,
+      label: "zoekwoord",
+      admin: {
+        description: "Dit zie je in de zoekbalk (1 woord, geen tekens)",
+      },
     },
     {
       name: "multiple",
       type: "checkbox",
       required: true,
       defaultValue: false,
+      label: "meerdere opties toestaan",
+      admin: {
+        description: "Selecteer wanneer meerdere opties aankruisen mogelijk is",
+      },
     },
     {
       name: "options",
       type: "array",
+      admin: {
+        components: {
+          RowLabel: "@/db/_components/RowDataLabel#RowDataLabel",
+        },
+      },
+      label: "Keuzeopties",
+      labels: {
+        singular: "keuzeoptie",
+        plural: "keuzeopties",
+      },
       fields: [
         {
           name: "value",
@@ -54,6 +85,9 @@ export const Filters: CollectionConfig = {
         },
         {
           name: "label",
+          label: {
+            nl: "Dit lees je in de filter",
+          },
           type: "text",
           required: true,
         },
@@ -67,11 +101,15 @@ export const Filters: CollectionConfig = {
           name: "filters",
           type: "relationship",
           relationTo: "filters",
+          label: "Volgende filters in deze tak",
           hasMany: true,
-          admin: {
-            condition: (_, siblingData) => {
-              return siblingData.level === _.level + 1;
-            },
+          filterOptions: ({ data }) => {
+            // returns a Where query dynamically by the type of relationship
+            return {
+              level: {
+                equals: data.level + 1,
+              },
+            };
           },
         },
       ],
@@ -80,13 +118,5 @@ export const Filters: CollectionConfig = {
 
   hooks: {
     afterChange: [revalidateFilter],
-  },
-  versions: {
-    drafts: {
-      autosave: {
-        interval: 600,
-      },
-    },
-    maxPerDoc: 20,
   },
 };

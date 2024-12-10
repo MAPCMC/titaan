@@ -1,9 +1,7 @@
 import { Plugin } from "payload";
 import { seoPlugin } from "@payloadcms/plugin-seo";
-import {
-  GenerateTitle,
-  GenerateURL,
-} from "@payloadcms/plugin-seo/types";
+// import { nestedDocsPlugin } from "@payloadcms/plugin-nested-docs";
+import { GenerateTitle, GenerateURL } from "@payloadcms/plugin-seo/types";
 import { Page } from "@/payload-types";
 import { s3Storage } from "@payloadcms/storage-s3";
 
@@ -20,9 +18,7 @@ const s3Config = {
 };
 
 const generateTitle: GenerateTitle<Page> = ({ doc }) => {
-  return doc?.title
-    ? `${doc.title} | Titaan producties`
-    : "Titaan producties";
+  return doc?.title ? `${doc.title} | Titaan producties` : "Titaan producties";
 };
 
 const generateURL: GenerateURL<Page> = ({ doc }) => {

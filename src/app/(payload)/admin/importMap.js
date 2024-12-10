@@ -1,4 +1,4 @@
-import { ArrayRowLabel as ArrayRowLabel_041d68fc9b807e11309c9c88fad1ff74 } from '@/db/blocks/ClientsBlock/RowLabel'
+import { ArrayRowLabel as ArrayRowLabel_74741515d62eefe89c1372a233ba3284 } from '@/db/blocks/SectionBlock/blocks/ClientsBlock/RowLabel'
 import { RichTextCell as RichTextCell_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { RichTextField as RichTextField_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { getGenerateComponentMap as getGenerateComponentMap_ec38dd6bee95fe7974552968355b33ae } from '@payloadcms/richtext-lexical/generateComponentMap'
@@ -28,10 +28,11 @@ import { MetaImageComponent as MetaImageComponent_a8a977ebc872c5d5ea7ee689724c08
 import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { SlugComponent as SlugComponent_ce0eb93181d6e2b59032d87493a6ac72 } from '@/db/fields/slug/SlugComponent'
+import { RowDataLabel as RowDataLabel_75d6ce5f2ae551d2ed29f6b11f2a0526 } from '@/db/_components/RowDataLabel'
 import { SocialRowLabel as SocialRowLabel_113c28ef883c485d291faa04eca34b54 } from '@/db/globals/Footer/SocialRowLabel'
 
 export const importMap = {
-  "@/db/blocks/ClientsBlock/RowLabel#ArrayRowLabel": ArrayRowLabel_041d68fc9b807e11309c9c88fad1ff74,
+  "@/db/blocks/SectionBlock/blocks/ClientsBlock/RowLabel#ArrayRowLabel": ArrayRowLabel_74741515d62eefe89c1372a233ba3284,
   "@payloadcms/richtext-lexical/client#RichTextCell": RichTextCell_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#RichTextField": RichTextField_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/generateComponentMap#getGenerateComponentMap": getGenerateComponentMap_ec38dd6bee95fe7974552968355b33ae,
@@ -61,5 +62,6 @@ export const importMap = {
   "@payloadcms/plugin-seo/client#MetaDescriptionComponent": MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@/db/fields/slug/SlugComponent#SlugComponent": SlugComponent_ce0eb93181d6e2b59032d87493a6ac72,
+  "@/db/_components/RowDataLabel#RowDataLabel": RowDataLabel_75d6ce5f2ae551d2ed29f6b11f2a0526,
   "@/db/globals/Footer/SocialRowLabel#SocialRowLabel": SocialRowLabel_113c28ef883c485d291faa04eca34b54
 }

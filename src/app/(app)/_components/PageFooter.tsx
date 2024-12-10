@@ -16,7 +16,12 @@ export default async function PageFooter() {
 
   const menuItems = HomeData.layout?.reduce(
     (acc, block) => {
-      if (block.blockType === "section" && block.title && block.anchor) {
+      if (
+        (block.blockType === "section" ||
+          block.blockType === "serviceSection") &&
+        block.title &&
+        block.anchor
+      ) {
         acc.push({
           label: block.title,
           link: `/#${block.anchor}`,

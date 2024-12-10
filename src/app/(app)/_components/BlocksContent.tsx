@@ -6,6 +6,7 @@ import { ClientsFeed } from "./ClientsFeed";
 import { CasesFeed } from "./CasesFeed/index";
 import { Lexical } from "./Lexical";
 import { CallToAction } from "./CallToAction";
+import { Services } from "./Services";
 
 export function BlocksContent({
   content,

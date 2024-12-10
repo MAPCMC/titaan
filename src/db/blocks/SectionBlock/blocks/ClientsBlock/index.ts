@@ -63,7 +63,7 @@ export const ClientsBlock: Block = {
       admin: {
         components: {
           RowLabel:
-            "@/db/blocks/ClientsBlock/RowLabel#ArrayRowLabel",
+            "@/db/blocks/SectionBlock/blocks/ClientsBlock/RowLabel#ArrayRowLabel",
         },
       },
     },

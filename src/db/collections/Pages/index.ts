@@ -29,8 +29,7 @@ export const Pages: CollectionConfig = {
     livePreview: {
       url: ({ data }) => {
         const path = generatePreviewPath({
-          slug:
-            typeof data?.slug === "string" ? data.slug : "",
+          slug: typeof data?.slug === "string" ? data.slug : "",
           collection: "pages",
         });
 
@@ -39,8 +38,7 @@ export const Pages: CollectionConfig = {
     },
     preview: (data) => {
       const path = generatePreviewPath({
-        slug:
-          typeof data?.slug === "string" ? data.slug : "",
+        slug: typeof data?.slug === "string" ? data.slug : "",
         collection: "pages",
       });
 

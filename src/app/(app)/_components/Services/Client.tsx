@@ -75,7 +75,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
         scroll: false,
       });
     }
-  }, [searchParams]);
+  }, [searchParams, entries, filters, router]);
 
   const handleFilterClick = (key: string, value: string, multiple: boolean) => {
     const newSearchParams = new URLSearchParams(searchParams);
@@ -163,7 +163,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
       {filteredServices.length === 0 && (
         <div className="mx-auto max-w-5xl space-y-3 px-4 text-center">
           <p className="h-small">
-            Oeps! geen scenario's met (al) deze criteria.
+            {"Oeps! geen scenario's met (al) deze criteria."}
           </p>
         </div>
       )}
@@ -189,7 +189,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
             <div className="mx-auto max-w-5xl px-4">
               <div>
                 <h2 className="h-small">
-                  Relevante scenario's ({filteredServices.length})
+                  {`Relevante scenario's (${filteredServices.length})`}
                 </h2>
                 <Lexical content={section.resultsIntro} />
               </div>

@@ -8,10 +8,9 @@ export const revalidateFilter: CollectionAfterChangeHook<Service> = ({
   previousDoc,
   req: { payload },
 }) => {
-  if (doc._status === "published" || previousDoc?._status === "published") {
-    payload.logger.info(`Revalidating filter`);
-    revalidateTag("filters");
-    revalidatePath("/");
-  }
+  payload.logger.info(`Revalidating filter`);
+  revalidateTag("filters");
+  revalidatePath("/");
+
   return doc;
 };

@@ -115,7 +115,6 @@ export const Filters: CollectionConfig = {
       ],
     },
   ],
-
   hooks: {
     afterChange: [revalidateFilter],
   },

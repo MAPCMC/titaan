@@ -23,6 +23,6 @@ async function getFilters(): Promise<Filter[]> {
  * Returns a unstable_cache function mapped with the cache tag for the slug
  */
 export const getCachedFilters = () =>
-  unstable_cache(async () => getFilters(), ["filters"], {
+  unstable_cache(async () => getFilters(), [], {
     tags: ["filters"],
   });

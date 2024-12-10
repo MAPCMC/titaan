@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import type { ServiceSection } from "@/payload-types";
 import { ServicesClient } from "./Client";
@@ -14,6 +14,8 @@ export const Services: React.FC<Props> = async ({ section }: Props) => {
   const filters = await getCachedFilters()();
 
   return (
-    <ServicesClient services={services} filters={filters} section={section} />
+    <Suspense>
+      <ServicesClient services={services} filters={filters} section={section} />
+    </Suspense>
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState, RefObject } from "react";
 
 export const useInView = (
-  ref: RefObject<Element>,
+  ref: RefObject<Element> | RefObject<null>,
   rootMargin: string = "0px",
 ): boolean => {
   const [isVisible, setIsVisible] = useState(false);

@@ -11,7 +11,7 @@ export const Triangle = ({
   className?: string;
   orientation?: "up" | "down" | "left" | "right";
   wrapperClassName?: string;
-  ref?: React.RefObject<HTMLDivElement>;
+  ref?: React.RefObject<HTMLDivElement> | React.RefObject<null>;
   [x: string]: any;
 }) => (
   <div

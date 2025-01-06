@@ -254,7 +254,6 @@ export const ServicesClient: React.FC<ServicesProps> = ({
                 <p>Over jou/jullie:</p>
                 <ul>
                   {Object.keys(entries).map((key: string, i: number) => {
-                    console.log(key);
                     const filter = visibleFilters.find((filter) => {
                       return filter.key === key;
                     });

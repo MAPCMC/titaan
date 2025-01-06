@@ -7,28 +7,36 @@ export const requiredPath = (
 ): boolean => {
   if (filter.level === 1) return true;
 
-  const findParentChain = (currentFilter: Filter): Filter[] => {
-    const parent = filters
-      .filter((f) => f.level === currentFilter.level - 1)
-      .find((f) =>
-        f.options?.find((op) => op.filters?.includes(currentFilter.id)),
-      );
+  const findParentChains = (currentFilter: Filter): Filter[][] => {
+    const parents = filters.filter(
+      (f) =>
+        f.level === currentFilter.level - 1 &&
+        f.options?.some((op) => op.filters?.includes(currentFilter.id)),
+    );
 
-    if (!parent) return [];
+    if (parents.length === 0) return [];
 
-    const parentChain = findParentChain(parent);
-    return [...parentChain, parent];
+    return parents.flatMap((parent) => {
+      const parentChains = findParentChains(parent);
+      if (parentChains.length === 0) return [[parent]];
+      return parentChains.map((chain) => [...chain, parent]);
+    });
   };
 
-  const parentChain = findParentChain(filter);
-  if (parentChain.length !== filter.level - 1) return false;
+  const parentChains = findParentChains(filter);
 
-  return parentChain.every((parent) => {
-    const parentOption = parent.options?.find((op) =>
-      op.filters?.includes(
-        parentChain[parentChain.indexOf(parent) + 1]?.id || filter.id,
-      ),
-    );
-    return parentOption && activeValues[parent.key]?.has(parentOption.value);
-  });
+  if (!parentChains.some((chain) => chain.length === filter.level - 1))
+    return false;
+
+  return parentChains.some((parentChain) =>
+    parentChain.every((parent) => {
+      const parentOption = parent.options?.find(
+        (op) =>
+          op.filters?.includes(
+            parentChain[parentChain.indexOf(parent) + 1]?.id || filter.id,
+          ) && activeValues[parent.key]?.has(op.value),
+      );
+      return !!parentOption;
+    }),
+  );
 };

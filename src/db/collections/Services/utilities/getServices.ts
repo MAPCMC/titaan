@@ -1,11 +1,11 @@
 import type { Service } from "@/payload-types";
 
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
+import { getPayload } from "payload";
 import { unstable_cache } from "next/cache";
 
 async function getServices(): Promise<Service[]> {
-  const payload = await getPayloadHMR({
+  const payload = await getPayload({
     config: configPromise,
   });
 

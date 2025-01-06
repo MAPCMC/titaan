@@ -1,9 +1,9 @@
 "use client";
 import React, { useCallback, useEffect } from "react";
+import type { TextFieldClientProps } from "payload";
 
 import {
   useField,
-  useFieldProps,
   Button,
   TextInput,
   FieldLabel,
@@ -13,29 +13,26 @@ import {
 
 import { formatSlug } from "./formatSlug";
 import "./index.scss";
-import { TextFieldClientProps } from "payload";
 
 type SlugComponentProps = {
   fieldToUse: string;
   checkboxFieldPath: string;
 } & TextFieldClientProps;
 
-export const SlugComponent: React.FC<
-  SlugComponentProps
-> = ({
+export const SlugComponent: React.FC<SlugComponentProps> = ({
   field,
   fieldToUse,
   checkboxFieldPath: checkboxFieldPathFromProps,
+  path,
+  readOnly: readOnlyFromProps,
 }) => {
   const { label } = field;
-  const { path, readOnly: readOnlyFromProps } =
-    useFieldProps();
 
-  const checkboxFieldPath = path.includes(".")
+  const checkboxFieldPath = path?.includes(".")
     ? `${path}.${checkboxFieldPathFromProps}`
     : checkboxFieldPathFromProps;
 
-  const { value, setValue } = useField<string>({ path });
+  const { value, setValue } = useField<string>({ path: path || field.name });
 
   const { dispatchFields } = useForm();
 
@@ -55,8 +52,7 @@ export const SlugComponent: React.FC<
       if (targetFieldValue) {
         const formattedSlug = formatSlug(targetFieldValue);
 
-        if (value !== formattedSlug)
-          setValue(formattedSlug);
+        if (value !== formattedSlug) setValue(formattedSlug);
       } else {
         if (value !== "") setValue("");
       }
@@ -64,7 +60,7 @@ export const SlugComponent: React.FC<
   }, [targetFieldValue, checkboxValue, setValue, value]);
 
   const handleLock = useCallback(
-    (e: React.MouseEvent<Element>) => {
+    (e: any) => {
       e.preventDefault();
 
       dispatchFields({
@@ -73,7 +69,7 @@ export const SlugComponent: React.FC<
         value: !checkboxValue,
       });
     },
-    [checkboxValue, checkboxFieldPath, dispatchFields]
+    [checkboxValue, checkboxFieldPath, dispatchFields],
   );
 
   const readOnly = readOnlyFromProps || checkboxValue;
@@ -81,17 +77,9 @@ export const SlugComponent: React.FC<
   return (
     <div className="field-type slug-field-component">
       <div className="label-wrapper">
-        <FieldLabel
-          field={field}
-          htmlFor={`field-${path}`}
-          label={label}
-        />
+        <FieldLabel htmlFor={`field-${path}`} label={label} />
 
-        <Button
-          className="lock-button"
-          buttonStyle="none"
-          onClick={handleLock}
-        >
+        <Button className="lock-button" buttonStyle="none" onClick={handleLock}>
           {checkboxValue ? "Unlock" : "Lock"}
         </Button>
       </div>
@@ -99,7 +87,7 @@ export const SlugComponent: React.FC<
       <TextInput
         value={value}
         onChange={setValue}
-        path={path}
+        path={path || field.name}
         readOnly={Boolean(readOnly)}
       />
     </div>

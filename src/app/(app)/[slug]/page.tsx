@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
+import { getPayload } from "payload";
 import { draftMode } from "next/headers";
 import React, { cache } from "react";
 
@@ -16,7 +16,7 @@ import { generateMeta } from "@/db/utilities/generateMeta";
 import PageTitle from "./_components/PageTitle";
 
 export async function generateStaticParams() {
-  const payload = await getPayloadHMR({
+  const payload = await getPayload({
     config: configPromise,
   });
   const pages = await payload.find({
@@ -43,9 +43,7 @@ type Args = {
   }>;
 };
 
-export default async function Page({
-  params: paramsPromise,
-}: Args) {
+export default async function Page({ params: paramsPromise }: Args) {
   const { slug = "home" } = await paramsPromise;
   // const url = "/" + slug;
 
@@ -92,26 +90,24 @@ export async function generateMetadata({
   return generateMeta({ doc: page });
 }
 
-const queryPageBySlug = cache(
-  async ({ slug }: { slug: string }) => {
-    const { isEnabled: draft } = await draftMode();
+const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
+  const { isEnabled: draft } = await draftMode();
 
-    const payload = await getPayloadHMR({
-      config: configPromise,
-    });
+  const payload = await getPayload({
+    config: configPromise,
+  });
 
-    const result = await payload.find({
-      collection: "pages",
-      draft,
-      limit: 1,
-      overrideAccess: draft,
-      where: {
-        slug: {
-          equals: slug,
-        },
+  const result = await payload.find({
+    collection: "pages",
+    draft,
+    limit: 1,
+    overrideAccess: draft,
+    where: {
+      slug: {
+        equals: slug,
       },
-    });
+    },
+  });
 
-    return result.docs?.[0] || null;
-  }
-);
+  return result.docs?.[0] || null;
+});

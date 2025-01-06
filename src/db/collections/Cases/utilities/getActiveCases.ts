@@ -1,11 +1,11 @@
 import type { Case } from "@/payload-types";
 
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
+import { getPayload } from "payload";
 import { unstable_cache } from "next/cache";
 
 async function getActiveCases(): Promise<Case[]> {
-  const payload = await getPayloadHMR({
+  const payload = await getPayload({
     config: configPromise,
   });
 
@@ -22,8 +22,6 @@ async function getActiveCases(): Promise<Case[]> {
  * Returns a unstable_cache function mapped with the cache tag for the slug
  */
 export const getCachedCases = () =>
-  unstable_cache(
-    async () => getActiveCases(),
-    ["cases_active"],
-    { tags: ["cases_active"] }
-  );
+  unstable_cache(async () => getActiveCases(), ["cases_active"], {
+    tags: ["cases_active"],
+  });

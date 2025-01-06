@@ -21,11 +21,12 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
+  collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
-    cases: CasesSelect<false> | CasesSelect<true>;
+    cases: CasesSelect1<false> | CasesSelect1<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     filters: FiltersSelect<false> | FiltersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -47,9 +48,9 @@ export interface Config {
   user: User & {
     collection: 'users';
   };
-  jobs?: {
+  jobs: {
     tasks: unknown;
-    workflows?: unknown;
+    workflows: unknown;
   };
 }
 export interface UserAuthOperations {
@@ -116,6 +117,9 @@ export interface Page {
   layout?: Section[] | null;
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
     image?: (number | null) | Media;
     description?: string | null;
   };
@@ -281,7 +285,13 @@ export interface Filter {
   id: number;
   order: number;
   level: number;
+  /**
+   * Dit zie je in de zoekbalk (1 woord, geen tekens)
+   */
   key: string;
+  /**
+   * Selecteer wanneer meerdere opties aankruisen mogelijk is
+   */
   multiple: boolean;
   options?:
     | {
@@ -410,66 +420,14 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
-        section?:
-          | T
-          | {
-              title?: T;
-              anchor?: T;
-              introduction?: T;
-              type?: T;
-              content?:
-                | T
-                | {
-                    clients?:
-                      | T
-                      | {
-                          list?:
-                            | T
-                            | {
-                                logo?: T;
-                                url?: T;
-                                companyName?: T;
-                                id?: T;
-                              };
-                          id?: T;
-                          blockName?: T;
-                        };
-                    callToAction?:
-                      | T
-                      | {
-                          label?: T;
-                          type?: T;
-                          action?: T;
-                          variant?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                    text?:
-                      | T
-                      | {
-                          text?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                    cases?:
-                      | T
-                      | {
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
+        section?: T | SectionSelect<T>;
       };
   meta?:
     | T
     | {
-        overview?: T;
         title?: T;
         image?: T;
         description?: T;
-        preview?: T;
       };
   publishedAt?: T;
   slug?: T;
@@ -480,9 +438,74 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "cases_select".
+ * via the `definition` "Section_select".
+ */
+export interface SectionSelect<T extends boolean = true> {
+  title?: T;
+  anchor?: T;
+  introduction?: T;
+  type?: T;
+  content?:
+    | T
+    | {
+        clients?: T | ClientsSelect<T>;
+        callToAction?: T | CallToActionSelect<T>;
+        text?: T | TextSelect<T>;
+        cases?: T | CasesSelect<T>;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Clients_select".
+ */
+export interface ClientsSelect<T extends boolean = true> {
+  list?:
+    | T
+    | {
+        logo?: T;
+        url?: T;
+        companyName?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToAction_select".
+ */
+export interface CallToActionSelect<T extends boolean = true> {
+  label?: T;
+  type?: T;
+  action?: T;
+  variant?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Text_select".
+ */
+export interface TextSelect<T extends boolean = true> {
+  text?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Cases_select".
  */
 export interface CasesSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cases_select".
+ */
+export interface CasesSelect1<T extends boolean = true> {
   title?: T;
   content?: T;
   name?: T;
@@ -648,99 +671,46 @@ export interface HomeSelect<T extends boolean = true> {
   header?:
     | T
     | {
-        header?:
-          | T
-          | {
-              title?: T;
-              introduction?: T;
-              image?: T;
-              callToAction?:
-                | T
-                | {
-                    callToAction?:
-                      | T
-                      | {
-                          label?: T;
-                          type?: T;
-                          action?: T;
-                          variant?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
+        header?: T | HeaderSelect<T>;
       };
   layout?:
     | T
     | {
-        section?:
-          | T
-          | {
-              title?: T;
-              anchor?: T;
-              introduction?: T;
-              type?: T;
-              content?:
-                | T
-                | {
-                    clients?:
-                      | T
-                      | {
-                          list?:
-                            | T
-                            | {
-                                logo?: T;
-                                url?: T;
-                                companyName?: T;
-                                id?: T;
-                              };
-                          id?: T;
-                          blockName?: T;
-                        };
-                    callToAction?:
-                      | T
-                      | {
-                          label?: T;
-                          type?: T;
-                          action?: T;
-                          variant?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                    text?:
-                      | T
-                      | {
-                          text?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                    cases?:
-                      | T
-                      | {
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        serviceSection?:
-          | T
-          | {
-              title?: T;
-              anchor?: T;
-              introduction?: T;
-              type?: T;
-              resultsIntro?: T;
-              id?: T;
-              blockName?: T;
-            };
+        section?: T | SectionSelect<T>;
+        serviceSection?: T | ServiceSectionSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  title?: T;
+  introduction?: T;
+  image?: T;
+  callToAction?:
+    | T
+    | {
+        callToAction?: T | CallToActionSelect<T>;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServiceSection_select".
+ */
+export interface ServiceSectionSelect<T extends boolean = true> {
+  title?: T;
+  anchor?: T;
+  introduction?: T;
+  type?: T;
+  resultsIntro?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

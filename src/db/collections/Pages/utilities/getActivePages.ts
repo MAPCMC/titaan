@@ -1,11 +1,11 @@
 import type { Page } from "@/payload-types";
 
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
+import { getPayload } from "payload";
 import { unstable_cache } from "next/cache";
 
 async function getActivePages(): Promise<Page[]> {
-  const payload = await getPayloadHMR({
+  const payload = await getPayload({
     config: configPromise,
   });
 
@@ -27,8 +27,6 @@ async function getActivePages(): Promise<Page[]> {
  * Returns a unstable_cache function mapped with the cache tag for the slug
  */
 export const getCachedPages = () =>
-  unstable_cache(
-    async () => getActivePages(),
-    ["pages_active"],
-    { tags: ["pages_active"] }
-  );
+  unstable_cache(async () => getActivePages(), ["pages_active"], {
+    tags: ["pages_active"],
+  });

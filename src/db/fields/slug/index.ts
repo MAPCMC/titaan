@@ -9,13 +9,10 @@ type Overrides = {
 
 type Slug = (
   fieldToUse?: string,
-  overrides?: Overrides
+  overrides?: Overrides,
 ) => [TextField, CheckboxField];
 
-export const slugField: Slug = (
-  fieldToUse = "title",
-  overrides = {}
-) => {
+export const slugField: Slug = (fieldToUse = "title", overrides = {}) => {
   const { slugOverrides, checkboxOverrides } = overrides;
 
   const checkBoxField: CheckboxField = {

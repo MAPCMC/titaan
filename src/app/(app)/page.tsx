@@ -12,14 +12,10 @@ export default async function Home() {
 
   return (
     <>
-      <PageHeader>
-        {headerData && <Hero data={headerData} />}
-      </PageHeader>
-      <PageContent
-        blocks={home.layout}
-        className="mt-44"
-        variant="home"
-      />
+      <PageHeader>{headerData && <Hero data={headerData} />}</PageHeader>
+      {home.layout && (
+        <PageContent blocks={home.layout} className="mt-44" variant="home" />
+      )}
       <PageFooter />
     </>
   );

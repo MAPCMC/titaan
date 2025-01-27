@@ -103,24 +103,26 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
               key={`${client.id}-${index}`}
               className="basis-1/2 py-4 md:basis-1/3 lg:basis-1/4"
             >
-              <div className="flex items-center">
-                {client.logo && (
-                  <div className="relative aspect-[3/2] max-h-32 w-full">
-                    <Image
-                      src={
-                        typeof client.logo === "number"
-                          ? ""
-                          : client.logo.url || ""
-                      }
-                      alt={client.companyName || "logo"}
-                      fill
-                      className="object-contain"
-                    />
+              <div className="grid place-items-center">
+                {client.logo && typeof client.logo === "object" && (
+                  <div className="relative col-start-1 row-start-1 aspect-[3/2] max-h-32 w-full">
+                    {client.logo.url && (
+                      <Image
+                        src={client.logo.url}
+                        alt={client.companyName ?? "logo"}
+                        fill
+                        className="object-contain"
+                      />
+                    )}
                   </div>
                 )}
                 {client.companyName &&
                   (client.url ? (
-                    <a href={client.url} target="_blank">
+                    <a
+                      href={client.url}
+                      target="_blank"
+                      className="col-start-1 row-start-1"
+                    >
                       Naar {client.companyName}
                     </a>
                   ) : (

@@ -19,7 +19,7 @@ interface ClientsFeedProps {
   clients: Clients["list"];
 }
 
-const ensureLoop = (list: any[], cutoff: number) => {
+const ensureLoop = (list: Clients["list"], cutoff: number) => {
   if (!list || !list.length) return [];
 
   if (list.length > cutoff) {
@@ -97,6 +97,7 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
     >
       <CarouselContent>
         {clientlist.map((client, index) => {
+          if (!client) return null;
           return (
             <CarouselItem
               key={`${client.id}-${index}`}

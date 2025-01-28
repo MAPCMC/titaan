@@ -10,13 +10,12 @@ export function Lexical({
   content,
   className,
 }: {
-  content: PayloadLexicalReactContent;
+  content?: PayloadLexicalReactContent;
   className?: string;
 }) {
+  if (!content) return null;
   return (
-    <div
-      className={cn("lexical max-w-2xl mt-4", className)}
-    >
+    <div className={cn("lexical mt-4 max-w-2xl", className)}>
       <PayloadLexicalReact content={content} />
     </div>
   );

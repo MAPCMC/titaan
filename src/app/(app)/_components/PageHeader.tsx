@@ -56,13 +56,14 @@ export default async function PageHeader({
         <div className="relative">
           <Triangle
             wrapperClassName="absolute -top-14 left-[-36rem] lg:left-[-34.3rem] z-[-1] -translate-x-1/2 w-[80rem]"
-            className="scale-y-[-1] bg-yellow"
+            className="bg-yellow"
+            orientation="down"
           />
           <>
             <Link
               id="homeLink"
               href="/"
-              className="block max-w-max ring-offset-background hover:outline hover:outline-2 hover:outline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              className="block max-w-max ring-offset-foreground hover:outline hover:outline-2 hover:outline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             >
               <MainLogo
                 position="header"
@@ -78,7 +79,7 @@ export default async function PageHeader({
                   "lg:top-[2.5rem] lg:left-[16rem]": logoLarge,
                 },
               )}
-              className="!ml-0 bg-yellow-light"
+              className="animate-light !ml-0 origin-left bg-gradient-to-r from-yellow-light from-50% to-transparent to-50% bg-[size:200%_100%] bg-[position:0%_0%]"
               orientation="left"
             />
           </>

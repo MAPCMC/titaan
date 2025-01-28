@@ -33,7 +33,7 @@ export default function Hero({ data }: { data: Header }) {
         </div>
       )}
       {image && isMedia(image) && (
-        <div className="relative col-start-2 row-span-2 row-start-2 ml-auto max-xl:mr-20 max-md:h-40 max-md:w-40 md:h-52 md:w-52">
+        <div className="relative col-start-2 row-span-2 row-start-2 ml-auto duration-1000 animate-in slide-in-from-right max-xl:mr-20 max-md:h-40 max-md:w-40 md:h-52 md:w-52">
           <Image
             src={image.url ?? ""}
             alt={image.alt ?? ""}
@@ -41,6 +41,7 @@ export default function Hero({ data }: { data: Header }) {
             height={image.height ?? 300}
             className="h-full w-full"
           />
+          {/* light from right to left */}
           <Triangle
             wrapperClassName="absolute inset-0 translate-x-full"
             className="bg-yellow/20"

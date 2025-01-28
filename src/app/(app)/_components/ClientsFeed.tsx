@@ -31,6 +31,9 @@ const ensureLoop = (list: Clients["list"], cutoff: number) => {
 
 export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
   const [api, setApi] = React.useState<CarouselApi>();
+  const [clientList, setClientList] = React.useState<Clients["list"]>(
+    ensureLoop(clients, 4),
+  );
 
   const {
     prevBtnDisabled,
@@ -55,8 +58,8 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
     [api],
   );
 
-  if (!clients || !clients.length) return null;
-  const clientlist = ensureLoop(clients, 4);
+  if (!clients || !clients.length || !clientList || clientList.length <= 3)
+    return null;
 
   return (
     <Carousel
@@ -65,6 +68,7 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
         AutoScroll({
           speed: 1,
           stopOnInteraction: true,
+          playOnInit: true,
         }),
       ]}
       opts={{
@@ -75,7 +79,7 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
       className="mx-auto 3xl:max-w-7xl"
     >
       <CarouselContent>
-        {clientlist.map((client, index) => {
+        {clientList.map((client, index) => {
           if (!client) return null;
           return (
             <CarouselItem

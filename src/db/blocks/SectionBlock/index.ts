@@ -49,6 +49,8 @@ export const SectionBlock: Block = {
         en: "Type",
       },
       type: "select",
+      required: true,
+      defaultValue: "section-text",
       options: [
         {
           label: {

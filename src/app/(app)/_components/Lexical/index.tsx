@@ -1,22 +1,18 @@
-import {
-  PayloadLexicalReact,
-  PayloadLexicalReactContent,
-} from "@zapal/payload-lexical-react";
-
 import "./index.css";
 import { cn } from "../../_helpers";
+import { RichText } from "../RichText";
 
 export function Lexical({
   content,
   className,
 }: {
-  content?: PayloadLexicalReactContent;
+  content?: any;
   className?: string;
 }) {
   if (!content) return null;
   return (
     <div className={cn("lexical mt-4 max-w-2xl", className)}>
-      <PayloadLexicalReact content={content} />
+      {content && <RichText content={content} excerpt={false} />}
     </div>
   );
 }

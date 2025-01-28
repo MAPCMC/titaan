@@ -22,54 +22,45 @@ export const Cases: CollectionConfig = {
       type: "text",
       required: true,
       label: {
-        en: 'Title',
-        nl: 'Titel'
-      }
+        en: "Title",
+        nl: "Titel",
+      },
     },
     {
       name: "content",
       type: "richText",
       required: true,
       label: {
-        en: 'Content',
-        nl: 'Inhoud'
-      }
+        en: "Content",
+        nl: "Inhoud",
+      },
     },
     {
-      name: 'name',
-      type: 'text',
+      name: "fullname",
+      type: "text",
       required: true,
       label: {
-        en: 'Name',
-        nl: 'Roepnaam'
-      }
+        en: "Full Name",
+        nl: "Volledige Naam",
+      },
     },
     {
-      name: 'fullname',
-      type: 'text',
-      required: true,
+      name: "position",
+      type: "text",
       label: {
-        en: 'Full Name',
-        nl: 'Volledige Naam'
-      }
-    },
-    {
-      name: 'position',
-      type: 'text',
-      label: {
-        en: 'Position',
-        nl: 'Functie'
-      }
+        en: "Position",
+        nl: "Functie",
+      },
     },
     {
       name: "commentary",
       type: "richText",
       label: {
-        en: 'Commentary',
-        nl: 'Commentaar'
-      }
+        en: "Commentary",
+        nl: "Commentaar",
+      },
     },
-],
+  ],
 
   hooks: {
     afterChange: [revalidateActiveCases],

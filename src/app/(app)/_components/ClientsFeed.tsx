@@ -31,6 +31,9 @@ const ensureLoop = (list: Clients["list"], cutoff: number) => {
 
 export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
   const [api, setApi] = React.useState<CarouselApi>();
+  const [clientList, setClientList] = React.useState<Clients["list"]>(
+    ensureLoop(clients, 4),
+  );
 
   const {
     prevBtnDisabled,
@@ -55,29 +58,8 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
     [api],
   );
 
-  // const toggleAutoplay = React.useCallback(() => {
-  //   const autoScroll = api?.plugins()?.autoScroll;
-  //   if (!autoScroll) return;
-
-  //   const playOrStop = autoScroll.isPlaying()
-  //     ? autoScroll.stop
-  //     : autoScroll.play;
-  //   playOrStop();
-  // }, [api]);
-
-  // React.useEffect(() => {
-  //   const autoScroll = api?.plugins()?.autoScroll;
-  //   if (!autoScroll) return;
-
-  //   setIsPlaying(autoScroll.isPlaying());
-  //   api
-  //     .on("autoScroll:play", () => setIsPlaying(true))
-  //     .on("autoScroll:stop", () => setIsPlaying(false))
-  //     .on("reInit", () => setIsPlaying(autoScroll.isPlaying()));
-  // }, [api]);
-
-  if (!clients || !clients.length) return null;
-  const clientlist = ensureLoop(clients, 4);
+  if (!clients || !clients.length || !clientList || clientList.length <= 3)
+    return null;
 
   return (
     <Carousel
@@ -86,6 +68,7 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
         AutoScroll({
           speed: 1,
           stopOnInteraction: true,
+          playOnInit: true,
         }),
       ]}
       opts={{
@@ -96,7 +79,7 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
       className="mx-auto 3xl:max-w-7xl"
     >
       <CarouselContent>
-        {clientlist.map((client, index) => {
+        {clientList.map((client, index) => {
           if (!client) return null;
           return (
             <CarouselItem
@@ -105,7 +88,7 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
             >
               <div className="grid place-items-center">
                 {client.logo && typeof client.logo === "object" && (
-                  <div className="relative col-start-1 row-start-1 aspect-[3/2] max-h-32 w-full">
+                  <div className="relative z-0 col-start-1 row-start-1 aspect-[3/2] max-h-32 w-full">
                     {client.logo.url && (
                       <Image
                         src={client.logo.url}
@@ -121,9 +104,11 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
                     <a
                       href={client.url}
                       target="_blank"
-                      className="col-start-1 row-start-1"
+                      className="group z-10 col-start-1 row-start-1 grid h-full w-full place-items-center"
                     >
-                      Naar {client.companyName}
+                      <span className="h-small hidden items-center justify-center p-3 px-10 py-2 text-background group-hover:flex group-hover:bg-foreground group-focus:flex group-focus:bg-background group-focus:text-foreground group-focus:group-hover:bg-foreground group-focus:group-hover:text-background max-md:min-h-16">
+                        Naar {client.companyName}
+                      </span>
                     </a>
                   ) : (
                     <p className="sr-only">{client.companyName}</p>

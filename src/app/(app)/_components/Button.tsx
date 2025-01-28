@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../_helpers";
 
 const buttonVariants = cva(
-  "z-10 inline-flex items-center justify-center whitespace-nowrap border box-border border-transparent disabled:pointer-events-none disabled:opacity-25 h-small focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue hover:ring-4 focus-visible:hover:ring-8 hover:ring-foreground",
+  "z-10 inline-flex items-center justify-center whitespace-nowrap border box-border border-transparent disabled:pointer-events-none disabled:opacity-25 h-small focus-visible:outline-hidden focus-visible:ring-4 focus-visible:ring-blue hover:ring-4 focus-visible:hover:ring-8 hover:ring-foreground",
   {
     variants: {
       variant: {
@@ -23,7 +23,7 @@ const buttonVariants = cva(
         skewed:
           "py-2 px-10 max-md:min-h-16 origin-bottom-left skew-x-[-30deg] *:block *:skew-x-[30deg]",
         icon: "h-10 w-10",
-        small: "py-2 px-6 max-md:min-h-10 !text-sm",
+        small: "py-2 px-6 max-md:min-h-10 text-sm!",
       },
     },
     defaultVariants: {

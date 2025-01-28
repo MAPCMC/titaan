@@ -88,7 +88,7 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
             >
               <div className="grid place-items-center">
                 {client.logo && typeof client.logo === "object" && (
-                  <div className="relative z-0 col-start-1 row-start-1 aspect-[3/2] max-h-32 w-full">
+                  <div className="relative z-0 col-start-1 row-start-1 aspect-3/2 max-h-32 w-full">
                     {client.logo.url && (
                       <Image
                         src={client.logo.url}
@@ -106,7 +106,7 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
                       target="_blank"
                       className="group z-10 col-start-1 row-start-1 grid h-full w-full place-items-center"
                     >
-                      <span className="h-small hidden items-center justify-center p-3 px-10 py-2 text-background group-hover:flex group-hover:bg-foreground group-focus:flex group-focus:bg-background group-focus:text-foreground group-focus:group-hover:bg-foreground group-focus:group-hover:text-background max-md:min-h-16">
+                      <span className="h-small hidden items-center justify-center p-3 px-10 py-2 text-background group-hover:flex group-hover:bg-foreground group-focus:flex group-focus:bg-background group-focus:text-foreground group-hover:group-focus:bg-foreground group-hover:group-focus:text-background max-md:min-h-16">
                         Naar {client.companyName}
                       </span>
                     </a>

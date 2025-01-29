@@ -40,7 +40,7 @@ export default async function PageFooter() {
         <div>
           <MainLogo
             position="footer"
-            className="mb-12 h-auto w-120 max-w-full"
+            className="intersect intersected mb-12 h-auto w-120 max-w-full"
           />
           {isLexicalText(footerData?.copyright) && (
             <Lexical

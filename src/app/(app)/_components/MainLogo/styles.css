@@ -1,4 +1,4 @@
-@keyframes fillClip {
+@keyframes fillClipRight {
   from {
     clip-path: inset(0 0 0 100%);
     opacity: 0.3;
@@ -9,22 +9,80 @@
   }
 }
 
-/* 0% {
+@keyframes fillClipLeft {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0.3;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
 
-      background-position: 100% 0%;
-      opacity: 0.3;
-    }
-    50% {
-      opacity: 0.5;
-    }
-    100% {
-      
-      background-position: 0% 0%;
-      opacity: 1;
-    }
-  } */
+@keyframes fillClipTop {
+  from {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0.3;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
 
-#yellow-n1 {
-  clip-path: inset(0 0 0 100%);
-  animation: fillClip 800ms ease-in forwards;
+@keyframes fillClipDown {
+  from {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0.3;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+.intersected {
+  &[no-intersect] {
+    #yellow-n1,
+    #yellow-n2,
+    #yellow-t1,
+    #yellow-t2,
+    #yellow-a1,
+    #yellow-a2,
+    #yellow-i {
+      clip-path: inset(0 0 0 100%);
+    }
+  }
+
+  &:not([no-intersect]) {
+    #yellow-n1 {
+      clip-path: inset(0 0 0 100%);
+      animation: fillClipRight 600ms ease-in forwards;
+    }
+
+    #yellow-n2 {
+      clip-path: inset(0 0 0 100%);
+      animation: fillClipLeft 600ms ease-in 200ms forwards;
+    }
+
+    #yellow-t1 {
+      clip-path: inset(0 0 0 100%);
+      animation: fillClipTop 600ms ease-in forwards;
+    }
+    #yellow-t2 {
+      clip-path: inset(0 0 0 100%);
+      animation: fillClipTop 800ms ease-out forwards;
+    }
+
+    #yellow-a1 {
+      clip-path: inset(0 0 0 100%);
+      animation: fillClipDown 500ms ease-in-out forwards;
+    }
+    #yellow-a2,
+    #yellow-i {
+      clip-path: inset(0 0 0 100%);
+      animation: fillClipDown 700ms ease-in 200ms forwards;
+    }
+  }
 }

@@ -42,6 +42,12 @@
   }
 }
 
+/* animate yellow n1 by default (part of header animation) */
+#yellow-n1 {
+  clip-path: inset(0 0 0 100%);
+  animation: fillClipRight 600ms ease-in forwards;
+}
+
 .intersected {
   &[no-intersect] {
     #yellow-n1,

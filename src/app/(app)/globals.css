@@ -40,6 +40,7 @@
 
 @plugin "tailwindcss-animate";
 @plugin "tailwindcss-motion";
+@plugin "tailwindcss-intersect";
 
 @layer base {
   :root {

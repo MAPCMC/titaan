@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Yantramanav } from "next/font/google";
+import ObserverProvider from "./_components/ObserverProvider";
 import "./globals.css";
 
 const font = Yantramanav({
@@ -20,13 +21,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" className="text-xs sm:text-sm md:text-base">
-      <body
-        className={`${font.className} flex min-h-screen flex-col`}
-        id="body"
-      >
-        {children}
-      </body>
-    </html>
+    <ObserverProvider>
+      <html lang="nl" className="text-xs sm:text-sm md:text-base">
+        <body
+          className={`${font.className} flex min-h-screen flex-col`}
+          id="body"
+        >
+          {children}
+        </body>
+      </html>
+    </ObserverProvider>
   );
 }

@@ -18,7 +18,7 @@ export default function PageContent({
 
   if (!blocks || blocks.length < 1) return null;
   return (
-    <main className={cn("grow space-y-36 overflow-x-hidden", className)}>
+    <main className={cn("grow space-y-28 overflow-x-hidden", className)}>
       {blocks?.map((block, i) => {
         return (() => {
           switch (block.type) {

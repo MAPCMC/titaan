@@ -14,7 +14,7 @@ export default async function Home() {
     <>
       <PageHeader>{headerData && <Hero data={headerData} />}</PageHeader>
       {home.layout && (
-        <PageContent blocks={home.layout} className="mt-44" variant="home" />
+        <PageContent blocks={home.layout} className="mt-32" variant="home" />
       )}
       <PageFooter />
     </>

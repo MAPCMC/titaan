@@ -139,7 +139,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
         </div>
         <Triangle
           orientation="down"
-          className="bg-red-light"
+          className="bg-red-light h-full transition-[height_.5s_ease-in-out]"
           wrapperClassName="absolute -top-64 h-[calc(100%+26rem)] left-1/2 -translate-x-1/2 z-[-1]"
         />
         {filters.map((filter, i) => {

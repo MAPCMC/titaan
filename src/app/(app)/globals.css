@@ -19,7 +19,7 @@
   --font-sans: Yantramanav;
   --font-mono: Yantramanav;
 
-  --animate-light: light 3s ease-in-out 250ms forwards;
+  --animate-light: light 1200ms ease-in-out 800ms forwards;
 
   @keyframes light {
     0% {

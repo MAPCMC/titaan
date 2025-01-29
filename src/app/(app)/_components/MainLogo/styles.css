@@ -1,0 +1,30 @@
+@keyframes fillClip {
+  from {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0.3;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+/* 0% {
+
+      background-position: 100% 0%;
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      
+      background-position: 0% 0%;
+      opacity: 1;
+    }
+  } */
+
+#yellow-n1 {
+  clip-path: inset(0 0 0 100%);
+  animation: fillClip 800ms ease-in forwards;
+}

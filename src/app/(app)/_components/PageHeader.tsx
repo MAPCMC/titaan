@@ -79,7 +79,7 @@ export default async function PageHeader({
                   "lg:top-[2.5rem] lg:left-[16rem]": logoLarge,
                 },
               )}
-              className="animate-light from-yellow-light ml-0! origin-left bg-linear-to-r from-50% to-transparent to-50% bg-[size:200%_100%] bg-[position:0%_0%]"
+              className="animate-light from-yellow-light ml-0! origin-left bg-linear-to-r from-50% to-transparent to-50% bg-[size:200%_100%] bg-[position:0%_0%] opacity-0"
               orientation="left"
             />
           </>

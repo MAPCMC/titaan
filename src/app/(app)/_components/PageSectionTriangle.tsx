@@ -38,7 +38,7 @@ export const PageSectionTriangle: React.FC<PageSectionProps> = ({
       <Triangle
         {...triangleProps}
         className={cn(
-          "absolute top-1/2 z-[-1] -translate-y-1/2 transform transition-all delay-500 duration-700",
+          "absolute top-1/2 z-[-1] -translate-y-1/2 transform transition-transform delay-500 duration-700",
           triangleProps?.className ?? "",
           triangleProps?.orientation === "left"
             ? animateInFromRight

@@ -152,7 +152,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
                   "hidden h-0": !visibleFilters.find(
                     (vis) => vis.id === filter.id,
                   ),
-                  "animate-in slide-in-from-bottom-8": visibleFilters.find(
+                  "motion-translate-y-in-[2rem]": visibleFilters.find(
                     (vis) => vis.id === filter.id,
                   ),
                 },
@@ -194,14 +194,14 @@ export const ServicesClient: React.FC<ServicesProps> = ({
           </p>
         )}
         {filteredServices.length === 0 && (
-          <div className="mx-auto max-w-5xl space-y-3 px-4 text-center animate-in slide-in-from-bottom-8">
+          <div className="motion-translate-y-in-[2rem] mx-auto max-w-5xl space-y-3 px-4 text-center">
             <p className="h-small">
               {"Oeps! geen scenario's met (al) deze criteria."}
             </p>
           </div>
         )}
         {filteredServices.length > 0 && filteredServices.length <= 3 && (
-          <div className="mb-12 animate-in slide-in-from-bottom-8">
+          <div className="motion-translate-y-in-[2rem] mb-12">
             {section.resultsIntro && (
               <div className="mx-auto max-w-5xl px-4">
                 <div>
@@ -216,7 +216,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
               {filteredServices.map((service, i) => {
                 return (
                   <article
-                    className="relative row-span-3 grid grid-rows-subgrid border border-foreground bg-background p-4"
+                    className="border-foreground bg-background relative row-span-3 grid grid-rows-subgrid border p-4"
                     key={i}
                   >
                     <h3 className="h-small">{service.title}</h3>
@@ -245,11 +245,11 @@ export const ServicesClient: React.FC<ServicesProps> = ({
         )}
       </div>
       {selectedServices.length > 0 && (
-        <section className="bg-red animate-in slide-in-from-bottom-8">
+        <section className="bg-red motion-translate-y-in-[2rem]">
           <div className="mx-auto max-w-5xl px-4 py-16">
             <h2 className="h-large">Gericht contact</h2>
             <div className="grid gap-3 md:grid-cols-3 md:gap-6">
-              <div className="lexical border border-foreground bg-background p-4 md:col-start-3">
+              <div className="lexical border-foreground bg-background border p-4 md:col-start-3">
                 <h3>Wat we weten</h3>
                 <p>Over jou/jullie:</p>
                 <ul>
@@ -284,7 +284,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
                     })}
                 </ul>
               </div>
-              <form className="border border-foreground bg-background p-4 md:col-span-2 md:row-start-1">
+              <form className="border-foreground bg-background border p-4 md:col-span-2 md:row-start-1">
                 <h3 className="h-small">Navragen beschikbaarheid</h3>
               </form>
             </div>

@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -19,7 +19,7 @@
   --font-sans: Yantramanav;
   --font-mono: Yantramanav;
 
-  --animate-light: light 4s ease-in-out forwards;
+  --animate-light: light 3s ease-in-out 250ms forwards;
 
   @keyframes light {
     0% {
@@ -38,6 +38,23 @@
   }
 }
 
+@plugin "tailwindcss-animate";
+@plugin "tailwindcss-motion";
+
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --background-dark: 154 163 185;
+    --foreground: 18 24 37;
+    --foreground-light: 60 79 121;
+    --yellow: 255 205 26;
+    --yellow-light: 255 246 214;
+    --blue: 36 0 255;
+    --blue-light: 229 224 255;
+    --red: 227 67 38;
+    --red-light: 252 232 229;
+  }
+}
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -52,22 +69,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
-
-@layer base {
-  :root {
-    --background: 255 255 255;
-    --background-dark: 154 163 185;
-    --foreground: 18 24 37;
-    --foreground-light: 60 79 121;
-    --yellow: 255 205 26;
-    --yellow-light: 255 246 214;
-    --blue: 36 0 255;
-    --blue-light: 229 224 255;
-    --red: 227 67 38;
-    --red-light: 252 232 229;
+    border-color: var(--color-blue, currentColor);
   }
 }
 

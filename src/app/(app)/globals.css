@@ -1,6 +1,46 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-blue: rgb(var(--blue));
+  --color-blue-light: rgb(var(--blue-light));
+  --color-yellow: rgb(var(--yellow));
+  --color-yellow-light: rgb(var(--yellow-light));
+  --color-foreground-light: rgb(var(--foreground-light));
+  --color-background-dark: rgb(var(--background-dark));
+  --color-red: rgb(var(--red));
+  --color-red-light: rgb(var(--red-light));
+
+  --breakpoint-3xl: 1600px;
+
+  --font-sans: Yantramanav;
+  --font-mono: Yantramanav;
+
+  --animate-light: light 1200ms ease-in-out 800ms forwards;
+
+  @keyframes light {
+    0% {
+      transform: scaleX(0.6);
+      background-position: 100% 0%;
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: scaleX(1);
+      background-position: 0% 0%;
+      opacity: 1;
+    }
+  }
+}
+
+@plugin "tailwindcss-animate";
+@plugin "tailwindcss-motion";
+@plugin "tailwindcss-intersect";
 
 @layer base {
   :root {
@@ -14,6 +54,23 @@
     --blue-light: 229 224 255;
     --red: 227 67 38;
     --red-light: 252 232 229;
+  }
+}
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-blue, currentColor);
   }
 }
 

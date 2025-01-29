@@ -36,7 +36,7 @@ export default async function PageHeader({
 
   return (
     <header className="-mb-[50%] w-full overflow-hidden pb-[50%]">
-      <nav className="z-10 grid w-full auto-cols-fr grid-flow-col border-b border-foreground bg-background md:hidden">
+      <nav className="border-foreground bg-background z-10 grid w-full auto-cols-fr grid-flow-col border-b md:hidden">
         {menuItems?.map((item, i) => {
           return (
             <Button
@@ -56,13 +56,14 @@ export default async function PageHeader({
         <div className="relative">
           <Triangle
             wrapperClassName="absolute -top-14 left-[-36rem] lg:left-[-34.3rem] z-[-1] -translate-x-1/2 w-[80rem]"
-            className="scale-y-[-1] bg-yellow"
+            className="bg-yellow"
+            orientation="down"
           />
           <>
             <Link
               id="homeLink"
               href="/"
-              className="block max-w-max ring-offset-background hover:outline hover:outline-2 hover:outline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              className="ring-offset-foreground focus-visible:ring-blue block max-w-max hover:outline-2 hover:outline-offset-6 focus-visible:ring-8 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
             >
               <MainLogo
                 position="header"
@@ -78,7 +79,7 @@ export default async function PageHeader({
                   "lg:top-[2.5rem] lg:left-[16rem]": logoLarge,
                 },
               )}
-              className="!ml-0 bg-yellow-light"
+              className="animate-light from-yellow-light ml-0! origin-left bg-linear-to-r from-50% to-transparent to-50% bg-[size:200%_100%] bg-[position:0%_0%] opacity-0"
               orientation="left"
             />
           </>

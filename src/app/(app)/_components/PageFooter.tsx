@@ -35,12 +35,12 @@ export default async function PageFooter() {
   const footerAnchors = [...(menuItems ?? [])];
 
   return (
-    <footer className="mt-[-50%] w-full overflow-hidden pb-12 pt-[50%] md:pb-36">
+    <footer className="mt-[-50%] w-full overflow-hidden pt-[50%] pb-12 md:pb-36">
       <div className="mx-auto flex max-w-5xl gap-x-12 p-4 pt-36 max-md:flex-col md:items-end md:justify-between">
         <div>
           <MainLogo
             position="footer"
-            className="w-120 mb-12 h-auto max-w-full"
+            className="intersect intersected mb-12 h-auto w-120 max-w-full"
           />
           {isLexicalText(footerData?.copyright) && (
             <Lexical
@@ -56,7 +56,7 @@ export default async function PageFooter() {
           />
           <nav className="z-10 min-w-80">
             {/* main page anchors menu */}
-            <ul className="border border-foreground bg-background">
+            <ul className="border-foreground bg-background border">
               <li>
                 <BackToTopButton />
               </li>
@@ -80,7 +80,7 @@ export default async function PageFooter() {
             </ul>
             {/* dynamic pages */}
             {(pages ?? []).length > 0 && (
-              <ul className="border border-t-0 border-foreground bg-background">
+              <ul className="border-foreground bg-background border border-t-0">
                 {pages?.map((item, i) => {
                   if (!item.slug || !item.title) {
                     console.error("missing slug or title", item);
@@ -106,7 +106,7 @@ export default async function PageFooter() {
             )}
             {/* social links */}
             {(footerData?.socials || [])?.length > 0 && (
-              <ul className="border border-t-0 border-foreground bg-background">
+              <ul className="border-foreground bg-background border border-t-0">
                 {footerData?.socials?.map((item, i) => {
                   return (
                     <li key={i} className="">

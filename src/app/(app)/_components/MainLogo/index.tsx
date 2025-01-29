@@ -1,3 +1,5 @@
+import "./styles.css";
+
 export const MainLogo = ({
   position,
   ...props
@@ -20,6 +22,7 @@ export const MainLogo = ({
         d="M485.996 59.9996L390.734 114.999L390.734 5L485.996 59.9996Z"
         fill="#FFC700"
         fillOpacity="0.16"
+        id="yellow-n1"
       />
 
       {!inHeader && (
@@ -28,31 +31,37 @@ export const MainLogo = ({
             d="M390.734 59.9996L485.996 5V114.999L390.734 59.9996Z"
             fill="#FFC700"
             fillOpacity="0.16"
+            id="yellow-n2"
           />
           <path
             d="M63.5115 115.005L0 5L127.023 5.00001L63.5115 115.005Z"
             fill="#FFC700"
             fillOpacity="0.16"
+            id="yellow-t1"
           />
           <path
             d="M146.353 115.005L82.8412 5L209.864 5.00001L146.353 115.005Z"
             fill="#FFC700"
             fillOpacity="0.16"
+            id="yellow-t2"
           />
           <path
             d="M313.416 5.00015L376.927 115.005L249.904 115.005L313.416 5.00015Z"
             fill="#FFC700"
             fillOpacity="0.16"
+            id="yellow-a2"
           />
           <path
             d="M230.575 5.00015L294.086 115.005L167.063 115.005L230.575 5.00015Z"
             fill="#FFC700"
             fillOpacity="0.16"
+            id="yellow-a1"
           />
           <path
             d="M104.932 76.3403L82.8412 115H127.023L104.932 76.3403Z"
             fill="#FFC700"
             fillOpacity="0.16"
+            id="yellow-i"
           />
         </>
       )}

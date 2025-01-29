@@ -1,9 +1,8 @@
 "use client";
 
 import { Triangle } from "./Triangle";
-import { ReactNode, useRef } from "react";
+import { ReactNode } from "react";
 import { cn } from "../_helpers";
-import { useInView } from "../_helpers/useInView";
 
 interface PageSectionProps {
   id?: string | null;
@@ -22,29 +21,26 @@ export const PageSectionTriangle: React.FC<PageSectionProps> = ({
 }) => {
   const idProp = id ? { id } : {};
 
-  const ref = useRef(null);
-  const isVisible = useInView(ref);
-
-  const animateInFromRight = isVisible
-    ? "translate-x-0 opacity-100"
-    : "translate-x-full opacity-0";
-
-  const animateInFromLeft = isVisible
-    ? "translate-x-0 opacity-100"
-    : "-translate-x-full opacity-0";
-
   return (
     <section className="relative">
       <Triangle
         {...triangleProps}
         className={cn(
-          "absolute top-1/2 z-[-1] -translate-y-1/2 transform transition-all delay-500 duration-700",
+          "intersect:motion-opacity-in-0 intersect:motion-duration-700 intersect:motion-delay-500",
+          {
+            "intersect:motion-translate-x-in-[100%]":
+              triangleProps?.orientation === "left",
+            "intersect:motion-translate-x-in-[-100%]":
+              triangleProps?.orientation === "right",
+          },
           triangleProps?.className ?? "",
-          triangleProps?.orientation === "left"
-            ? animateInFromRight
-            : animateInFromLeft,
         )}
-        ref={ref}
+        wrapperClassName={cn(
+          "absolute top-1/2 z-[-1] -translate-y-1/2 h-full",
+          {
+            "right-0": triangleProps?.orientation === "left",
+          },
+        )}
       />
       <div {...idProp} className="mx-auto max-w-5xl p-4">
         {children}

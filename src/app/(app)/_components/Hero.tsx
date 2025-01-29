@@ -1,6 +1,5 @@
 import React from "react";
 import { Header } from "@/payload-types";
-import Link from "next/link";
 import { Triangle } from "@/app/(app)/_components/Triangle";
 import { CallToAction } from "@/app/(app)/_components/CallToAction";
 import { isMedia } from "@/app/(app)/_helpers";
@@ -20,7 +19,7 @@ export default function Hero({ data }: { data: Header }) {
         </p>
       )}
       {callToAction && callToAction?.length > 0 && (
-        <div className="col-start-1 flex flex-wrap items-start gap-2 sm:max-sm:row-start-3 md:items-end">
+        <div className="motion-preset-rebound-down motion-delay-3000 col-start-1 flex flex-wrap items-start gap-2 sm:max-sm:row-start-3 md:items-end">
           {callToAction?.map((cta, i) => (
             <CallToAction
               key={i}
@@ -33,14 +32,15 @@ export default function Hero({ data }: { data: Header }) {
         </div>
       )}
       {image && isMedia(image) && (
-        <div className="relative col-start-2 row-span-2 row-start-2 ml-auto max-xl:mr-20 max-md:h-40 max-md:w-40 md:h-52 md:w-52">
+        <div className="motion-translate-x-in-[183%] motion-scale-in-[.5] motion-opacity-in-[0%] motion-translate-y-in-[25%] motion-delay-2000 motion-duration-1000 relative col-start-2 row-span-2 row-start-2 ml-auto max-xl:mr-20 max-md:h-40 max-md:w-40 md:h-52 md:w-52">
           <Image
             src={image.url ?? ""}
             alt={image.alt ?? ""}
-            width={image.width ?? 300}
-            height={image.height ?? 300}
+            width={300}
+            height={300}
             className="h-full w-full"
           />
+          {/* light from right to left */}
           <Triangle
             wrapperClassName="absolute inset-0 translate-x-full"
             className="bg-yellow/20"

@@ -65,5 +65,15 @@ export const ServiceSectionBlock: Block = {
       },
       type: "richText",
     },
+    {
+      name: "form",
+      label: {
+        nl: "Formulier",
+        en: "Form",
+      },
+      type: "relationship",
+      relationTo: "forms",
+      // required: true,
+    },
   ],
 };

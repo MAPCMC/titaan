@@ -1,4 +1,4 @@
-.lexical h3 {
+.lexical h3:not(.h-small) {
   font-size: 1.625rem;
   font-style: normal;
   font-weight: 400;

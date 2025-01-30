@@ -49,9 +49,12 @@ export const Filters: CollectionConfig = {
       name: "key",
       type: "text",
       required: true,
-      label: "zoekwoord",
+      label: { nl: "zoekwoord", en: "search term" },
       admin: {
-        description: "Dit zie je in de zoekbalk (1 woord, geen tekens)",
+        description: {
+          nl: "Dit zie je in de zoekbalk (1 woord, geen tekens)",
+          en: "This is shown in the search bar (1 word, no special characters)",
+        },
       },
     },
     {
@@ -59,9 +62,12 @@ export const Filters: CollectionConfig = {
       type: "checkbox",
       required: true,
       defaultValue: false,
-      label: "meerdere opties toestaan",
+      label: { nl: "meerdere opties toestaan", en: "multiple options allowed" },
       admin: {
-        description: "Selecteer wanneer meerdere opties aankruisen mogelijk is",
+        description: {
+          nl: "Selecteer wanneer meerdere opties aankruisen mogelijk is",
+          en: "Select when multiple options can be checked",
+        },
       },
     },
     {
@@ -72,21 +78,23 @@ export const Filters: CollectionConfig = {
           RowLabel: "@/db/_components/RowDataLabel#RowDataLabel",
         },
       },
-      label: "Keuzeopties",
+      label: { nl: "Keuzeopties", en: "Choice options" },
       labels: {
-        singular: "keuzeoptie",
-        plural: "keuzeopties",
+        singular: { nl: "keuzeoptie", en: "choice option" },
+        plural: { nl: "keuzeopties", en: "choice options" },
       },
       fields: [
         {
           name: "value",
           type: "text",
           required: true,
+          label: { nl: "Waarde", en: "Value" },
         },
         {
           name: "label",
           label: {
             nl: "Dit lees je in de filter",
+            en: "This is shown in the filter",
           },
           type: "text",
           required: true,
@@ -101,7 +109,10 @@ export const Filters: CollectionConfig = {
           name: "filters",
           type: "relationship",
           relationTo: "filters",
-          label: "Volgende filters in deze tak",
+          label: {
+            nl: "Volgende filters in deze tak",
+            en: "Next filters in this level",
+          },
           hasMany: true,
           filterOptions: ({ data }) => {
             // returns a Where query dynamically by the type of relationship

@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <ObserverProvider>
-      <html lang="nl" className="text-xs sm:text-sm md:text-base">
+      <html lang="nl" className="text-sm md:text-base">
         <body
           className={`${font.className} flex min-h-screen flex-col`}
           id="body"

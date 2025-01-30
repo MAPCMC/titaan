@@ -38,7 +38,10 @@ export default function PageContent({
               const idProp = block.anchor ? { id: block.anchor } : {};
               return (
                 <section {...idProp} key={block.id}>
-                  <div className="mx-auto max-w-5xl p-4">
+                  <section
+                    className="mx-auto max-w-5xl p-4"
+                    id={`${block.anchor}-introduction`}
+                  >
                     {block.title && (
                       <h2 className={isHome ? "h-large" : "h-medium"}>
                         {block.title}
@@ -49,8 +52,11 @@ export default function PageContent({
                         {block.introduction}
                       </p>
                     )}
-                  </div>
-                  <Services section={block} />
+                  </section>
+                  <Services
+                    section={block}
+                    anchor={block.anchor ?? undefined}
+                  />
                 </section>
               );
             }

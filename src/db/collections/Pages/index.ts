@@ -65,11 +65,17 @@ export const Pages: CollectionConfig = {
               blocks: [SectionBlock],
             },
           ],
-          label: "Content",
+          label: {
+            nl: "Inhoud",
+            en: "Content",
+          },
         },
         {
           name: "meta",
-          label: "SEO",
+          label: {
+            nl: "SEO",
+            en: "SEO",
+          },
           fields: [
             OverviewField({
               titlePath: "meta.title",

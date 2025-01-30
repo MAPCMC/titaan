@@ -46,7 +46,7 @@ export const Text: React.FC<
         type="text"
         {...register(name, { required: requiredFromProps })}
       />
-      {requiredFromProps && errors[name] && <Error />}
+      {requiredFromProps && errors[name] && <Error errors={errors[name]} />}
       {description && (
         <Lexical
           content={description}

@@ -52,15 +52,6 @@ export const Form: React.FC<{
   const [error, setError] = useState<
     { message: string; status?: string } | undefined
   >();
-  // const [files, setFiles] = useState<{ name: string; file: File | null }[]>([]);
-
-  // const handleFileChange = (field: string, selectedFile: File | null) => {
-  //   if (files.find((f) => f.name === field)) {
-  //     setFiles(files.filter((f) => f.name !== field));
-  //   } else {
-  //     setFiles([...files, { name: field, file: selectedFile }]);
-  //   }
-  // };
 
   const onSubmit = useCallback(
     (data: Data) => {

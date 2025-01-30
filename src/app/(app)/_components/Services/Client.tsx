@@ -10,6 +10,7 @@ import { cn } from "../../_helpers";
 import { requiredPath } from "./requiredPath";
 import { Triangle } from "../Triangle";
 import { Form } from "@/app/(app)/_components/Form";
+import type { Form as FormType } from "@/payload-types";
 
 interface ServicesProps {
   filters: Filter[];
@@ -250,8 +251,8 @@ export const ServicesClient: React.FC<ServicesProps> = ({
           <div className="mx-auto max-w-5xl px-4 py-16">
             <h2 className="h-large">Gericht contact</h2>
             <div className="grid gap-3 md:grid-cols-3 md:gap-6">
-              <div className="lexical border-foreground bg-background border p-4 md:col-start-3">
-                <h3>Wat we weten</h3>
+              <div className="border-foreground bg-background border p-4 md:col-start-3">
+                <h3 className="h-small leading-loose">Wat we weten</h3>
                 <p>Over jou/jullie:</p>
                 <ul>
                   {Object.keys(entries).map((key: string, i: number) => {
@@ -287,7 +288,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
               </div>
               <div className="border-foreground bg-background border p-4 md:col-span-2 md:row-start-1">
                 {section.form && typeof section.form === "object" && (
-                  <Form form={section.form} />
+                  <Form form={section.form as FormType} />
                 )}
               </div>
             </div>

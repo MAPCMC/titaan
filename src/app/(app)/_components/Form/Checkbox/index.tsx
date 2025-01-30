@@ -45,14 +45,18 @@ export const Checkbox: React.FC<
           id={name}
           {...props}
           onCheckedChange={(checked) => {
-            setValue(props.name, checked);
+            setValue(props.name, checked, {
+              shouldValidate: true,
+              shouldDirty: true,
+              shouldTouch: true,
+            });
           }}
         />
         <Label htmlFor={name} required={requiredFromProps}>
           {label}
         </Label>
       </div>
-      {requiredFromProps && errors[name] && <Error />}
+      {requiredFromProps && errors[name] && <Error errors={errors[name]} />}
     </Width>
   );
 };

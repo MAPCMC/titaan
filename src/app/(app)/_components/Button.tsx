@@ -19,9 +19,9 @@ const buttonVariants = cva(
         link: "px-6 hover:text-background hover:bg-foreground *:block block first-letter:uppercase",
       },
       shape: {
-        default: "py-2 px-10 max-md:min-h-16",
+        default: "py-2 px-10 max-md:min-h-12",
         skewed:
-          "py-2 px-10 max-md:min-h-16 origin-bottom-left skew-x-[-30deg] *:block *:skew-x-[30deg]",
+          "py-2 px-10 max-md:min-h-12 origin-bottom-left skew-x-[-30deg] *:block *:skew-x-[30deg]",
         icon: "h-10 w-10",
         small: "py-2 px-6 max-md:min-h-10 text-sm!",
       },

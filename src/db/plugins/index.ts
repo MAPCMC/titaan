@@ -28,6 +28,34 @@ const generateURL: GenerateURL<Page> = ({ doc }) => {
     : process.env.NEXT_PUBLIC_SERVER_URL!;
 };
 
+const hiddenField: Block = {
+  slug: "hidden",
+  interfaceName: "hiddenField",
+  labels: {
+    singular: {
+      nl: "Verborgen veld",
+      en: "Hidden field",
+    },
+    plural: {
+      nl: "Verborgen velden",
+      en: "Hidden fields",
+    },
+  },
+  fields: [
+    {
+      name: "name",
+      type: "text",
+      required: true,
+      admin: {
+        description: {
+          en: 'Add a hidden value to the form ("services" and "filters" are automatically filled)',
+          nl: 'Geef een verborgen waarde mee aan het formulier ("services" en "filters" worden automatisch gevuld)',
+        },
+      },
+    },
+  ],
+};
+
 export const plugins: Plugin[] = [
   seoPlugin({
     generateTitle,
@@ -74,7 +102,7 @@ export const plugins: Plugin[] = [
           if ("name" in field && field.name === "fields" && "blocks" in field) {
             return {
               ...field,
-              blocks: updatedFields(field.blocks),
+              blocks: [...updatedFields(field.blocks), hiddenField],
             };
           }
           return field;

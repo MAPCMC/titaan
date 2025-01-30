@@ -5,6 +5,7 @@ import { Number } from "./Number";
 import { Select } from "./Select";
 import { Text } from "./Text";
 import { Textarea } from "./Textarea";
+import { Hidden } from "./Hidden";
 // import { Upload } from './Upload/Component'
 
 export const fields = {
@@ -17,4 +18,5 @@ export const fields = {
   textarea: Textarea,
   country: null,
   state: null,
+  hidden: Hidden,
 };

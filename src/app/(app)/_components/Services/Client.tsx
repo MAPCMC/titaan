@@ -4,13 +4,17 @@ import * as React from "react";
 
 import { Lexical } from "../Lexical";
 import { Button } from "@/app/(app)/_components/Button";
-import type { Filter, Service, ServiceSection } from "@/payload-types";
+import type {
+  Filter,
+  Service,
+  ServiceSection,
+  Form as FormType,
+} from "@/payload-types";
 import { useSearchParams, useRouter } from "next/navigation";
 import { cn } from "../../_helpers";
 import { requiredPath } from "./requiredPath";
 import { Triangle } from "../Triangle";
 import { Form } from "@/app/(app)/_components/Form";
-import type { Form as FormType } from "@/payload-types";
 
 interface ServicesProps {
   filters: Filter[];
@@ -121,6 +125,21 @@ export const ServicesClient: React.FC<ServicesProps> = ({
       ? selectedServices.filter((id) => id !== serviceId)
       : [...selectedServices, serviceId];
     setSelectedServices(newSelectedServices);
+  };
+
+  const filterOptions = () => {
+    return Object.keys(entries).map((key: string, i: number) => {
+      const filter = visibleFilters.find((filter) => {
+        return filter.key === key;
+      });
+      const options = filter?.options
+        ?.filter((option) => {
+          return searchParams.has(key, option.value);
+        })
+        .map((option) => option.label);
+
+      return options;
+    });
   };
 
   return (
@@ -249,27 +268,16 @@ export const ServicesClient: React.FC<ServicesProps> = ({
       {selectedServices.length > 0 && (
         <section className="bg-red motion-translate-y-in-[2rem]">
           <div className="mx-auto max-w-5xl px-4 py-16">
-            <h2 className="h-large">Gericht contact</h2>
-            <div className="grid gap-3 md:grid-cols-3 md:gap-6">
-              <div className="border-foreground bg-background border p-4 md:col-start-3">
-                <h3 className="h-small leading-loose">Wat we weten</h3>
+            <h2 className="h-large">Dit zoek ik</h2>
+            <div className="grid min-h-[50vh] gap-3 md:grid-cols-3 md:gap-6">
+              <div className="lexical border-foreground bg-background flex h-full flex-col items-start border p-4 md:col-start-3">
+                <h3 className="h-small mb-6">Wat we weten</h3>
                 <p>Over jou/jullie:</p>
                 <ul>
-                  {Object.keys(entries).map((key: string, i: number) => {
-                    const filter = visibleFilters.find((filter) => {
-                      return filter.key === key;
-                    });
-                    const options = filter?.options
-                      ?.filter((option) => {
-                        return searchParams.has(key, option.value);
-                      })
-                      .map((option) => option.label);
-
+                  {filterOptions().map((options, i) => {
+                    if (!options) return null;
                     return (
-                      <li
-                        key={`${key}-${i}`}
-                        className="list-inside list-[square]"
-                      >
+                      <li key={i} className="list-inside list-[square]">
                         {options?.join("/")}
                       </li>
                     );
@@ -285,10 +293,27 @@ export const ServicesClient: React.FC<ServicesProps> = ({
                       return <li key={i}>{service.title}</li>;
                     })}
                 </ul>
+                <Button
+                  onClick={() => {
+                    setSelectedServices([]);
+                    router.push("?", { scroll: false });
+                  }}
+                  variant="outline"
+                  shape="skewed"
+                  className="mt-auto w-auto"
+                >
+                  <span>Annuleren</span>
+                </Button>
               </div>
               <div className="border-foreground bg-background border p-4 md:col-span-2 md:row-start-1">
                 {section.form && typeof section.form === "object" && (
-                  <Form form={section.form as FormType} />
+                  <Form
+                    form={section.form as FormType}
+                    services={filteredServices.filter((service) => {
+                      return selectedServices.includes(service.id);
+                    })}
+                    filters={filterOptions()}
+                  />
                 )}
               </div>
             </div>

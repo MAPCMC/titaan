@@ -574,6 +574,7 @@ export interface Form {
             blockName?: string | null;
             blockType: 'textarea';
           }
+        | HiddenField
       )[]
     | null;
   submitButtonLabel?: string | null;
@@ -633,6 +634,19 @@ export interface Form {
     | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hiddenField".
+ */
+export interface HiddenField {
+  /**
+   * Add a hidden value to the form ("services" and "filters" are automatically filled)
+   */
+  name: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hidden';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1036,6 +1050,7 @@ export interface FormsSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        hidden?: T | HiddenFieldSelect<T>;
       };
   submitButtonLabel?: T;
   confirmationType?: T;
@@ -1059,6 +1074,15 @@ export interface FormsSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hiddenField_select".
+ */
+export interface HiddenFieldSelect<T extends boolean = true> {
+  name?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

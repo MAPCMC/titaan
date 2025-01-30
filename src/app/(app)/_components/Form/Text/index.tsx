@@ -22,6 +22,7 @@ export const Text: React.FC<
     register: UseFormRegister<FieldValues>;
     description?: any;
     placeholder?: any;
+    hidden?: boolean;
   }
 > = ({
   name,
@@ -33,6 +34,7 @@ export const Text: React.FC<
   description,
   width,
   placeholder,
+  hidden,
 }) => {
   return (
     <Width width={width}>
@@ -43,7 +45,7 @@ export const Text: React.FC<
         defaultValue={defaultValue}
         placeholder={placeholder}
         id={name}
-        type="text"
+        type={hidden ? "hidden" : "text"}
         {...register(name, { required: requiredFromProps })}
       />
       {requiredFromProps && errors[name] && <Error errors={errors[name]} />}

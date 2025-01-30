@@ -76,7 +76,7 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
         slidesToScroll: "auto",
         loop: true,
       }}
-      className="mx-auto 3xl:max-w-7xl"
+      className="3xl:max-w-7xl mx-auto"
     >
       <CarouselContent>
         {clientList.map((client, index) => {
@@ -106,7 +106,7 @@ export const ClientsFeed: React.FC<ClientsFeedProps> = ({ clients }) => {
                       target="_blank"
                       className="group z-10 col-start-1 row-start-1 grid h-full w-full place-items-center"
                     >
-                      <span className="h-small hidden items-center justify-center p-3 px-10 py-2 text-background group-hover:flex group-hover:bg-foreground group-focus:flex group-focus:bg-background group-focus:text-foreground group-hover:group-focus:bg-foreground group-hover:group-focus:text-background max-md:min-h-16">
+                      <span className="h-small text-background group-hover:bg-foreground group-focus:bg-background group-focus:text-foreground group-hover:group-focus:bg-foreground group-hover:group-focus:text-background hidden items-center justify-center p-3 px-10 py-2 group-hover:flex group-focus:flex max-md:min-h-12">
                         Naar {client.companyName}
                       </span>
                     </a>

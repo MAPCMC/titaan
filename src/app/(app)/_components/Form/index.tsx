@@ -1,6 +1,6 @@
 "use client";
 
-import type { Form as FormType } from "@/payload-types";
+import type { Form as FormType, Service } from "@/payload-types";
 
 import React, { useCallback, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
@@ -24,6 +24,8 @@ export interface Data {
 
 export const Form: React.FC<{
   form: FormType;
+  services?: Service[];
+  filters?: (string[] | undefined)[];
 }> = (props) => {
   const {
     form: formFromProps,
@@ -34,6 +36,8 @@ export const Form: React.FC<{
       redirect,
       submitButtonLabel,
     } = {},
+    services,
+    filters,
   } = props;
 
   const formMethods = useForm({
@@ -67,10 +71,24 @@ export const Form: React.FC<{
           setIsLoading(true);
         }, 1000);
 
-        let dataToSend = Object.entries(data).map(([name, value]) => ({
-          field: name,
-          value,
-        }));
+        let dataToSend = Object.entries(data).map(([name, value]) => {
+          if (name === "services" && services) {
+            return {
+              field: name,
+              value: services.map((service) => service.title).join(" | "),
+            };
+          }
+          if (name === "filters" && filters) {
+            return {
+              field: name,
+              value: filters.map((filterString) => filterString).join(" | "),
+            };
+          }
+          return {
+            field: name,
+            value,
+          };
+        });
 
         try {
           // if (files && files.length > 0) {
@@ -179,7 +197,7 @@ export const Form: React.FC<{
       {error && <div>{`${error.status || "500"}: ${error.message || ""}`}</div>}
       {!hasSubmitted && (
         <form id={formID?.toString()} onSubmit={handleSubmit(onSubmit)}>
-          <h3 className="h-small">{formFromProps?.title}</h3>
+          <h3 className="h-small mb-6">{formFromProps?.title}</h3>
           <div className="mb-4 last:mb-0">
             {formFromProps &&
               formFromProps.fields &&
@@ -204,8 +222,13 @@ export const Form: React.FC<{
               })}
           </div>
 
-          <Button form={formID?.toString()} type="submit" variant="default">
-            {submitButtonLabel ?? "verzenden"}
+          <Button
+            form={formID?.toString()}
+            type="submit"
+            variant="default"
+            shape="skewed"
+          >
+            <span>{submitButtonLabel ?? "verzenden"}</span>
           </Button>
         </form>
       )}

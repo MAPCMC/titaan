@@ -1,9 +1,10 @@
-import { Plugin } from "payload";
+import { Block, Plugin } from "payload";
+import { s3Storage } from "@payloadcms/storage-s3";
 import { seoPlugin } from "@payloadcms/plugin-seo";
-// import { nestedDocsPlugin } from "@payloadcms/plugin-nested-docs";
+import { formBuilderPlugin } from "@payloadcms/plugin-form-builder";
 import { GenerateTitle, GenerateURL } from "@payloadcms/plugin-seo/types";
 import { Page } from "@/payload-types";
-import { s3Storage } from "@payloadcms/storage-s3";
+import { updatedFields } from "./updatedFields";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -40,5 +41,63 @@ export const plugins: Plugin[] = [
     config: s3Config,
     acl: "public-read",
     enabled: isProduction,
+  }),
+  formBuilderPlugin({
+    fields: {
+      text: true,
+      textarea: true,
+      select: true,
+      email: true,
+      checkbox: true,
+      number: true,
+      message: true,
+    },
+    formOverrides: {
+      labels: {
+        plural: {
+          nl: "Formulieren",
+          en: "Forms",
+        },
+        singular: {
+          nl: "Formulier",
+          en: "Form",
+        },
+      },
+      admin: {
+        group: {
+          nl: "Formulieren",
+          en: "Forms",
+        },
+      },
+      fields: ({ defaultFields }) => {
+        return defaultFields.map((field) => {
+          if ("name" in field && field.name === "fields" && "blocks" in field) {
+            return {
+              ...field,
+              blocks: updatedFields(field.blocks),
+            };
+          }
+          return field;
+        });
+      },
+    },
+    formSubmissionOverrides: {
+      admin: {
+        group: {
+          nl: "Formulieren",
+          en: "Forms",
+        },
+      },
+      labels: {
+        plural: {
+          nl: "Ingevulde formulieren",
+          en: "Submitted forms",
+        },
+        singular: {
+          nl: "Ingevuld formulier",
+          en: "Submitted form",
+        },
+      },
+    },
   }),
 ];

@@ -9,6 +9,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { cn } from "../../_helpers";
 import { requiredPath } from "./requiredPath";
 import { Triangle } from "../Triangle";
+import { Form } from "@/app/(app)/_components/Form";
 
 interface ServicesProps {
   filters: Filter[];
@@ -284,9 +285,11 @@ export const ServicesClient: React.FC<ServicesProps> = ({
                     })}
                 </ul>
               </div>
-              <form className="border-foreground bg-background border p-4 md:col-span-2 md:row-start-1">
-                <h3 className="h-small">Navragen beschikbaarheid</h3>
-              </form>
+              <div className="border-foreground bg-background border p-4 md:col-span-2 md:row-start-1">
+                {section.form && typeof section.form === "object" && (
+                  <Form form={section.form} />
+                )}
+              </div>
             </div>
           </div>
         </section>

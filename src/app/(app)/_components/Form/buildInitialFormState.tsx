@@ -22,7 +22,7 @@ export const buildInitialFormState = (fields: Form["fields"]) => {
     if (field.blockType === "select") {
       return {
         ...initialSchema,
-        [field.name]: "",
+        [field.name]: field.defaultValue ?? "",
       };
     }
 

@@ -20,12 +20,14 @@ interface ServicesProps {
   filters: Filter[];
   services: Service[];
   section: ServiceSection;
+  anchor?: string;
 }
 
 export const ServicesClient: React.FC<ServicesProps> = ({
   filters,
   services,
   section,
+  anchor,
 }) => {
   const [selectedServices, setSelectedServices] = React.useState<number[]>([]);
   const searchParams = useSearchParams();
@@ -144,7 +146,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
 
   return (
     <>
-      <div className="relative">
+      <section id={`${anchor}-filters`} className="relative">
         <div className="mx-auto mb-6 h-10 max-w-5xl px-4 text-right">
           <Button
             onClick={() => {
@@ -221,52 +223,60 @@ export const ServicesClient: React.FC<ServicesProps> = ({
             </p>
           </div>
         )}
-        {filteredServices.length > 0 && filteredServices.length <= 3 && (
-          <div className="motion-translate-y-in-[2rem] mb-12">
-            {section.resultsIntro && (
-              <div className="mx-auto max-w-5xl px-4">
-                <div>
-                  <h2 className="h-small">
-                    {`Relevante scenario's (${filteredServices.length})`}
-                  </h2>
-                  <Lexical content={section.resultsIntro} />
-                </div>
+      </section>
+
+      {filteredServices.length > 0 && filteredServices.length <= 3 && (
+        <section
+          id={`${anchor}-services`}
+          className="motion-translate-y-in-[2rem] mb-12"
+        >
+          {section.resultsIntro && (
+            <div className="mx-auto max-w-5xl px-4">
+              <div>
+                <h2 className="h-small">
+                  {`Relevante scenario's (${filteredServices.length})`}
+                </h2>
+                <Lexical content={section.resultsIntro} />
               </div>
-            )}
-            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
-              {filteredServices.map((service, i) => {
-                return (
-                  <article
-                    className="border-foreground bg-background relative row-span-3 grid grid-rows-subgrid border p-4"
-                    key={i}
-                  >
-                    <h3 className="h-small">{service.title}</h3>
-                    {service.content && (
-                      <div>
-                        <Lexical content={service.content} />
-                      </div>
-                    )}
-                    <Button
-                      variant={
-                        selectedServices.includes(service.id)
-                          ? "selected"
-                          : "outline"
-                      }
-                      shape="skewed"
-                      className="mr-8"
-                      onClick={() => handleServiceClick(service.id)}
-                    >
-                      <span>Dit zoek ik</span>
-                    </Button>
-                  </article>
-                );
-              })}
             </div>
+          )}
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
+            {filteredServices.map((service, i) => {
+              return (
+                <article
+                  className="border-foreground bg-background relative row-span-3 grid grid-rows-subgrid border p-4"
+                  key={i}
+                >
+                  <h3 className="h-small">{service.title}</h3>
+                  {service.content && (
+                    <div>
+                      <Lexical content={service.content} />
+                    </div>
+                  )}
+                  <Button
+                    variant={
+                      selectedServices.includes(service.id)
+                        ? "selected"
+                        : "outline"
+                    }
+                    shape="skewed"
+                    className="mr-8"
+                    onClick={() => handleServiceClick(service.id)}
+                  >
+                    <span>Dit zoek ik</span>
+                  </Button>
+                </article>
+              );
+            })}
           </div>
-        )}
-      </div>
-      {selectedServices.length > 0 && (
-        <section className="bg-red motion-translate-y-in-[2rem]">
+        </section>
+      )}
+
+      {filteredServices.length > 0 && selectedServices.length > 0 && (
+        <section
+          id="diensten-contact"
+          className="bg-red motion-translate-y-in-[2rem]"
+        >
           <div className="mx-auto max-w-5xl px-4 py-16">
             <h2 className="h-large">Dit zoek ik</h2>
             <div className="grid min-h-[50vh] gap-3 md:grid-cols-3 md:gap-6">

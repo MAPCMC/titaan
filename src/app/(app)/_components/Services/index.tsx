@@ -7,15 +7,21 @@ import { getCachedServices } from "@/db/collections/Services/utilities/getServic
 
 interface Props {
   section: ServiceSection;
+  anchor?: string;
 }
 
-export const Services: React.FC<Props> = async ({ section }: Props) => {
+export const Services: React.FC<Props> = async ({ section, anchor }: Props) => {
   const services = await getCachedServices()();
   const filters = await getCachedFilters()();
 
   return (
     <Suspense>
-      <ServicesClient services={services} filters={filters} section={section} />
+      <ServicesClient
+        services={services}
+        filters={filters}
+        section={section}
+        anchor={anchor}
+      />
     </Suspense>
   );
 };

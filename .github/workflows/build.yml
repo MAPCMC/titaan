@@ -3,7 +3,7 @@ on:
   push:
 
 jobs:
-  unit_test-lint:
+  ci:
     runs-on: ubuntu-22.04
     strategy:
       matrix:

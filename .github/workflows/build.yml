@@ -22,4 +22,4 @@ jobs:
       - name: ci
         run: |
           pnpm install
-          pnpm ci
+          pnpm run ci

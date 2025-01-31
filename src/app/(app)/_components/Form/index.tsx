@@ -59,8 +59,6 @@ export const Form: React.FC<{
 
   const onSubmit = useCallback(
     (data: Data) => {
-      console.log("data", data);
-
       let loadingTimerID: ReturnType<typeof setTimeout>;
 
       const submitForm = async () => {
@@ -182,7 +180,7 @@ export const Form: React.FC<{
 
       void submitForm();
     },
-    [router, formID, redirect, confirmationType],
+    [router, formID, redirect, confirmationType, services, filters],
   );
 
   return (

@@ -40,7 +40,7 @@ export const Number: React.FC<
         type="number"
         {...register(name, { required: requiredFromProps })}
       />
-      {requiredFromProps && errors[name] && <Error />}
+      {requiredFromProps && errors[name] && <Error errors={errors[name]} />}
     </Width>
   );
 };

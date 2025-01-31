@@ -1,4 +1,4 @@
-name: Migate & build
+name: build
 on:
   push:
 
@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-      - name: ci
+      - name: build
         run: |
           pnpm install
-          pnpm run ci
+          pnpm run build

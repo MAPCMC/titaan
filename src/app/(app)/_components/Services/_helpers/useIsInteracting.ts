@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export function useIsInteracting(
   ref: React.RefObject<HTMLElement> | React.RefObject<null>,
-  events = ["mousedown", "touchstart"],
+  events = ["mousedown", "touchstart", "keydown"],
 ) {
   const [isInteracting, setIsInteracting] = useState(false);
 

@@ -188,7 +188,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
                   <Triangle
                     orientation="right"
                     className="bg-red h-full"
-                    wrapperClassName="absolute left-0 h-18 top-0 z-[-1] -motion-translate-x-in-100 motion-ease-spring-smooth"
+                    wrapperClassName="absolute left-0 h-16 top-0 z-[-1] -motion-translate-x-in-100 motion-ease-spring-smooth"
                   />
                 )}
                 {filter.options?.map((option, fi) => {

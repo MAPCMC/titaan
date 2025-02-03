@@ -253,7 +253,7 @@ const CarouselPrevious = React.forwardRef<
       shape={shape}
       className={cn(
         orientation === "horizontal"
-          ? "absolute left-0 top-full -translate-y-1/2"
+          ? "absolute top-full left-0 -translate-y-1/2"
           : "absolute -top-12 left-1/2 -translate-x-1/2",
         className,
         "group bg-transparent disabled:opacity-0",
@@ -264,10 +264,10 @@ const CarouselPrevious = React.forwardRef<
     >
       <Triangle
         wrapperClassName="h-10"
-        className="bg-red-light group-hover:bg-background"
+        className="bg-red intersect-full intersect:motion-bg-in-red-light intersect:group-hover:bg-background motion-delay-300 motion-duration-2000"
         orientation={orientation === "horizontal" ? "left" : "up"}
       />
-      <span className="sr-only">Previous slide</span>
+      <span className="sr-only">Vorige slide</span>
     </Button>
   );
 });
@@ -286,7 +286,7 @@ const CarouselNext = React.forwardRef<
       shape={shape}
       className={cn(
         orientation === "horizontal"
-          ? "absolute right-0 top-full -translate-y-1/2"
+          ? "absolute top-full right-0 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className,
         "group bg-transparent disabled:opacity-0",
@@ -297,10 +297,10 @@ const CarouselNext = React.forwardRef<
     >
       <Triangle
         wrapperClassName="h-10"
-        className="bg-red-light group-hover:bg-background"
+        className="bg-red intersect-full intersect:motion-bg-in-red-light intersect:group-hover:bg-background motion-delay-300 motion-duration-2000"
         orientation={orientation === "horizontal" ? "right" : "down"}
       />
-      <span className="sr-only">Next slide</span>
+      <span className="sr-only">Volgede slide</span>
     </Button>
   );
 });

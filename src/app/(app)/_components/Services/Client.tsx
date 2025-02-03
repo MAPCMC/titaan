@@ -94,6 +94,12 @@ export const ServicesClient: React.FC<ServicesProps> = ({
     }
   }, [searchParams, entries, filters, router]);
 
+  React.useEffect(() => {
+    if (Array.from(searchParams.entries()).length === 0) {
+      setSelectedServices([]);
+    }
+  }, [searchParams]);
+
   const handleFilterClick = (key: string, value: string, multiple: boolean) => {
     const newSearchParams = new URLSearchParams(searchParams);
 
@@ -158,7 +164,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
         className="bg-red-light h-full transition-[height_.5s_ease-in-out]"
         wrapperClassName="absolute -top-64 h-[calc(100%+26rem)] left-1/2 -translate-x-1/2 z-[-1]"
       />
-      <section id={`${anchor}-filters`} className="relative">
+      <section id={`${anchor}-filters`} className="relative mb-8">
         <div className="mx-auto mb-6 h-10 max-w-5xl px-4 text-right">
           <Button
             onClick={() => {
@@ -229,11 +235,12 @@ export const ServicesClient: React.FC<ServicesProps> = ({
               </AutoFocus>
             );
           }
+
           return (
             <div
               key={filter.id}
               className={cn(
-                "mb-6 flex h-auto flex-wrap items-center justify-center gap-2",
+                "relative mb-6 flex h-auto flex-wrap items-center justify-center gap-2",
                 {
                   "hidden h-0": !visibleFilters.find(
                     (vis) => vis.id === filter.id,
@@ -241,6 +248,13 @@ export const ServicesClient: React.FC<ServicesProps> = ({
                 },
               )}
             >
+              {lastFilter && filter.level === 1 && (
+                <Triangle
+                  orientation="right"
+                  className="bg-red h-full"
+                  wrapperClassName="absolute left-0 h-16 top-0 z-[-1] -motion-translate-x-in-100 motion-ease-spring-smooth"
+                />
+              )}
               {filter.options?.map((option, fi) => {
                 const isSelected = (key: string, value: string) => {
                   return searchParams?.has(key, value);

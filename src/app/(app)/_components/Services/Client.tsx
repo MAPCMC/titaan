@@ -175,7 +175,12 @@ export const ServicesClient: React.FC<ServicesProps> = ({
           const lastFilter =
             visibleFilters[visibleFilters.length - 1].id === filter.id;
 
-          if (lastFilter && isInteracting && filteredServices.length > 3) {
+          if (
+            lastFilter &&
+            filter.level !== 1 &&
+            isInteracting &&
+            filteredServices.length > 3
+          ) {
             return (
               <AutoFocus
                 isVisible={true}

@@ -46,7 +46,7 @@ export default async function PageHeader({
               className="flex h-full w-full md:w-auto"
             >
               <Link href={item.link}>
-                <span>{item.label}</span>
+                <span className="first-letter:uppercase">{item.label}</span>
               </Link>
             </Button>
           );
@@ -94,7 +94,7 @@ export default async function PageHeader({
                 className="w-full md:w-auto md:px-6"
               >
                 <Link href={item.link}>
-                  <span>{item.label}</span>
+                  <span className="first-letter:uppercase">{item.label}</span>
                 </Link>
               </Button>
             );

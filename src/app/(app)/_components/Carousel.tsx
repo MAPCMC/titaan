@@ -300,7 +300,7 @@ const CarouselNext = React.forwardRef<
         className="bg-red intersect-full intersect:motion-bg-in-red-light intersect:group-hover:bg-background motion-delay-300 motion-duration-2000"
         orientation={orientation === "horizontal" ? "right" : "down"}
       />
-      <span className="sr-only">Volgede slide</span>
+      <span className="sr-only">Volgende slide</span>
     </Button>
   );
 });

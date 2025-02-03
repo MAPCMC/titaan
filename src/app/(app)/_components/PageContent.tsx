@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Section, ServiceSection } from "@/payload-types";
 import { cn } from "../_helpers";
 import { BlocksContent } from "./BlocksContent";
 import { Services } from "./Services";
 import { PageSectionTriangle } from "./PageSectionTriangle";
+import { AnchorTriangle } from "./AnchorTriangle";
 
 export default function PageContent({
   blocks,
@@ -43,8 +44,17 @@ export default function PageContent({
                     id={`${block.anchor}-introduction`}
                   >
                     {block.title && (
-                      <h2 className={isHome ? "h-large" : "h-medium"}>
-                        {block.title}
+                      <h2
+                        className={cn(
+                          "relative",
+                          isHome ? "h-large" : "h-medium",
+                        )}
+                      >
+                        <Suspense>
+                          <AnchorTriangle anchor={block.anchor}>
+                            <span>{block.title}</span>
+                          </AnchorTriangle>
+                        </Suspense>
                       </h2>
                     )}
                     {block.introduction && (
@@ -78,8 +88,17 @@ export default function PageContent({
                     }}
                   >
                     {block.title && (
-                      <h2 className={isHome ? "h-large" : "h-medium"}>
-                        {block.title}
+                      <h2
+                        className={cn(
+                          "relative",
+                          isHome ? "h-large" : "h-medium",
+                        )}
+                      >
+                        <Suspense>
+                          <AnchorTriangle anchor={block.anchor}>
+                            <span>{block.title}</span>
+                          </AnchorTriangle>
+                        </Suspense>
                       </h2>
                     )}
                     {block.introduction && (
@@ -104,8 +123,17 @@ export default function PageContent({
                     }}
                   >
                     {block.title && (
-                      <h2 className={isHome ? "h-large" : "h-medium"}>
-                        {block.title}
+                      <h2
+                        className={cn(
+                          "relative",
+                          isHome ? "h-large" : "h-medium",
+                        )}
+                      >
+                        <Suspense>
+                          <AnchorTriangle anchor={block.anchor}>
+                            <span>{block.title}</span>
+                          </AnchorTriangle>
+                        </Suspense>
                       </h2>
                     )}
                     {block.introduction && (
@@ -125,8 +153,17 @@ export default function PageContent({
                   className="mx-auto max-w-5xl p-4"
                 >
                   {block.title && (
-                    <h2 className={isHome ? "h-large" : "h-medium"}>
-                      {block.title}
+                    <h2
+                      className={cn(
+                        "relative",
+                        isHome ? "h-large" : "h-medium",
+                      )}
+                    >
+                      <Suspense>
+                        <AnchorTriangle anchor={block.anchor}>
+                          <span>{block.title}</span>
+                        </AnchorTriangle>
+                      </Suspense>
                     </h2>
                   )}
                   {block.introduction && (

@@ -15,6 +15,7 @@ import { cn } from "../../_helpers";
 import { requiredPath } from "./requiredPath";
 import { Triangle } from "../Triangle";
 import { Form } from "@/app/(app)/_components/Form";
+import { AnimatedExit } from "@/app/(app)/_components/AnimatedExit";
 
 interface ServicesProps {
   filters: Filter[];
@@ -272,7 +273,11 @@ export const ServicesClient: React.FC<ServicesProps> = ({
         </section>
       )}
 
-      {filteredServices.length > 0 && selectedServices.length > 0 && (
+      <AnimatedExit
+        asChild
+        isVisible={filteredServices.length > 0 && selectedServices.length > 0}
+        animationOut="motion-translate-y-out-[2rem] motion-opacity-out-0"
+      >
         <section
           id="diensten-contact"
           className="bg-red motion-translate-y-in-[2rem]"
@@ -329,7 +334,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
             </div>
           </div>
         </section>
-      )}
+      </AnimatedExit>
     </>
   );
 };

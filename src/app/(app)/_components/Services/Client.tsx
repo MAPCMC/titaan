@@ -16,6 +16,8 @@ import { requiredPath } from "./requiredPath";
 import { Triangle } from "../Triangle";
 import { Form } from "@/app/(app)/_components/Form";
 import { AnimatedExit } from "@/app/(app)/_components/AnimatedExit";
+import { AutoFocus } from "../AutoFocus";
+import { useIsInteracting } from "./_helpers/useIsInteracting";
 
 interface ServicesProps {
   filters: Filter[];
@@ -33,6 +35,8 @@ export const ServicesClient: React.FC<ServicesProps> = ({
   const [selectedServices, setSelectedServices] = React.useState<number[]>([]);
   const searchParams = useSearchParams();
   const router = useRouter();
+  const interactingRef = React.useRef(null);
+  const isInteracting = useIsInteracting(interactingRef);
 
   const entries = Object.fromEntries(
     Array.from(searchParams.entries()).map(([key, value]) => [
@@ -146,13 +150,19 @@ export const ServicesClient: React.FC<ServicesProps> = ({
   };
 
   return (
-    <>
+    <div className="relative" ref={interactingRef}>
+      <Triangle
+        orientation="down"
+        className="bg-red-light h-full transition-[height_.5s_ease-in-out]"
+        wrapperClassName="absolute -top-64 h-[calc(100%+26rem)] left-1/2 -translate-x-1/2 z-[-1]"
+      />
       <section id={`${anchor}-filters`} className="relative">
         <div className="mx-auto mb-6 h-10 max-w-5xl px-4 text-right">
           <Button
             onClick={() => {
               setSelectedServices([]);
               router.push("?", { scroll: false });
+              document.getElementById(`${anchor}`)?.scrollIntoView();
             }}
             variant="outline"
             shape="small"
@@ -161,22 +171,63 @@ export const ServicesClient: React.FC<ServicesProps> = ({
             Filters verwijderen
           </Button>
         </div>
-        <Triangle
-          orientation="down"
-          className="bg-red-light h-full transition-[height_.5s_ease-in-out]"
-          wrapperClassName="absolute -top-64 h-[calc(100%+26rem)] left-1/2 -translate-x-1/2 z-[-1]"
-        />
         {filters.map((filter, i) => {
+          const lastFilter =
+            visibleFilters[visibleFilters.length - 1].id === filter.id;
+
+          if (lastFilter && isInteracting && filteredServices.length > 3) {
+            return (
+              <AutoFocus
+                isVisible={true}
+                key={filter.id}
+                className={
+                  "motion-translate-y-in-[2rem] mb-6 flex h-auto flex-wrap items-center justify-center gap-2"
+                }
+              >
+                {filteredServices.length > 3 && (
+                  <Triangle
+                    orientation="right"
+                    className="bg-red h-full"
+                    wrapperClassName="absolute left-0 h-18 top-0 z-[-1] -motion-translate-x-in-100 motion-ease-spring-smooth"
+                  />
+                )}
+                {filter.options?.map((option, fi) => {
+                  const isSelected = (key: string, value: string) => {
+                    return searchParams?.has(key, value);
+                  };
+                  return (
+                    <div key={fi}>
+                      <Button
+                        variant={
+                          isSelected(filter.key, option.value)
+                            ? "selected"
+                            : "outline"
+                        }
+                        key={fi}
+                        shape="skewed"
+                        onClick={() =>
+                          handleFilterClick(
+                            filter.key,
+                            option.value,
+                            filter.multiple,
+                          )
+                        }
+                      >
+                        <span className="block">{option.label}</span>
+                      </Button>
+                    </div>
+                  );
+                })}
+              </AutoFocus>
+            );
+          }
           return (
             <div
               key={filter.id}
               className={cn(
-                "mb-6 flex h-auto flex-wrap items-center justify-center gap-2",
+                "motion-translate-y-in-[2rem] mb-6 flex h-auto flex-wrap items-center justify-center gap-2",
                 {
                   "hidden h-0": !visibleFilters.find(
-                    (vis) => vis.id === filter.id,
-                  ),
-                  "motion-translate-y-in-[2rem]": visibleFilters.find(
                     (vis) => vis.id === filter.id,
                   ),
                 },
@@ -213,7 +264,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
           );
         })}
         {filteredServices.length > 3 && (
-          <p className="mx-auto max-w-5xl px-4 text-center">
+          <p className="h-small mx-auto max-w-5xl px-4 text-center">
             Selecteer meer velden voor gerichte informatie
           </p>
         )}
@@ -226,62 +277,76 @@ export const ServicesClient: React.FC<ServicesProps> = ({
         )}
       </section>
 
-      {filteredServices.length > 0 && filteredServices.length <= 3 && (
-        <section
-          id={`${anchor}-services`}
-          className="motion-translate-y-in-[2rem] mb-12"
-        >
-          {section.resultsIntro && (
-            <div className="mx-auto max-w-5xl px-4">
-              <div>
-                <h2 className="h-small">
-                  {`Relevante scenario's (${filteredServices.length})`}
-                </h2>
-                <Lexical content={section.resultsIntro} />
-              </div>
+      <AutoFocus
+        isVisible={filteredServices.length > 0 && filteredServices.length <= 3}
+        id={`${anchor}-services`}
+        className="motion-translate-y-in-[2rem] mb-12"
+      >
+        {selectedServices.length === 0 && (
+          <Triangle
+            orientation="right"
+            className="bg-red h-full"
+            wrapperClassName="absolute left-0 h-18 top-40 z-[-1] -motion-translate-x-in-100 motion-ease-spring-smooth"
+          />
+        )}
+        {section.resultsIntro && (
+          <div className="mx-auto max-w-5xl px-4">
+            <div>
+              <h2 className="h-small">
+                {`Relevante scenario's (${filteredServices.length})`}
+              </h2>
+              <Lexical content={section.resultsIntro} />
             </div>
-          )}
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
-            {filteredServices.map((service, i) => {
-              return (
-                <article
-                  className="border-foreground bg-background relative row-span-3 grid grid-rows-subgrid border p-4"
-                  key={i}
-                >
-                  <h3 className="h-small">{service.title}</h3>
-                  {service.content && (
-                    <div>
-                      <Lexical content={service.content} />
-                    </div>
-                  )}
-                  <Button
-                    variant={
-                      selectedServices.includes(service.id)
-                        ? "selected"
-                        : "outline"
-                    }
-                    shape="skewed"
-                    className="mr-8"
-                    onClick={() => handleServiceClick(service.id)}
-                  >
-                    <span>Dit zoek ik</span>
-                  </Button>
-                </article>
-              );
-            })}
           </div>
-        </section>
-      )}
+        )}
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
+          {filteredServices.map((service, i) => {
+            return (
+              <article
+                className="border-foreground bg-background relative row-span-3 grid grid-rows-subgrid border p-4"
+                key={i}
+              >
+                <h3 className="h-small">{service.title}</h3>
+                {service.content && (
+                  <div>
+                    <Lexical content={service.content} />
+                  </div>
+                )}
+                <Button
+                  variant={
+                    selectedServices.includes(service.id)
+                      ? "selected"
+                      : "outline"
+                  }
+                  shape="skewed"
+                  className="mr-8"
+                  onClick={() => handleServiceClick(service.id)}
+                >
+                  <span>Dit zoek ik</span>
+                </Button>
+              </article>
+            );
+          })}
+        </div>
+      </AutoFocus>
 
       <AnimatedExit
         asChild
         isVisible={filteredServices.length > 0 && selectedServices.length > 0}
         animationOut="motion-translate-y-out-[2rem] motion-opacity-out-0"
       >
-        <section
+        <AutoFocus
+          isVisible={filteredServices.length > 0 && selectedServices.length > 0}
+          focusProps={{ block: "start" }}
+          as="section"
           id="diensten-contact"
           className="bg-red motion-translate-y-in-[2rem]"
         >
+          <Triangle
+            orientation="right"
+            className="h-full bg-white"
+            wrapperClassName="absolute left-0 h-18 top-20 z-[-1] -motion-translate-x-in-100 motion-ease-spring-smooth"
+          />
           <div className="mx-auto max-w-5xl px-4 py-16">
             <h2 className="h-large">Dit zoek ik</h2>
             <div className="grid min-h-[50vh] gap-3 md:grid-cols-3 md:gap-6">
@@ -312,6 +377,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
                   onClick={() => {
                     setSelectedServices([]);
                     router.push("?", { scroll: false });
+                    document.getElementById(`${anchor}`)?.scrollIntoView();
                   }}
                   variant="outline"
                   shape="skewed"
@@ -333,8 +399,8 @@ export const ServicesClient: React.FC<ServicesProps> = ({
               </div>
             </div>
           </div>
-        </section>
+        </AutoFocus>
       </AnimatedExit>
-    </>
+    </div>
   );
 };

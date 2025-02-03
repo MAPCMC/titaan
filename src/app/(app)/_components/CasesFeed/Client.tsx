@@ -29,7 +29,7 @@ export const CasesFeedClient: React.FC<CasesFeedProps> = ({ cases }) => {
         slidesToScroll: "auto",
         loop: false,
       }}
-      className="mx-auto 3xl:max-w-7xl"
+      className="3xl:max-w-7xl mx-auto"
     >
       <CarouselContent className="grid auto-cols-[100%] grid-flow-col auto-rows-max md:auto-cols-[50%]">
         {cases.map((caseItem, i) => (
@@ -37,9 +37,9 @@ export const CasesFeedClient: React.FC<CasesFeedProps> = ({ cases }) => {
             key={`case-${i}`}
             className="row-span-5 grid grid-rows-subgrid"
           >
-            <article className="relative row-span-5 grid grid-rows-subgrid border border-foreground bg-background p-4">
+            <article className="border-foreground bg-background relative row-span-5 grid grid-rows-subgrid border p-4">
               <h3 className="h-medium">{caseItem.title}</h3>
-              <div>
+              <div className="mt-4">
                 <Lexical content={caseItem.content} />
               </div>
               <p className="h-small">{caseItem.fullname}</p>
@@ -51,7 +51,7 @@ export const CasesFeedClient: React.FC<CasesFeedProps> = ({ cases }) => {
                     <Button
                       shape="skewed"
                       variant="outline"
-                      className="-ml-1 mr-8"
+                      className="mr-8 -ml-1"
                     >
                       <span>Suzanne over dit project</span>
                     </Button>
@@ -59,7 +59,7 @@ export const CasesFeedClient: React.FC<CasesFeedProps> = ({ cases }) => {
 
                   <PopoverContent
                     sideOffset={8}
-                    className="w-[var(--radix-popover-trigger-width)] rounded-none border border-foreground bg-background"
+                    className="border-foreground bg-background w-[var(--radix-popover-trigger-width)] rounded-none border"
                   >
                     <Lexical content={caseItem.commentary} />
                     <PopoverClose className="text-sm first-letter:uppercase">

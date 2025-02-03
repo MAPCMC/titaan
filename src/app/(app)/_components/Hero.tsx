@@ -19,7 +19,7 @@ export default function Hero({ data }: { data: Header }) {
         </p>
       )}
       {callToAction && callToAction?.length > 0 && (
-        <div className="motion-preset-rebound-down motion-delay-3000 col-start-1 flex flex-wrap items-start gap-2 sm:max-sm:row-start-3 md:items-end">
+        <div className="motion-safe:motion-preset-rebound-down motion-delay-500 col-start-1 flex flex-wrap items-start gap-2 sm:max-sm:row-start-3 md:items-end">
           {callToAction?.map((cta, i) => (
             <CallToAction
               key={i}
@@ -32,7 +32,7 @@ export default function Hero({ data }: { data: Header }) {
         </div>
       )}
       {image && isMedia(image) && (
-        <div className="motion-translate-x-in-[183%] motion-scale-in-[.5] motion-opacity-in-[0%] motion-translate-y-in-[25%] motion-delay-2000 motion-duration-1000 relative col-start-2 row-span-2 row-start-2 ml-auto max-xl:mr-20 max-md:h-40 max-md:w-40 md:h-52 md:w-52">
+        <div className="motion-safe:motion-translate-x-in-[183%] motion-safe:motion-scale-in-[.5] motion-safe:motion-opacity-in-[0%] motion-safe:motion-translate-y-in-[25%] motion-delay-1000 motion-duration-1500 relative col-start-2 row-span-2 row-start-2 ml-auto max-xl:mr-20 max-md:h-40 max-md:w-40 md:h-52 md:w-52">
           <Image
             src={image.url ?? ""}
             alt={image.alt ?? ""}

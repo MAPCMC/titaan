@@ -38,9 +38,6 @@ export const ServicesClient: React.FC<ServicesProps> = ({
   const interactingRef = React.useRef(null);
   const isInteracting = useIsInteracting({
     ref: interactingRef,
-    onLeaveInteracting: () => {
-      setSelectedServices([]);
-    },
   });
 
   const entries = Object.fromEntries(
@@ -188,6 +185,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
           ) {
             return (
               <AutoFocus
+                stopFocus={!isInteracting}
                 isVisible={true}
                 key={filter.id}
                 className={
@@ -235,7 +233,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
             <div
               key={filter.id}
               className={cn(
-                "motion-translate-y-in-[2rem] mb-6 flex h-auto flex-wrap items-center justify-center gap-2",
+                "mb-6 flex h-auto flex-wrap items-center justify-center gap-2",
                 {
                   "hidden h-0": !visibleFilters.find(
                     (vis) => vis.id === filter.id,
@@ -288,6 +286,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
       </section>
 
       <AutoFocus
+        stopFocus={!isInteracting}
         isVisible={filteredServices.length > 0 && filteredServices.length <= 3}
         id={`${anchor}-services`}
         className="motion-translate-y-in-[2rem] mb-12"
@@ -346,11 +345,12 @@ export const ServicesClient: React.FC<ServicesProps> = ({
         animationOut="motion-translate-y-out-[2rem] motion-opacity-out-0"
       >
         <AutoFocus
+          stopFocus={!isInteracting}
           isVisible={filteredServices.length > 0 && selectedServices.length > 0}
           focusProps={{ block: "start" }}
           as="section"
           id="diensten-contact"
-          className="bg-red motion-translate-y-in-[2rem]"
+          className={cn("bg-red motion-translate-y-in-[2rem]")}
         >
           <Triangle
             orientation="right"

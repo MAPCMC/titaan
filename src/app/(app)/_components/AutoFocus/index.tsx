@@ -8,11 +8,13 @@ export function AutoFocus({
   isVisible,
   asChild,
   focusProps,
+  stopFocus,
   ...props
 }: {
   children: React.ReactNode;
   isVisible: boolean;
   asChild?: boolean;
+  stopFocus?: boolean;
   [x: string]: any;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -20,7 +22,7 @@ export function AutoFocus({
   const Comp = asChild ? Slot : "div";
 
   useEffect(() => {
-    if (isVisible && ref.current) {
+    if (isVisible && ref.current && !stopFocus) {
       ref.current.scrollIntoView({
         behavior: "smooth",
         block: "center",
@@ -28,7 +30,7 @@ export function AutoFocus({
       });
       ref.current.focus();
     }
-  }, [isVisible, focusProps]);
+  }, [isVisible, focusProps, stopFocus]);
 
   if (!isVisible) return null;
   return (

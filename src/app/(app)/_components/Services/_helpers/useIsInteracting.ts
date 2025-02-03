@@ -2,10 +2,15 @@
 
 import { useEffect, useState } from "react";
 
-export function useIsInteracting(
-  ref: React.RefObject<HTMLElement> | React.RefObject<null>,
+export function useIsInteracting({
+  ref,
   events = ["mousedown", "touchstart", "keydown"],
-) {
+  onLeaveInteracting,
+}: {
+  ref: React.RefObject<HTMLElement> | React.RefObject<null>;
+  events?: string[];
+  onLeaveInteracting?: () => void;
+}) {
   const [isInteracting, setIsInteracting] = useState(false);
 
   useEffect(() => {
@@ -13,6 +18,7 @@ export function useIsInteracting(
       if (ref && ref.current && ref.current.contains(e.target as Node)) {
         setIsInteracting(true);
       } else {
+        if (isInteracting && onLeaveInteracting) onLeaveInteracting();
         setIsInteracting(false);
       }
     }
@@ -24,7 +30,7 @@ export function useIsInteracting(
         document.removeEventListener(event, handleEvent),
       );
     };
-  }, [ref, events]);
+  }, [ref, events, isInteracting, onLeaveInteracting]);
 
   return isInteracting;
 }

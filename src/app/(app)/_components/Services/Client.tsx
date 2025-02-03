@@ -36,7 +36,12 @@ export const ServicesClient: React.FC<ServicesProps> = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   const interactingRef = React.useRef(null);
-  const isInteracting = useIsInteracting(interactingRef);
+  const isInteracting = useIsInteracting({
+    ref: interactingRef,
+    onLeaveInteracting: () => {
+      setSelectedServices([]);
+    },
+  });
 
   const entries = Object.fromEntries(
     Array.from(searchParams.entries()).map(([key, value]) => [

@@ -16,6 +16,10 @@
   margin-bottom: 1.5rem;
 }
 
+.lexical ul {
+  @apply list-inside list-[square];
+}
+
 .lexical p:has(+ ul) {
   margin-bottom: 0;
 }

@@ -56,7 +56,7 @@ export default async function PageFooter() {
           />
           <nav className="z-10 min-w-80">
             {/* main page anchors menu */}
-            <ul className="border-foreground bg-background border">
+            <ul className="border-foreground bg-background relative border focus-within:z-10 hover:z-10">
               <li>
                 <BackToTopButton />
               </li>
@@ -66,7 +66,7 @@ export default async function PageFooter() {
                     <Button
                       asChild
                       variant="link"
-                      className="flex w-full justify-start"
+                      className="flex w-full justify-start focus-visible:z-50"
                     >
                       <Link href={item.link} className="block">
                         <span className="first-letter:uppercase">
@@ -80,7 +80,7 @@ export default async function PageFooter() {
             </ul>
             {/* dynamic pages */}
             {(pages ?? []).length > 0 && (
-              <ul className="border-foreground bg-background border border-t-0">
+              <ul className="border-foreground bg-background relative border border-t-0 focus-within:z-10 hover:z-10">
                 {pages?.map((item, i) => {
                   if (!item.slug || !item.title) {
                     console.error("missing slug or title", item);
@@ -106,7 +106,7 @@ export default async function PageFooter() {
             )}
             {/* social links */}
             {(footerData?.socials || [])?.length > 0 && (
-              <ul className="border-foreground bg-background border border-t-0">
+              <ul className="border-foreground bg-background relative border border-t-0 focus-within:z-10 hover:z-10">
                 {footerData?.socials?.map((item, i) => {
                   return (
                     <li key={i} className="">

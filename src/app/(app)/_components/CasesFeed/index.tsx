@@ -1,10 +1,8 @@
 import React from "react";
 
 import { CasesFeedClient } from "./Client";
-import { getCachedCases } from "@/db/collections/Cases/utilities/getActiveCases";
+import { Case } from "@/payload-types";
 
-export const CasesFeed: React.FC = async () => {
-  const cases = await getCachedCases()();
-
+export const CasesFeed: React.FC<{ cases: Case[] }> = ({ cases }) => {
   return <CasesFeedClient cases={cases} />;
 };

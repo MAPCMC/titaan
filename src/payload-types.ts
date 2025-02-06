@@ -207,6 +207,7 @@ export interface Text {
  * via the `definition` "Cases".
  */
 export interface Cases {
+  list?: (number | Case)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'cases';
@@ -866,6 +867,7 @@ export interface TextSelect<T extends boolean = true> {
  * via the `definition` "Cases_select".
  */
 export interface CasesSelect<T extends boolean = true> {
+  list?: T;
   id?: T;
   blockName?: T;
 }

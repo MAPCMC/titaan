@@ -13,7 +13,7 @@ export const Cases: CollectionConfig = {
     update: authenticated,
   },
   admin: {
-    defaultColumns: ["title", "updatedAt"],
+    defaultColumns: ["title", "fullname"],
     useAsTitle: "title",
   },
   fields: [

@@ -13,5 +13,20 @@ export const CasesBlock: Block = {
       en: "Case lists",
     },
   },
-  fields: []
+  fields: [
+    {
+      name: "list",
+      type: "relationship",
+      relationTo: "cases",
+      minRows: 1,
+      hasMany: true,
+      admin: {
+        isSortable: true,
+      },
+      label: {
+        nl: "Cases om te tonen",
+        en: "Cases to show",
+      },
+    },
+  ],
 };

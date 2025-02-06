@@ -21,7 +21,7 @@ export function BlocksContent({
         return (() => {
           switch (block.blockType) {
             case "cases":
-              return <CasesFeed key={block.id} />;
+              return <CasesFeed key={block.id} cases={block.list} />;
             case "clients":
               return <ClientsFeed key={block.id} clients={block.list} />;
             case "text":
@@ -34,7 +34,7 @@ export function BlocksContent({
                   action={block.action}
                   type={block.type}
                   variant={block.variant}
-                  className="mb-3 mr-3"
+                  className="mr-3 mb-3"
                 />
               );
             default:

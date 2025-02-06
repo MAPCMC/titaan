@@ -17,7 +17,6 @@ import { Triangle } from "../Triangle";
 import { Form } from "@/app/(app)/_components/Form";
 import { AnimatedExit } from "@/app/(app)/_components/AnimatedExit";
 import { AutoFocus } from "../AutoFocus";
-import { useIsInteracting } from "./_helpers/useIsInteracting";
 
 interface ServicesProps {
   filters: Filter[];
@@ -35,10 +34,6 @@ export const ServicesClient: React.FC<ServicesProps> = ({
   const [selectedServices, setSelectedServices] = React.useState<number[]>([]);
   const searchParams = useSearchParams();
   const router = useRouter();
-  const interactingRef = React.useRef(null);
-  const isInteracting = useIsInteracting({
-    ref: interactingRef,
-  });
 
   const entries = Object.fromEntries(
     Array.from(searchParams.entries()).map(([key, value]) => [
@@ -158,7 +153,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
   };
 
   return (
-    <div className="relative" ref={interactingRef}>
+    <div className="relative">
       <Triangle
         orientation="down"
         className="bg-red-light h-full transition-[height_.5s_ease-in-out]"
@@ -183,16 +178,14 @@ export const ServicesClient: React.FC<ServicesProps> = ({
           const lastFilter =
             visibleFilters[visibleFilters.length - 1].id === filter.id;
 
-          if (
-            lastFilter &&
-            filter.level !== 1 &&
-            isInteracting &&
-            filteredServices.length > 3
-          ) {
+          if (lastFilter && filter.level !== 1 && filteredServices.length > 3) {
             return (
               <AutoFocus
-                stopFocus={!isInteracting}
-                isVisible={true}
+                isVisible={
+                  lastFilter &&
+                  filter.level !== 1 &&
+                  filteredServices.length > 3
+                }
                 key={filter.id}
                 className={
                   "motion-translate-y-in-[2rem] mb-6 flex h-auto flex-wrap items-center justify-center gap-2"
@@ -248,13 +241,15 @@ export const ServicesClient: React.FC<ServicesProps> = ({
                 },
               )}
             >
-              {lastFilter && filter.level === 1 && (
-                <Triangle
-                  orientation="right"
-                  className="bg-red h-full"
-                  wrapperClassName="absolute left-0 h-16 top-0 z-[-1] -motion-translate-x-in-100 motion-ease-spring-smooth"
-                />
-              )}
+              {lastFilter &&
+                filter.level === 1 &&
+                filteredServices.length > 3 && (
+                  <Triangle
+                    orientation="right"
+                    className="bg-red h-full"
+                    wrapperClassName="absolute left-0 h-16 top-0 z-[-1] -motion-translate-x-in-100 motion-ease-spring-smooth"
+                  />
+                )}
               {filter.options?.map((option, fi) => {
                 const isSelected = (key: string, value: string) => {
                   return searchParams?.has(key, value);
@@ -300,7 +295,6 @@ export const ServicesClient: React.FC<ServicesProps> = ({
       </section>
 
       <AutoFocus
-        stopFocus={!isInteracting}
         isVisible={filteredServices.length > 0 && filteredServices.length <= 3}
         id={`${anchor}-services`}
         className="motion-translate-y-in-[2rem] mb-12"
@@ -359,7 +353,6 @@ export const ServicesClient: React.FC<ServicesProps> = ({
         animationOut="motion-translate-y-out-[2rem] motion-opacity-out-0"
       >
         <AutoFocus
-          stopFocus={!isInteracting}
           isVisible={filteredServices.length > 0 && selectedServices.length > 0}
           focusProps={{ block: "start" }}
           as="section"

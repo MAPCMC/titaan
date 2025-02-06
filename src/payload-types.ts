@@ -1182,6 +1182,21 @@ export interface ServiceSection {
     };
     [k: string]: unknown;
   } | null;
+  resultsDisclaimer?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   form?: (number | null) | Form;
   id?: string | null;
   blockName?: string | null;
@@ -1264,6 +1279,7 @@ export interface ServiceSectionSelect<T extends boolean = true> {
   introduction?: T;
   type?: T;
   resultsIntro?: T;
+  resultsDisclaimer?: T;
   form?: T;
   id?: T;
   blockName?: T;

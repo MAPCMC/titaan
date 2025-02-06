@@ -66,6 +66,14 @@ export const ServiceSectionBlock: Block = {
       type: "richText",
     },
     {
+      name: "resultsDisclaimer",
+      label: {
+        nl: "Disclaimer diensten (naast formulier)",
+        en: "Disclaimer services",
+      },
+      type: "richText",
+    },
+    {
       name: "form",
       label: {
         nl: "Formulier",

@@ -368,7 +368,7 @@ export const ServicesClient: React.FC<ServicesProps> = ({
             <h2 className="h-large">Dit zoek ik</h2>
             <div className="grid min-h-[50vh] gap-3 md:grid-cols-3 md:gap-6">
               <div className="lexical border-foreground bg-background flex h-full flex-col items-start border p-4 md:col-start-3">
-                <h3 className="h-small mb-6">Wat we weten</h3>
+                <h3 className="h-small mb-6">Over jou/jullie</h3>
                 <p>Over jou/jullie:</p>
                 <ul>
                   {filterOptions().map((options, i) => {
@@ -390,6 +390,12 @@ export const ServicesClient: React.FC<ServicesProps> = ({
                       return <li key={i}>{service.title}</li>;
                     })}
                 </ul>
+                {section.resultsDisclaimer && (
+                  <>
+                    <h3 className="h-small mb-6">Over mijn diensten</h3>
+                    <Lexical content={section.resultsDisclaimer} />
+                  </>
+                )}
                 <Button
                   onClick={() => {
                     setSelectedServices([]);

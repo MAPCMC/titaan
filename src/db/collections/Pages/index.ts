@@ -16,6 +16,7 @@ import {
   PreviewField,
 } from "@payloadcms/plugin-seo/fields";
 import { revalidateActivePages } from "./hooks/revalidateActivePages";
+
 export const Pages: CollectionConfig = {
   slug: "pages",
   access: {

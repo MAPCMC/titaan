@@ -1,8 +1,11 @@
+import type { Metadata } from "next";
+
 import PageHeader from "./_components/PageHeader";
 import PageContent from "./_components/PageContent";
 import PageFooter from "./_components/PageFooter";
 import Hero from "./_components/Hero";
 import { getCachedGlobal } from "@/db/utilities/getGlobals";
+import { generateMeta } from "@/db/utilities/generateMeta";
 import { Home as HomeData } from "@/payload-types";
 
 export default async function Home() {
@@ -19,4 +22,10 @@ export default async function Home() {
       <PageFooter />
     </>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const home: HomeData = await getCachedGlobal("home", 4)();
+
+  return generateMeta({ doc: home });
 }

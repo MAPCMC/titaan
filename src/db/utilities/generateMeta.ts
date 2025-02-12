@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
-import type { Page } from "@/payload-types";
+import type { Home, Page } from "@/payload-types";
 
 import { mergeOpenGraph } from "./mergeOpenGraph";
 
 export const generateMeta = async (args: {
-  doc: Page;
+  doc: Page | Home;
 }): Promise<Metadata> => {
   const { doc } = args || {};
 
@@ -16,8 +16,17 @@ export const generateMeta = async (args: {
     `${process.env.NEXT_PUBLIC_SERVER_URL}${doc.meta.image.url}`;
 
   const title = doc?.meta?.title
-    ? doc?.meta?.title + " | Titaan Producties"
-    : "Titaan Producties";
+    ? doc?.meta?.title + " | " + process.env.NEXT_PUBLIC_SITE_TITLE
+    : process.env.NEXT_PUBLIC_SITE_TITLE;
+
+  let urlFromSlug: string | undefined;
+  function isPage(doc: Page | Home): doc is Page {
+    return (doc as Page).slug !== undefined;
+  }
+
+  if (doc && isPage(doc)) {
+    urlFromSlug = Array.isArray(doc.slug) ? doc.slug.join("/") : "/";
+  }
 
   return {
     description: doc?.meta?.description,
@@ -31,9 +40,7 @@ export const generateMeta = async (args: {
           ]
         : undefined,
       title,
-      url: Array.isArray(doc?.slug)
-        ? doc?.slug.join("/")
-        : "/",
+      url: urlFromSlug ?? "/",
     }),
     title,
   };

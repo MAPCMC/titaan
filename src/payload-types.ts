@@ -1142,6 +1142,14 @@ export interface Home {
   id: number;
   header?: Header[] | null;
   layout?: (Section | ServiceSection)[] | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1248,6 +1256,13 @@ export interface HomeSelect<T extends boolean = true> {
     | {
         section?: T | SectionSelect<T>;
         serviceSection?: T | ServiceSectionSelect<T>;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
       };
   updatedAt?: T;
   createdAt?: T;

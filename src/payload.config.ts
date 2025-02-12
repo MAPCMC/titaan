@@ -53,6 +53,33 @@ export default buildConfig({
   i18n: {
     supportedLanguages: { nl, en },
     fallbackLanguage: "nl",
+    translations: {
+      nl: {
+        "plugin-seo": {
+          almostThere: "Bijna klaar",
+          autoGenerate: "Automatisch",
+          bestPractices: "Tips",
+          characterCount: "{{current}}/{{minLength}}-{{maxLength}} karakters, ",
+          charactersLeftOver: "{{characters}} over",
+          charactersToGo: "{{characters}} te gaan",
+          charactersTooMany: "{{characters}} te veel",
+          checksPassing: "{{current}}/{{max}} checks zijn geslaagd",
+          good: "Goed",
+          imageAutoGenerationTip:
+            "Automisch genereren selecteert hero afbeelding",
+          lengthTipDescription:
+            "Dit moet tussen de {{minLength}} en {{maxLength}} karakters. Voor hulp, zie ",
+          lengthTipTitle:
+            "Dit moet tussen de {{minLength}} en {{maxLength}} karakters. Voor hulp, zie ",
+          missing: "Ontbreekt",
+          noImage: "Geen afbeelding",
+          preview: "Preview",
+          previewDescription: "Exact resultaat varieert (op inhoud/relevantie)",
+          tooLong: "te lang",
+          tooShort: "te kort",
+        },
+      },
+    },
   },
   collections: [Users, Media, Pages, Cases, Services, Filters],
   globals: [Home, Footer],

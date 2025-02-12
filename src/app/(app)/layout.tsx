@@ -23,6 +23,9 @@ export default function RootLayout({
   return (
     <ObserverProvider>
       <html lang="nl" className="text-sm md:text-base">
+        <head>
+          <meta name="apple-mobile-web-app-title" content="Titaan" />
+        </head>
         <body
           className={`${font.className} flex min-h-screen flex-col`}
           id="body"

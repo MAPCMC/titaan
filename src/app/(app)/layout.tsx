@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Yantramanav } from "next/font/google";
 import ObserverProvider from "./_components/ObserverProvider";
+import Script from "next/script";
 import "./globals.css";
 
 const font = Yantramanav({
@@ -24,6 +25,11 @@ export default function RootLayout({
     <ObserverProvider>
       <html lang="nl" className="text-sm md:text-base">
         <head>
+          <Script
+            defer
+            src="https://analytics.maartenpeene.nl/script.js"
+            data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_WEBSITE_ID}
+          />
           <meta name="apple-mobile-web-app-title" content="Titaan" />
         </head>
         <body

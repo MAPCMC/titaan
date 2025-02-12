@@ -29,8 +29,9 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     meta: {
-      title: "Titaan admin",
-      description: "Sitebeheer",
+      title: "Admin",
+      titleSuffix: ` | ${process.env.NEXT_PUBLIC_SITE_TITLE}`,
+      description: `Sitebeheer ${process.env.NEXT_PUBLIC_SITE_TITLE}`,
       icons: [
         {
           rel: "icon",
@@ -38,6 +39,15 @@ export default buildConfig({
           url: "/icon.svg",
         },
       ],
+    },
+    avatar: {
+      Component: "@/app/(app)/_components/Avatar#Avatar",
+    },
+    components: {
+      graphics: {
+        Icon: "@/app/(app)/_components/Icon#Icon",
+        Logo: "@/app/(app)/_components/AdminLogo#AdminLogo",
+      },
     },
   },
   i18n: {

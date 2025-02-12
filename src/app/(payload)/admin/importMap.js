@@ -30,6 +30,9 @@ import { SlugComponent as SlugComponent_ce0eb93181d6e2b59032d87493a6ac72 } from 
 import { RowDataLabel as RowDataLabel_75d6ce5f2ae551d2ed29f6b11f2a0526 } from '@/db/_components/RowDataLabel'
 import { FixedToolbarFeatureClient as FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { SocialRowLabel as SocialRowLabel_113c28ef883c485d291faa04eca34b54 } from '@/db/globals/Footer/SocialRowLabel'
+import { Avatar as Avatar_d29e8a28586f09f1a9623f5ce46a78cf } from '@/app/(app)/_components/Avatar'
+import { Icon as Icon_e577e1fae66e162381d843bb272f6d7d } from '@/app/(app)/_components/Icon'
+import { AdminLogo as AdminLogo_a36faaf05d84ed89399a3e3c0a12b2d3 } from '@/app/(app)/_components/AdminLogo'
 
 export const importMap = {
   "@/db/blocks/SectionBlock/blocks/ClientsBlock/RowLabel#ArrayRowLabel": ArrayRowLabel_74741515d62eefe89c1372a233ba3284,
@@ -63,5 +66,8 @@ export const importMap = {
   "@/db/fields/slug/SlugComponent#SlugComponent": SlugComponent_ce0eb93181d6e2b59032d87493a6ac72,
   "@/db/_components/RowDataLabel#RowDataLabel": RowDataLabel_75d6ce5f2ae551d2ed29f6b11f2a0526,
   "@payloadcms/richtext-lexical/client#FixedToolbarFeatureClient": FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-  "@/db/globals/Footer/SocialRowLabel#SocialRowLabel": SocialRowLabel_113c28ef883c485d291faa04eca34b54
+  "@/db/globals/Footer/SocialRowLabel#SocialRowLabel": SocialRowLabel_113c28ef883c485d291faa04eca34b54,
+  "@/app/(app)/_components/Avatar#Avatar": Avatar_d29e8a28586f09f1a9623f5ce46a78cf,
+  "@/app/(app)/_components/Icon#Icon": Icon_e577e1fae66e162381d843bb272f6d7d,
+  "@/app/(app)/_components/AdminLogo#AdminLogo": AdminLogo_a36faaf05d84ed89399a3e3c0a12b2d3
 }
